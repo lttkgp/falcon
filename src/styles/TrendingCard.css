@@ -20,11 +20,15 @@
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    padding-right: 10px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
 }
 
 .TrendingCardImage img {
-    max-height: 100%;
+    width: 100%;
+    flex: 1;
 }
 
 .TrendingSongDetails {
@@ -32,6 +36,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 60px;
+    padding-left: 10px;
 }
 
 .TrendingSongArtistName {

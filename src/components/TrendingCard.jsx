@@ -5,10 +5,10 @@ import '../styles/TrendingCard.css';
 
 const TrendingCard = (props) => {
   const {
-    albumArt, songName, artistName
+    albumArt, songName, artistName, cardId
   } = props;
   return (
-    <div className="TrendingCard">
+    <div className="TrendingCard" key={cardId}>
       <div className="TrendingCardImage">
         <img src={albumArt} alt="Album Art"/>
       </div>
