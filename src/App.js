@@ -11,7 +11,7 @@ class App extends Component {
           <div className="TrendingLists">
             <div className="Trending">
               <div className="TrendingTitle">
-                Today's top 10 tracks
+                {"Today's top 10 tracks"}
               </div>
               <TrendingCard
                 albumArt={require("./assets/albumart/young_mister.jpg")}
@@ -31,7 +31,7 @@ class App extends Component {
             </div>
             <div className="Trending">
               <div className="TrendingTitle">
-                Latest 10 tracks
+                {"Latest 10 tracks"}
               </div>
               <TrendingCard
                 albumArt={require("./assets/albumart/young_mister.jpg")}
