@@ -22,3 +22,10 @@
     margin: auto;
     padding: 50px 0;
 }
+
+.HomeTitle {
+    padding-top: 40px;
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    margin: auto;
+}

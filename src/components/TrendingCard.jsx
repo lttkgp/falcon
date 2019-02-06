@@ -21,16 +21,19 @@ const TrendingCard = (props) => {
         </div>
       </div>
       <div className="TrendingCardButtons">
-        <div className="TrendingCardButton">
+        {/* <div className="TrendingCardButton">
           <FontAwesomeIcon icon={faPlus} color="#4c4c4c"/>
-        </div>
+        </div> */}
         <div className="TrendingCardButton"
           onClick={() => onPlayButton(listId, cardId, videoId)}>
-          <FontAwesomeIcon icon={faPlay} color="#4c4c4c"/>
+          <FontAwesomeIcon
+            icon={faPlay}
+            color="#4c4c4c"
+            id="playButton"/>
         </div>
-        <div className="TrendingCardButton">
+        {/* <div className="TrendingCardButton">
           <FontAwesomeIcon icon={faEllipsisV} color="#4c4c4c"/>
-        </div>
+        </div> */}
       </div>
     </div>
   );

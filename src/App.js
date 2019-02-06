@@ -10,10 +10,13 @@ class App extends Component {
     super();
     this.state = {
       trendingDataFetched: false,
+      weeklyDataFetched: false,
       latestDataFetched: false,
       trendingData: [],
+      weeklyData: [],
       latestData: [],
       trendingPlaylist: null,
+      weeklyPlaylist: null,
       latestPlaylist: null,
       activeId: null,
     };
@@ -36,6 +39,17 @@ class App extends Component {
         }
       }
     );
+    axios.get(falconUrl + "/trending/week")
+    .then((response) => {
+      if (response['data'] != null) {
+        this.setState({
+          weeklyDataFetched: true,
+          weeklyData: response['data']
+        });
+        this.buildPlaylist(1, response['data']);
+      }
+    }
+  );
     axios.get(falconUrl + "/latest/50")
       .then((response) => {
         if (response['data'] != null) {
@@ -43,7 +57,7 @@ class App extends Component {
             latestDataFetched: true,
             latestData: response['data']
           });
-          this.buildPlaylist(1, response['data']);
+          this.buildPlaylist(2, response['data']);
         }
       }
     );
@@ -53,19 +67,24 @@ class App extends Component {
     let videoIds = []
     for (let i=0; i<playlistData.length; ++i) {
       let videoId = this.getVideoId(playlistData[i]['link']);
-      if (videoId.length === 11) {
-        videoIds.push(videoId);
-      }
+      videoIds.push(videoId);
     }
     if (playlistType === 0) {
-      this.setState({
-        trendingPlaylist: videoIds,
-        activeId: {
-          listId: 0,
-          cardId: 0,
-          videoId: videoIds[0]},
-      });
+      let i=0;
+      do {
+        this.setState({
+          trendingPlaylist: videoIds,
+          activeId: {
+            listId: 0,
+            cardId: 0,
+            videoId: videoIds[0]},
+        });
+      } while(videoIds[i].length!==11);
     } else if (playlistType === 1) {
+      this.setState({
+        weeklyPlaylist: videoIds
+      });
+    } else if (playlistType === 2) {
       this.setState({
         latestPlaylist: videoIds
       });
@@ -86,6 +105,16 @@ class App extends Component {
   }
 
   playVideoWithId(listId, cardId, videoId) {
+    while (videoId.length!==11) {
+      cardId += 1;
+      if (listId === 0) {
+        videoId = this.state.trendingPlaylist[cardId];
+      } else if (listId === 1) {
+        videoId = this.state.weeklyPlaylist[cardId];
+      } else if (listId === 2) {
+        videoId = this.state.latestPlaylist[cardId];
+      }
+    }
     this.setState({
       activeId: {
         listId,
@@ -96,15 +125,16 @@ class App extends Component {
   }
 
   postSongEnd() {
-    console.log("new song!");
     let currentActiveId = this.state.activeId;
-    this.setState({
-      activeId: {
-        listId: currentActiveId['listId'],
-        cardId: currentActiveId['cardId'] + 1,
-        videoId: currentActiveId['listId']===0?this.state.trendingPlaylist[currentActiveId['cardId'] + 1]:this.state.latestPlaylist[currentActiveId['cardId'] + 1],
-      },
-    });
+    let videoId = currentActiveId['videoId'];
+    if (currentActiveId['listId']===0) {
+      videoId = this.state.trendingPlaylist[currentActiveId['cardId'] + 1];
+    } else if (currentActiveId['listId']===1) {
+      videoId = this.state.weeklyPlaylist[currentActiveId['cardId'] + 1];
+    } else if (currentActiveId['listId']===2) {
+      videoId = this.state.latestPlaylist[currentActiveId['cardId'] + 1];
+    }
+    this.playVideoWithId(currentActiveId['listId'], currentActiveId['cardId'] + 1, videoId);
   }
 
   render() {
@@ -116,6 +146,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Home">
+          <div className="HomeTitle">
+            Listen To This KGP!
+          </div>
           <div className="VideoPlayer">
             {
               this.state.activeId &&
@@ -151,10 +184,10 @@ class App extends Component {
             </div>
             <div className="Trending">
               <div className="TrendingTitle">
-                {"Latest tracks"}
+                {"This week's top tracks"}
               </div>
               {
-                this.state.latestData.map((item, i) => {
+                this.state.weeklyData.map((item, i) => {
                   let videoId = this.getVideoId(item['link']);
                   return (
                     <TrendingCard
@@ -170,11 +203,28 @@ class App extends Component {
                 })
               }
             </div>
+            <div className="Trending">
+              <div className="TrendingTitle">
+                {"Latest tracks"}
+              </div>
+              {
+                this.state.latestData.map((item, i) => {
+                  let videoId = this.getVideoId(item['link']);
+                  return (
+                    <TrendingCard
+                      albumArt={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                      songName={item['name']}
+                      artistName=""
+                      listId={2}
+                      cardId={i}
+                      videoId={videoId}
+                      onPlayButton={this.playVideoWithId}
+                    />
+                  )
+                })
+              }
+            </div>
           </div>
-        </div>
-        <div className="SideBar">
-        </div>
-        <div className="Player">
         </div>
       </div>
     );
