@@ -1,5 +1,7 @@
 .Home {
     margin: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .TrendingLists {
@@ -14,4 +16,9 @@
 
 .TrendingTitle {
     font-size: 1.25rem;
+}
+
+.VideoPlayer {
+    margin: auto;
+    padding: 50px 0;
 }

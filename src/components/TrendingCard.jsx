@@ -5,7 +5,7 @@ import '../styles/TrendingCard.css';
 
 const TrendingCard = (props) => {
   const {
-    albumArt, songName, artistName, cardId
+    albumArt, songName, artistName, listId, cardId, videoId, onPlayButton
   } = props;
   return (
     <div className="TrendingCard" key={cardId}>
@@ -24,11 +24,12 @@ const TrendingCard = (props) => {
         <div className="TrendingCardButton">
           <FontAwesomeIcon icon={faPlus} color="#4c4c4c"/>
         </div>
-        <div className="TrendingCardButton">
-            <FontAwesomeIcon icon={faPlay} color="#4c4c4c"/>
+        <div className="TrendingCardButton"
+          onClick={() => onPlayButton(listId, cardId, videoId)}>
+          <FontAwesomeIcon icon={faPlay} color="#4c4c4c"/>
         </div>
         <div className="TrendingCardButton">
-            <FontAwesomeIcon icon={faEllipsisV} color="#4c4c4c"/>
+          <FontAwesomeIcon icon={faEllipsisV} color="#4c4c4c"/>
         </div>
       </div>
     </div>
