@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const falconUrl = "http://localhost:3001";
+    const falconUrl = "https://api.lttkgp.com";
     axios.get(falconUrl + "/trending/month")
       .then((response) => {
         if (response['data'] != null) {
@@ -92,16 +92,8 @@ class App extends Component {
   }
 
   getVideoId(videoUrl) {
-    let videoId = '';
-    videoUrl = videoUrl.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-    if(videoUrl[2] !== undefined) {
-      videoId = videoUrl[2].split(/[^0-9a-z_-]/i);
-      videoId = videoId[0];
-    }
-    else {
-      videoId = videoUrl;
-    }
-    return videoId;
+    videoUrl = videoUrl.split(/(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    return undefined !== videoUrl[2]?videoUrl[2].split(/[^0-9a-z_\-]/i)[0]:videoUrl[0];
   }
 
   playVideoWithId(listId, cardId, videoId) {
