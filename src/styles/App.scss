@@ -28,6 +28,9 @@ $primary: #fc58a7;
   display: flex;
   .content {
     padding: 5rem 2rem;
+    @include sm {
+      padding: 2rem;
+    }
     width: 100%;
     div {
       position: absolute;

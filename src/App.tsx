@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './styles/App.scss';
 import Sidebar from './components/sidebar';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 
 import CSwitch from './components/animatedSwitch.js';
 
+function useHighlight() {
+  useEffect(() => {
+    console.log('hello');
+  }, []);
+}
 function App() {
+  useHighlight();
   return (
     <div className='App'>
       <Router>

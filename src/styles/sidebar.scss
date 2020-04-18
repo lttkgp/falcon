@@ -59,6 +59,10 @@
         margin-right: 1rem;
       }
 
+      &.active {
+        background: lighten($gray, 33%);
+      }
+
       @include md {
         padding: 1rem 1.5rem;
         width: 24px;
@@ -106,10 +110,11 @@
         }
       }
 
-      transition: all 0.25s ease-in-out, box-shadow 0.5s ease-in-out;
+      transition: all 0.25s ease-in-out, box-shadow 0.5s ease-in-out,
+        color 10ms linear;
 
       &:hover {
-        background-color: $primary;
+        background: linear-gradient(90deg, $primary, lighten($primary, 20%));
         transform: scale(1.05);
         box-shadow: 0px 15px 30px rgba(255, 0, 122, 0.24);
         color: #fff;
