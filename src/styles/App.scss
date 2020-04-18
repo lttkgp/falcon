@@ -1,0 +1,34 @@
+@import url('https://rsms.me/inter/inter.css');
+html {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+// Remove Firefox dotted outline while clicking on links
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+
+$gray: #8c99aa;
+$primary: #fc58a7;
+
+.App {
+  color: $gray;
+  display: flex;
+  // flex-direction: column;
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@import 'sidebar';
