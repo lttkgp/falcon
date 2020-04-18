@@ -2,21 +2,33 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 20vw;
+  width: 15vw;
   padding: 5rem;
+
+  @media screen and (max-width: 1000px) {
+    position: fixed;
+    z-index: 100;
+    width: 15vw;
+    padding: 2rem;
+  }
 
   .logo {
     font-weight: bolder;
     font-size: 40px;
     color: $primary;
+    @media screen and (max-width: 1000px) {
+      font-size: 24px;
+    }
   }
 
   .menu {
     font-size: 24px;
-    margin: 5rem 0;
+    margin: 5rem 0.5rem;
     display: flex;
     flex-direction: column;
-
+    @media screen and (max-width: 1000px) {
+      font-size: 18px;
+    }
     a {
       display: flex;
       align-items: center;
@@ -28,6 +40,35 @@
       border-radius: 42px;
       svg {
         margin-right: 1rem;
+      }
+
+      @media screen and (max-width: 1000px) {
+        padding: 1rem 1.5rem;
+        width: 24px;
+        .text {
+          width: 0px;
+          opacity: 0;
+          transition: all 0.2s ease-in-out;
+          overflow: hidden;
+          transform: translateX(-2rem);
+        }
+        &:hover {
+          width: 100%;
+          svg {
+            margin-right: 0.5rem !important;
+          }
+          .text {
+            // display: inline;
+            opacity: 1;
+            width: auto;
+            transform: translateX(0);
+          }
+        }
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 0 !important;
+        }
       }
 
       transition: all 0.25s ease-in-out, box-shadow 0.5s ease-in-out;

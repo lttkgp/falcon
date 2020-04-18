@@ -7,13 +7,13 @@ export default function Sidebar(props: Object) {
       <div className='logo'>LTTKGP</div>
       <div className='menu'>
         <a href='#home' className='link'>
-          <Icon.Home></Icon.Home> Home
+          <Icon.Home></Icon.Home> <span className='text'>Home</span>
         </a>
         <a href='#feed' className='link'>
-          <Icon.Layers></Icon.Layers> Feed
+          <Icon.Layers></Icon.Layers> <span className='text'>Feed</span>
         </a>
         <a href='#genre' className='link'>
-          <Icon.Music></Icon.Music> Genres
+          <Icon.Music></Icon.Music> <span className='text'>Genres</span>
         </a>
       </div>
     </div>
