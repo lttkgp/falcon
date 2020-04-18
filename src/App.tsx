@@ -2,12 +2,19 @@ import React from 'react';
 
 import './styles/App.scss';
 import Sidebar from './components/sidebar';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import CSwitch from './components/animatedSwitch.js';
 
 function App() {
   return (
     <div className='App'>
-      <Sidebar></Sidebar>
-      <div className='content'>This is the content</div>
+      <Router>
+        <Sidebar></Sidebar>
+        <div className='content'>
+          <CSwitch />
+        </div>
+      </Router>
     </div>
   );
 }

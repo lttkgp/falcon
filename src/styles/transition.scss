@@ -1,0 +1,24 @@
+.fade-enter {
+  opacity: 0;
+  transform: translateX(-60px) rotateY(-60deg) scale(1.2);
+  z-index: 1;
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transform: translateX(0px) rotateY(0deg) scale(1);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+
+.fade-exit {
+  opacity: 0.75;
+  transform: translateX(0px);
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transform: translateY(100px);
+
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}

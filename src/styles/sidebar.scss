@@ -34,7 +34,7 @@
 
   .menu {
     font-size: 24px;
-    margin: 5rem 0.5rem;
+    margin: 5rem 0rem;
     display: flex;
     flex-direction: column;
     @include md {
@@ -94,14 +94,14 @@
         align-items: center;
         justify-content: center;
         padding: 1rem;
-        margin: -1rem 0 0 0;
-        width: 48px;
+        margin: -1.25rem 0 0 0;
+        width: 40px;
         .text {
           font-size: 0.8rem;
         }
         svg {
-          width: 36px;
-          height: 36px;
+          width: 24px;
+          height: 24px;
           margin-right: 0 !important;
         }
       }

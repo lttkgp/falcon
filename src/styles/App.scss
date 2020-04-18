@@ -5,11 +5,6 @@
 html {
   font-family: 'Inter', sans-serif;
 }
-@supports (font-variation-settings: normal) {
-  html {
-    font-family: 'Inter var', sans-serif;
-  }
-}
 
 body,
 html,
@@ -31,13 +26,17 @@ $primary: #fc58a7;
 .App {
   color: $gray;
   display: flex;
-  // flex-direction: column;
   .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 5rem 2rem;
     width: 100%;
+    div {
+      position: absolute;
+    }
+    @include md {
+      margin-left: 10vh;
+    }
   }
 }
 
 @import 'sidebar';
+@import 'transition';
