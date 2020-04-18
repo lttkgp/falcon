@@ -1,0 +1,42 @@
+@import 'responsive';
+
+@import url('https://rsms.me/inter/inter.css');
+
+html {
+  font-family: 'Inter', sans-serif;
+}
+
+body,
+html,
+.App {
+  min-height: 100vh;
+}
+
+// Remove Firefox dotted outline while clicking on links
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+
+$gray: #8c99aa;
+$primary: #fc58a7;
+
+.App {
+  color: $gray;
+  display: flex;
+  .content {
+    padding: 5rem 10rem 5rem 0rem;
+    @include sm {
+      padding: 2rem;
+      margin-bottom: 10rem;
+    }
+    @include md {
+      padding: 5rem 5rem 5rem 10rem;
+    }
+  }
+}
+
+@import 'sidebar';
+@import 'transition';

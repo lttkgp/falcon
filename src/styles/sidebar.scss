@@ -1,0 +1,211 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 15vw;
+  padding: 5rem;
+  transition: all 0.5s ease;
+
+  @include md {
+    position: fixed;
+    padding: 2rem;
+  }
+
+  &.short {
+    width: 0px;
+    padding: 2rem 4rem;
+    margin-right: 5rem;
+    .logo {
+      font-size: 24px;
+      span.text {
+        width: 0px;
+        opacity: 0;
+      }
+    }
+    .menu {
+      font-size: 18px;
+      a {
+        padding: 1rem 1.5rem;
+        width: 24px;
+        .text {
+          width: 0px;
+          opacity: 0;
+          transition: all 0.2s ease-in-out;
+          overflow: hidden;
+          transform: translateX(-2rem);
+        }
+        &:hover {
+          width: 160px;
+          svg {
+            margin-right: 0.5rem !important;
+          }
+          .text {
+            opacity: 1;
+            width: inherit;
+            transform: translateX(0);
+          }
+        }
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 0 !important;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    position: fixed;
+    height: 60px;
+    z-index: 100;
+    bottom: 0;
+    padding: 0 2rem;
+    width: calc(100% - 4rem);
+    background: linear-gradient(#ffffff00, #fff);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 40px;
+    color: $primary;
+
+    .text {
+      width: inherit;
+      display: inline-block;
+      transition: all 0.5s ease;
+    }
+
+    .drawer {
+      margin: 1rem;
+      margin-left: -2rem;
+      border-radius: 1rem;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.25 ease;
+      svg {
+        padding: 1rem;
+        width: 32px;
+        height: 32px;
+      }
+      &:hover {
+        background-color: lighten($gray, 33%);
+        transform: scale(1.05);
+      }
+      &:active {
+        background-color: lighten($gray, 30%);
+        transform: scale(0.95);
+      }
+    }
+    @include md {
+      display: none;
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  .menu {
+    font-size: 24px;
+    padding: 5rem 0rem;
+    display: flex;
+    flex-direction: column;
+    @include md {
+      font-size: 18px;
+    }
+    @include sm {
+      flex-direction: row;
+      margin: 0;
+      justify-content: space-between;
+      padding: 0;
+    }
+    a {
+      display: inline-flex;
+      color: $gray;
+      text-decoration: none;
+      margin: 1rem 0;
+      margin-left: -1.5rem;
+      padding: 1rem 2rem;
+      border-radius: 42px;
+      width: fit-content;
+      svg {
+        margin-right: 1rem;
+      }
+
+      &.active {
+        background: lighten($gray, 33%);
+      }
+
+      @include md {
+        padding: 1rem 1.5rem;
+        width: 24px;
+        .text {
+          width: 0px;
+          opacity: 0;
+          transition: all 0.2s ease-in-out;
+          overflow: hidden;
+          transform: translateX(-2rem);
+        }
+        &:hover {
+          width: 100%;
+          svg {
+            margin-right: 0.5rem !important;
+          }
+          .text {
+            // display: inline;
+            opacity: 1;
+            width: auto;
+            transform: translateX(0);
+          }
+        }
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 0 !important;
+        }
+      }
+
+      @include sm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        margin: -1.25rem 0 0 0;
+        width: 40px;
+        background-color: rgba($color: #fff, $alpha: 0.8);
+
+        &.active {
+          background: rgba($color: $primary, $alpha: 0.8);
+          color: #fff;
+        }
+        .text {
+          font-size: 0.8rem;
+        }
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 0 !important;
+        }
+      }
+
+      transition: all 0.25s ease-in-out, box-shadow 0.5s ease-in-out,
+        color 10ms linear;
+
+      &:hover {
+        background: linear-gradient(90deg, $primary, lighten($primary, 20%));
+        transform: scale(1.05);
+        box-shadow: 0px 15px 30px rgba(255, 0, 122, 0.24);
+        color: #fff;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}

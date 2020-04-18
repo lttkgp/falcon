@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
 
+import './styles/App.scss';
+import Sidebar from './components/sidebar';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
+
+import CSwitch from './components/animatedSwitch.js';
+
+function useHighlight() {
+  useEffect(() => {
+    console.log('hello');
+  }, []);
+}
 function App() {
+  useHighlight();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Router>
+        <Sidebar></Sidebar>
+        <div className='content'>
+          <CSwitch />
+        </div>
+      </Router>
     </div>
   );
 }
