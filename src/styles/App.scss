@@ -1,4 +1,7 @@
+@import 'responsive';
+
 @import url('https://rsms.me/inter/inter.css');
+
 html {
   font-family: 'Inter', sans-serif;
 }
@@ -6,6 +9,12 @@ html {
   html {
     font-family: 'Inter var', sans-serif;
   }
+}
+
+body,
+html,
+.App {
+  min-height: 100vh;
 }
 
 // Remove Firefox dotted outline while clicking on links
