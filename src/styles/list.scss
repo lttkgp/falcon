@@ -26,7 +26,7 @@
     bottom: 13.5rem;
     &.right {
       float: right;
-      right: 0rem;
+      right: -2rem;
 
       &.hidden {
         svg {
@@ -37,7 +37,7 @@
     }
     &.left {
       float: left;
-      left: -3rem;
+      left: -4.5rem;
       &.hidden {
         svg {
           display: none;
@@ -78,8 +78,8 @@
     }
     transition: width 0.25s ease;
 
-    margin-left: -3rem;
-    padding: 0.5rem 2rem;
+    margin-left: -2.5rem;
+    padding: 0.5rem 1.5rem;
 
     @include sm {
       margin: 0;
