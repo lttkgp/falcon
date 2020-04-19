@@ -13,11 +13,10 @@ export default function List(props: ListProps) {
   let [scrollRight, setScrollRight] = useState(true);
 
   let hideArrows = (idname: string) => {
-    setTimeout(() => {
+    setInterval(() => {
       let el = document.getElementById(idname);
       let scrollpp =
         (100 * el?.scrollLeft!) / (el?.scrollWidth! - el?.clientWidth!);
-      console.log(scrollpp);
       if (scrollpp > 99) {
         setScrollRight(false);
         setScrollLeft(true);
@@ -28,7 +27,7 @@ export default function List(props: ListProps) {
         setScrollLeft(true);
         setScrollRight(true);
       }
-    }, 750);
+    }, 1000);
   };
 
   return (
@@ -50,7 +49,6 @@ export default function List(props: ListProps) {
             });
             hideArrows(props.title);
             setScrollLeft(true);
-            console.log(el?.scrollLeft, el?.offsetWidth);
           }}
         ></ChevronLeft>
       </div>
@@ -64,7 +62,6 @@ export default function List(props: ListProps) {
               behavior: 'smooth',
             });
             setScrollRight(true);
-            console.log(el?.scrollLeft, el?.offsetWidth);
             hideArrows(props.title);
           }}
         ></ChevronRight>
