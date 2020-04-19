@@ -11,12 +11,15 @@ function App() {
   return (
     <div className='App'>
       <Router>
+        {/* Sidebar */}
         <Sidebar
           changeExpand={() => {
             setExpand(!expand);
           }}
           expand={expand}
         ></Sidebar>
+
+        {/* Content Switch */}
         <div className={'content' + (expand ? ' expand' : ' contract')}>
           <CSwitch />
         </div>

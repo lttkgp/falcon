@@ -27,22 +27,9 @@ $primary: #fc58a7;
 .App {
   color: $gray;
   display: flex;
-  .content {
-    padding: 5rem 0rem;
-    @include sm {
-      padding: 2rem;
-      margin-bottom: 10rem;
-    }
-    @include md {
-      padding: 5rem 5rem 5rem 10rem;
-    }
-
-    .header {
-      font-size: 3rem;
-    }
-  }
 }
 
+@import 'content';
 @import 'sidebar';
 @import 'transition';
 @import 'list';

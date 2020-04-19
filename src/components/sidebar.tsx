@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as Icon from 'react-feather';
 
 import { NavLink } from 'react-router-dom';
+
 type SidebarProps = {
   expand: Boolean;
   changeExpand: Function;
-}; /* could also use interface */
-// const App = ({ message }: AppProps) => <div>{message}</div>;
+};
+
 export default function Sidebar(props: SidebarProps) {
   return (
     <div className={'sidebar' + (props.expand ? '' : ' short')}>

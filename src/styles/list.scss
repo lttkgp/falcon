@@ -1,18 +1,69 @@
 .list {
   margin-bottom: 3rem;
   margin-right: 5rem;
+
+  @include sm {
+    margin: 0;
+  }
   .title {
     color: $dark;
+    @include sm {
+      margin-left: 1rem;
+    }
+  }
+
+  .scroll {
+    position: relative;
+    display: block;
+    width: inherit;
+    float: right;
+    right: 0rem;
+    bottom: 14rem;
+    padding: 1rem;
+    border-radius: 10rem;
+    background-color: $primary;
+    color: #fff;
+    @include sm {
+      display: none;
+    }
   }
 
   .array {
-    width: calc(100vw - 10rem - 15vw - 6rem);
-    display: flex;
-    // width: auto;
-    margin-left: -1rem;
-    padding-right: 5rem;
+    width: calc(100vw - 10rem - 15vw - 5rem);
+    @include sm {
+      width: calc(100vw - 2rem);
+    }
+
+    margin-left: -4rem;
+    padding: 0.5rem 3rem;
+
+    @include sm {
+      margin: 0;
+      padding: 1rem;
+    }
+
+    overflow-x: scroll;
+    scrollbar-width: none;
+    white-space: nowrap;
+
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: minmax(150px, 1fr);
+
+    @include sm {
+      grid-gap: 0.5rem;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .card {
-      width: auto;
+      // display: inline-block;
+      width: 300px;
+      @include sm {
+        width: 200px;
+      }
       flex-grow: 1;
       margin: 1rem;
       display: flex;
@@ -22,7 +73,10 @@
       img {
         border-radius: 12px;
         transition: all 0.25s ease-in-out;
-        width: 15rem;
+        // width: 30rem
+        width: 100%;
+        height: auto;
+        background-color: lighten($color: $gray, $amount: 20%);
       }
 
       &:hover {

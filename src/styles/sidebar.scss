@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 100%;
   width: 15vw;
-  padding: 5rem;
+  padding: 5rem 0rem 5rem 5rem;
   transition: width 0.25s ease-in-out;
 
   @include md {
