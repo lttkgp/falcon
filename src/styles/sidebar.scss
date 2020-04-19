@@ -3,12 +3,14 @@
   flex-direction: column;
   height: 100%;
   width: 15vw;
-  padding: 5rem 0rem 5rem 5rem;
+  padding: 5rem 1rem 5rem 3vw;
   transition: width 0.25s ease-in-out;
+  position: fixed;
 
   @include md {
     position: fixed;
     padding: 2rem;
+    width: 2vw;
   }
 
   &.short {
@@ -17,6 +19,7 @@
     margin-right: 5rem;
     .logo {
       font-size: 24px;
+      margin-left: 0.75rem;
       span.text {
         display: none;
       }
@@ -67,12 +70,13 @@
     display: flex;
     align-items: center;
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 32px;
     color: $primary;
 
     .text {
       width: inherit;
       display: inline-block;
+      margin-left: -1rem;
     }
 
     .drawer {

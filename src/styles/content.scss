@@ -1,11 +1,16 @@
 .content {
   padding: 5rem 0rem;
+  margin-left: 15vw;
+  &.contract {
+    margin-left: 10rem;
+  }
   @include sm {
     // padding: 2rem;
+    margin-left: 0;
     margin-bottom: 10rem;
   }
   @include md {
-    padding: 5rem 5rem 5rem 10rem;
+    margin-left: 8rem;
   }
 
   .header {

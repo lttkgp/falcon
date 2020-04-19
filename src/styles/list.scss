@@ -17,22 +17,30 @@
     display: block;
     width: inherit;
     float: right;
-    right: 0rem;
+    right: -2rem;
     bottom: 14rem;
     padding: 1rem;
     border-radius: 10rem;
     background-color: $primary;
     color: #fff;
+    box-shadow: 0px 7px 15px rgba($color: darken($primary, 50%), $alpha: 0.33);
     @include sm {
       display: none;
+    }
+    @include md {
+      bottom: calc((250px * 3 / 2) / 2 + 10px);
     }
   }
 
   .array {
-    width: calc(100vw - 10rem - 15vw - 5rem);
+    width: calc(100vw - 8rem - 15vw);
     @include sm {
       width: calc(100vw - 2rem);
     }
+    @include md {
+      width: calc(100vw - 15rem - 2vw);
+    }
+    transition: width 0.25s ease;
 
     margin-left: -4rem;
     padding: 0.5rem 3rem;
@@ -54,6 +62,9 @@
     @include sm {
       grid-gap: 0.5rem;
     }
+    @include md {
+      grid-gap: 0.5rem;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -63,6 +74,9 @@
       width: 300px;
       @include sm {
         width: 200px;
+      }
+      @include md {
+        width: 250px;
       }
       flex-grow: 1;
       margin: 1rem;
@@ -127,8 +141,20 @@
 .contract {
   .list {
     margin-right: 0rem;
+
+    // .scroll {
+    //   position: relative;
+    //   display: block;
+    //   width: inherit;
+    //   float: right;
+    //   right: -2rem;
+    //   bottom: 14rem;
+    //   padding: 1rem;
+    //   border-radius: 10rem;
+    // }
+
     .array {
-      width: calc(100vw - 5rem - 8rem - 2rem);
+      width: calc(100vw - 18rem);
     }
   }
 }
