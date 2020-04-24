@@ -22,6 +22,7 @@ html,
 
 $gray: #8c99aa;
 $dark: #515970;
+$light: #f8f9fc;
 $primary: #fc58a7;
 
 .App {
@@ -33,3 +34,4 @@ $primary: #fc58a7;
 @import 'sidebar';
 @import 'transition';
 @import 'list';
+@import 'video';

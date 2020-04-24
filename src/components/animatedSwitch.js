@@ -4,6 +4,7 @@ import Home from '../views/home';
 import Feed from '../views/feed';
 import Genre from '../views/genre';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Video from './video';
 
 export default function CSwitch(params) {
   let location = useLocation();
@@ -13,6 +14,7 @@ export default function CSwitch(params) {
         <Switch location={location}>
           <Route path='/feed' render={(props) => Feed({ ...props })} />
           <Route path='/genre' render={(props) => Genre({ ...props })} />
+          <Route path='/video' render={(props) => Video({ ...props })} />
           <Route path='/' render={(props) => Home({ ...props })} />
         </Switch>
       </CSSTransition>
