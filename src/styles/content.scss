@@ -1,0 +1,24 @@
+.content {
+  padding: 5rem 0rem;
+  margin-left: 17vw;
+  &.contract {
+    margin-left: 14rem;
+  }
+  @include sm {
+    // padding: 2rem;
+    margin-left: 0;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+  }
+  @include md {
+    margin-left: 8rem;
+  }
+
+  .header {
+    font-size: 3rem;
+    @include sm {
+      margin-left: 1rem;
+      margin-top: 0rem;
+    }
+  }
+}

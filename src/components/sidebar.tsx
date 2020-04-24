@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as Icon from 'react-feather';
 
 import { NavLink } from 'react-router-dom';
 
-export default function Sidebar(props: Object) {
-  let [expand, changeExpand] = useState(true);
+type SidebarProps = {
+  expand: Boolean;
+  changeExpand: Function;
+};
+
+export default function Sidebar(props: SidebarProps) {
   return (
-    <div className={'sidebar' + (expand ? '' : ' short')}>
+    <div className={'sidebar' + (props.expand ? '' : ' short')}>
       <div className='logo'>
         <div
           className='drawer'
           onClick={() => {
-            changeExpand(!expand);
+            props.changeExpand();
           }}
         >
           <Icon.Menu />
