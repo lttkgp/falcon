@@ -1,10 +1,15 @@
 import React from 'react';
 import { Heart } from 'react-feather';
 
-export default function Card(props: { id: number }) {
+type CardProps = {
+  id: number;
+  className: string;
+};
+
+export default function Card(props: CardProps) {
   let number = props.id;
   return (
-    <div className='card'>
+    <div className={props.className}>
       <img src={'https://picsum.photos/seed/' + number + '/300/180'} alt='' />
       <div className='desc'>
         <div className='text'>
@@ -19,3 +24,7 @@ export default function Card(props: { id: number }) {
     </div>
   );
 }
+
+Card.defaultProps = {
+  className: 'card',
+};
