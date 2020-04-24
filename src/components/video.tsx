@@ -71,6 +71,7 @@ export default function Video(props: VideoProps) {
       </div>
 
       <div className='queue'>
+        <h1 className='title'>Up next</h1>
         {sampleData.queue.map((num) => (
           <Card id={num} key={num + sampleData.yid} className='queueCard' />
         ))}
