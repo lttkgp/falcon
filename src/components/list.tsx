@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 
@@ -11,7 +11,6 @@ type ListProps = {
 export default function List(props: ListProps) {
   let [scrollLeft, setScrollLeft] = useState(false);
   let [scrollRight, setScrollRight] = useState(true);
-
   let hideArrows = (idname: string) => {
     setInterval(() => {
       let el = document.getElementById(idname);
@@ -29,6 +28,9 @@ export default function List(props: ListProps) {
       }
     }, 1000);
   };
+  useEffect(() => {
+    hideArrows(props.title);
+  }, [props.title]);
 
   return (
     <div className='list'>
@@ -47,7 +49,6 @@ export default function List(props: ListProps) {
               left: -el.offsetWidth * 0.75,
               behavior: 'smooth',
             });
-            hideArrows(props.title);
             setScrollLeft(true);
           }}
         ></ChevronLeft>
@@ -62,7 +63,6 @@ export default function List(props: ListProps) {
               behavior: 'smooth',
             });
             setScrollRight(true);
-            hideArrows(props.title);
           }}
         ></ChevronRight>
       </div>
