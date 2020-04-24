@@ -42,10 +42,10 @@ export default function Video(props: VideoProps) {
               <a href='#link'>
                 <Icon.Link2></Icon.Link2>
               </a>
-              <div className='likes'>
+              <span className='likes'>
                 <Icon.Heart></Icon.Heart>
                 <span>{sampleData.likes}</span>
-              </div>
+              </span>
             </div>
             <div className='genres'>
               {sampleData.genres.map((genre) => {
