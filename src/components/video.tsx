@@ -6,7 +6,22 @@ import Card from './card';
 type VideoProps = {
   title: string;
   url: string;
+  id: string;
 };
+
+// React Router does not have any opinions about
+// how you should parse URL query strings.
+//
+// If you use simple key=value query strings and
+// you do not need to support IE 11, you can use
+// the browser's built-in URLSearchParams API.
+//
+// If your query strings contain array or object
+// syntax, you'll probably need to bring your own
+// query parsing function.
+
+// A custom hook that builds on useLocation to parse
+// the query string for you.
 
 const sampleData = {
   title: 'Rick Astley - Never Gonna Give You Up (Video)',
@@ -15,15 +30,16 @@ const sampleData = {
   spotify: 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC',
   likes: 27,
   genres: ['soul', 'pop'],
-  queue: [1, 2, 3, 4, 5, 6, 7, 8],
+  queue: ['tt2k8PGm-TI', 'cH4E_t3m3xM', 'e2vBLd5Egnk'],
 };
 
 export default function Video(props: VideoProps) {
+  console.log(props.id);
   return (
     <div className='video'>
       <div className='video-container'>
         <YouTube
-          videoId={sampleData.yid}
+          videoId={props.id}
           opts={{
             height: '550',
             width: '900',

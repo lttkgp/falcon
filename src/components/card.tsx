@@ -2,7 +2,7 @@ import React from 'react';
 import { Heart } from 'react-feather';
 
 type CardProps = {
-  id: number;
+  id: string;
   className: string;
 };
 
@@ -10,7 +10,10 @@ export default function Card(props: CardProps) {
   let number = props.id;
   return (
     <div className={props.className}>
-      <img src={'https://picsum.photos/seed/' + number + '/300/180'} alt='' />
+      <img
+        src={'https://img.youtube.com/vi/' + number + '/mqdefault.jpg'}
+        alt=''
+      />
       <div className='desc'>
         <div className='text'>
           <h1>The song of rain</h1>

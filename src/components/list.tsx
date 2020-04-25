@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 
-const dummyData = [1, 2, 3, 4, 5, 6, 7, 8];
+const dummyData = [
+  'tt2k8PGm-TI',
+  'cH4E_t3m3xM',
+  'e2vBLd5Egnk',
+  'k4V3Mo61fJM',
+  'e-ORhEE9VVg',
+];
 
 type ListProps = {
   title: string;

@@ -6,15 +6,22 @@ import Genre from '../views/genre';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Video from './video';
 
-export default function CSwitch(params) {
+export default function CSwitch() {
   let location = useLocation();
+  console.log(location);
+
   return (
     <TransitionGroup>
       <CSSTransition key={location.key} classNames='fade' timeout={500}>
         <Switch location={location}>
           <Route path='/feed' render={(props) => Feed({ ...props })} />
           <Route path='/genre' render={(props) => Genre({ ...props })} />
-          <Route path='/video' render={(props) => Video({ ...props })} />
+          <Route
+            path='/video'
+            render={(props) =>
+              Video({ id: location.search.slice(2), ...props })
+            }
+          />
           <Route path='/' render={(props) => Home({ ...props })} />
         </Switch>
       </CSSTransition>
