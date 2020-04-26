@@ -4,7 +4,7 @@ import './styles/App.scss';
 import Sidebar from './components/sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import CSwitch from './components/animatedSwitch.js';
+import CSwitch from './components/CSwitch.js';
 
 function App() {
   let [expand, setExpand] = useState(true);

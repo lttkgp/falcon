@@ -16,15 +16,21 @@ const sampleData = {
   spotify: 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC',
   likes: 27,
   genres: ['soul', 'pop'],
-  queue: ['tt2k8PGm-TI', 'cH4E_t3m3xM', 'e2vBLd5Egnk'],
+  queue: [
+    'tt2k8PGm-TI',
+    'cH4E_t3m3xM',
+    'e2vBLd5Egnk',
+    'k4V3Mo61fJM',
+    'e-ORhEE9VVg',
+    '2hlT8CqZ2pA',
+    'U0V1y2p1sgs',
+  ],
 };
 
 export default function Video(props: VideoProps) {
   let [queue, changeQueue] = useState([
-    props.id,
-    'tt2k8PGm-TI',
-    'cH4E_t3m3xM',
-    'e2vBLd5Egnk',
+    props.id || sampleData.yid,
+    ...sampleData.queue,
   ]);
 
   console.log(props.id);
