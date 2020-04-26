@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  min-width: 80vw;
   @include sm {
     flex-direction: column;
   }

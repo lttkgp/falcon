@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import * as Icon from 'react-feather';
 import Card from './card';
 
-type VideoProps = {
-  title: string;
-  url: string;
-  id: string;
-};
+// type VideoProps = {
+//   title: string,
+//   url: string,
+//   id: string,
+// };
 
 const sampleData = {
   title: 'Rick Astley - Never Gonna Give You Up (Video)',
@@ -17,9 +17,9 @@ const sampleData = {
   likes: 27,
   genres: ['soul', 'pop'],
   queue: [
-    'tt2k8PGm-TI',
-    'cH4E_t3m3xM',
-    'e2vBLd5Egnk',
+    'zReP_EYZGEw',
+    'dQw4w9WgXcQ',
+    'PJWemSzExXs',
     'k4V3Mo61fJM',
     'e-ORhEE9VVg',
     '2hlT8CqZ2pA',
@@ -27,20 +27,27 @@ const sampleData = {
   ],
 };
 
-export default function Video(props: VideoProps) {
+export default function Video(props) {
   let [queue, changeQueue] = useState([
     props.id || sampleData.yid,
     ...sampleData.queue,
   ]);
 
-  console.log(props.id);
+  useEffect(() => {
+    if (document !== undefined) {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  }, []);
+
+  console.log(queue);
   return (
     <div className='video'>
       <div className='video-container'>
         <YouTube
           videoId={queue[0]}
           onEnd={() => {
-            if (queue.length > 1) {
+            if (queue.length > 0) {
               changeQueue(queue.slice(1));
             }
           }}
@@ -95,8 +102,22 @@ export default function Video(props: VideoProps) {
 
       <div className='queue'>
         <h1 className='title'>Up next</h1>
-        {sampleData.queue.map((num) => (
-          <Card id={num} key={num + sampleData.yid} className='queueCard' />
+        {queue.slice(1).map((id) => (
+          <Card
+            id={id}
+            key={id + sampleData.yid}
+            className='queueCard'
+            redirect={false}
+            onClick={() => {
+              changeQueue(
+                queue.slice(
+                  queue.findIndex((item) => {
+                    return id === item;
+                  })
+                )
+              );
+            }}
+          />
         ))}
       </div>
     </div>

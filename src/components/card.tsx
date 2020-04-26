@@ -1,17 +1,30 @@
 import React from 'react';
 import { Heart } from 'react-feather';
+import { useHistory } from 'react-router-dom';
 
 type CardProps = {
-  id: string;
   className: string;
+  onClick: Function;
+  redirect: boolean;
+  id: string;
 };
 
 export default function Card(props: CardProps) {
-  let number = props.id;
+  const history = useHistory();
+
   return (
-    <div className={props.className}>
+    <div
+      className={props.className}
+      onClick={() => {
+        if (props.onClick !== undefined) {
+          props.onClick();
+        } else if (props.redirect === true) {
+          history.push('/video?=' + props.id);
+        }
+      }}
+    >
       <img
-        src={'https://img.youtube.com/vi/' + number + '/mqdefault.jpg'}
+        src={'https://img.youtube.com/vi/' + props.id + '/mqdefault.jpg'}
         alt=''
       />
       <div className='desc'>
