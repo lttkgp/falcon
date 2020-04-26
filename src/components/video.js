@@ -116,6 +116,7 @@ export default function Video(props) {
                   })
                 )
               );
+              props.history.push('video?=' + id);
             }}
           />
         ))}

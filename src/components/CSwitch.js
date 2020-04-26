@@ -17,13 +17,13 @@ export default function CSwitch() {
   return (
     <TransitionGroup>
       <CSSTransition key={location.key} classNames='fade' timeout={500}>
-        <Switch location={location}>
+        <Switch in={false} location={location}>
           <Route path='/feed' component={(props) => Feed({ ...props })} />
           <Route path='/genre' component={(props) => Genre({ ...props })} />
           <Route
             path='/video'
             component={(props) =>
-              Video({ id: location.search.slice(2), ...props })
+              Video({ id: location.search.slice(2), in: false, ...props })
             }
           />
           <Route path='/' component={(props) => Home({ ...props })} />
