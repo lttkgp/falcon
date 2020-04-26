@@ -18,7 +18,7 @@ export default function CSwitch() {
           <Route path='/genre' render={(props) => Genre({ ...props })} />
           <Route
             path='/video'
-            render={(props) =>
+            component={(props) =>
               Video({ id: location.search.slice(2), ...props })
             }
           />

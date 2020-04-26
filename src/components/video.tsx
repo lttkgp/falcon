@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 import * as Icon from 'react-feather';
 import Card from './card';
@@ -8,20 +8,6 @@ type VideoProps = {
   url: string;
   id: string;
 };
-
-// React Router does not have any opinions about
-// how you should parse URL query strings.
-//
-// If you use simple key=value query strings and
-// you do not need to support IE 11, you can use
-// the browser's built-in URLSearchParams API.
-//
-// If your query strings contain array or object
-// syntax, you'll probably need to bring your own
-// query parsing function.
-
-// A custom hook that builds on useLocation to parse
-// the query string for you.
 
 const sampleData = {
   title: 'Rick Astley - Never Gonna Give You Up (Video)',
@@ -34,15 +20,30 @@ const sampleData = {
 };
 
 export default function Video(props: VideoProps) {
+  let [queue, changeQueue] = useState([
+    props.id,
+    'tt2k8PGm-TI',
+    'cH4E_t3m3xM',
+    'e2vBLd5Egnk',
+  ]);
+
   console.log(props.id);
   return (
     <div className='video'>
       <div className='video-container'>
         <YouTube
-          videoId={props.id}
+          videoId={queue[0]}
+          onEnd={() => {
+            if (queue.length > 1) {
+              changeQueue(queue.slice(1));
+            }
+          }}
           opts={{
             height: '550',
             width: '900',
+            playerVars: {
+              autoplay: 1,
+            },
           }}
         />
 
