@@ -28,9 +28,15 @@ const sampleData = {
 };
 
 export default function Video(props) {
+  let preQueue;
+  if (props.queue) {
+    preQueue = props.queue;
+  } else {
+    preQueue = sampleData.queue;
+  }
   let [queue, changeQueue] = useState([
     props.id || sampleData.yid,
-    ...sampleData.queue,
+    ...preQueue,
   ]);
 
   useEffect(() => {
@@ -40,7 +46,6 @@ export default function Video(props) {
     }
   }, []);
 
-  console.log(queue);
   return (
     <div className='video'>
       <div className='video-container'>
