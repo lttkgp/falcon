@@ -66,6 +66,14 @@ export default function Video(props) {
         />
 
         <div className='desc'>
+          <div
+            className='prev_song control_button'
+            onClick={() => {
+              changeQueue(queue.slice(1));
+            }}
+          >
+            <Icon.ChevronLeft />
+          </div>
           <div className='text'>
             <h1 className='title'>{sampleData.title}</h1>
             <h2>{sampleData.author}</h2>
@@ -109,6 +117,14 @@ export default function Video(props) {
                 );
               })}
             </div>
+          </div>
+          <div
+            className='next_song control_button'
+            onClick={() => {
+              changeQueue(queue.slice(1));
+            }}
+          >
+            <Icon.ChevronRight />
           </div>
         </div>
       </div>
