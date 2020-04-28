@@ -73,16 +73,24 @@ export default function Video(props) {
 
           <div className='widgets'>
             <div className='icons'>
-              <a href={'https://www.youtube.com/watch?v=' + sampleData.yid}>
+              <a
+                href={'https://www.youtube.com/watch?v=' + sampleData.yid}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <Icon.Youtube></Icon.Youtube>
               </a>
-              <a href={sampleData.spotify}>
+              <a
+                href={sampleData.spotify}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <Icon.Speaker></Icon.Speaker>
               </a>
               <a href='#link'>
                 <Icon.Link2></Icon.Link2>
               </a>
-              <span className='likes'>
+              <span className='likes' target='_blank' rel='noopener noreferrer'>
                 <Icon.Heart></Icon.Heart>
                 <span>{sampleData.likes}</span>
               </span>
