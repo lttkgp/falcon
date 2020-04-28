@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import * as Icon from 'react-feather';
 import Card from './card';
+import { useSelector } from 'react-redux';
 
 // type VideoProps = {
 //   title: string,
@@ -16,23 +17,13 @@ const sampleData = {
   spotify: 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC',
   likes: 27,
   genres: ['soul', 'pop'],
-  queue: [
-    'zReP_EYZGEw',
-    'dQw4w9WgXcQ',
-    'PJWemSzExXs',
-    'k4V3Mo61fJM',
-    'e-ORhEE9VVg',
-    '2hlT8CqZ2pA',
-    'U0V1y2p1sgs',
-  ],
+  queue: [],
 };
 
 export default function Video(props) {
-  let preQueue;
+  let preQueue = useSelector((state) => state.queue);
   if (props.queue) {
     preQueue = props.queue;
-  } else {
-    preQueue = sampleData.queue;
   }
   let [queue, changeQueue] = useState([
     props.id || sampleData.yid,
