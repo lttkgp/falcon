@@ -54,23 +54,25 @@ export default function Video(props) {
     }
   };
 
-  let scrollCurrentVideo = (top) => {
-    if (document !== undefined) {
-      let el = document.querySelector('.current.queueCard');
-      let Q = document.querySelector('.queue');
-      if (el !== null && Q !== null) {
-        const elementRect = el.getBoundingClientRect();
-        const queueRect = Q.getBoundingClientRect();
-        window.scrollTo(0, elementRect.top - queueRect.y + top);
+  let scrollCurrentVideo = (offset = 0) => {
+    setTimeout(() => {
+      if (document !== undefined) {
+        let el = document.querySelector('.current.queueCard');
+        let Q = document.querySelector('.queue');
+        if (el !== null && Q !== null) {
+          const elementRect = el.getBoundingClientRect();
+          const queueRect = Q.getBoundingClientRect();
+          window.scrollTo(0, elementRect.top - queueRect.y + offset);
+        }
       }
-    }
+    }, 100);
   };
 
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
       changeURLid(queue[currentIndex + 1]);
       changeIndex(currentIndex + 1);
-      scrollCurrentVideo(200);
+      scrollCurrentVideo();
     }
   };
 
@@ -78,7 +80,7 @@ export default function Video(props) {
     if (currentIndex > 0) {
       changeURLid(queue[currentIndex - 1]);
       changeIndex(currentIndex - 1);
-      scrollCurrentVideo(-200);
+      scrollCurrentVideo();
     }
   };
 
