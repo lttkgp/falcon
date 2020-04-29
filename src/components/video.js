@@ -39,16 +39,56 @@ export default function Video(props) {
     }
   }, []);
 
-  let handleEndOfVideo = () => {
-    if (queue.length > 0) {
+  let playNextVideo = () => {
+    if (queue.length > 0 && currentIndex + 1 < queue.length) {
       changeIndex(currentIndex + 1);
+      if (document !== undefined) {
+        let el = document.querySelector('.previous.queueCard');
+        if (el !== null) {
+          el.scrollIntoView();
+        }
+      }
+      if (window !== undefined) {
+        if (window.history.pushState) {
+          var newurl =
+            window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname +
+            '?=' +
+            queue[currentIndex + 1];
+          window.history.pushState({ path: newurl }, '', newurl);
+        }
+      }
     }
+  };
 
-    if (document !== undefined) {
-      let el = document.querySelector('.previous.queueCard');
-      console.log(el);
-      el.scrollIntoView();
+  let playPrevVideo = () => {
+    if (currentIndex > 0) {
+      changeIndex(currentIndex - 1);
+      if (document !== undefined) {
+        let el = document.querySelector('.previous.queueCard');
+        if (el !== null) {
+          el.scrollIntoView();
+        }
+      }
+      if (window !== undefined) {
+        if (window.history.pushState) {
+          var newurl =
+            window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname +
+            '?=' +
+            queue[currentIndex - 1];
+          window.history.pushState({ path: newurl }, '', newurl);
+        }
+      }
     }
+  };
+
+  let handleEndOfVideo = () => {
+    playNextVideo();
   };
 
   return (
@@ -67,12 +107,7 @@ export default function Video(props) {
         />
 
         <div className='desc'>
-          <div
-            className='prev_song control_button'
-            onClick={() => {
-              changeQueue(queue.slice(1));
-            }}
-          >
+          <div className='prev_song control_button' onClick={playPrevVideo}>
             <Icon.ChevronLeft />
           </div>
           <div className='text'>
@@ -119,12 +154,7 @@ export default function Video(props) {
               })}
             </div>
           </div>
-          <div
-            className='next_song control_button'
-            onClick={() => {
-              changeQueue(queue.slice(1));
-            }}
-          >
+          <div className='next_song control_button' onClick={playNextVideo}>
             <Icon.ChevronRight />
           </div>
         </div>
