@@ -54,9 +54,9 @@ export default function Video(props) {
     }
   };
 
-  let scrollPrevVideo = (top) => {
+  let scrollCurrentVideo = (top) => {
     if (document !== undefined) {
-      let el = document.querySelector('.previous.queueCard');
+      let el = document.querySelector('.current.queueCard');
       let Q = document.querySelector('.queue');
       if (el !== null && Q !== null) {
         const elementRect = el.getBoundingClientRect();
@@ -70,7 +70,7 @@ export default function Video(props) {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
       changeURLid(queue[currentIndex + 1]);
       changeIndex(currentIndex + 1);
-      scrollPrevVideo(200);
+      scrollCurrentVideo(200);
     }
   };
 
@@ -78,7 +78,7 @@ export default function Video(props) {
     if (currentIndex > 0) {
       changeURLid(queue[currentIndex - 1]);
       changeIndex(currentIndex - 1);
-      scrollPrevVideo(-200);
+      scrollCurrentVideo(-200);
     }
   };
 
