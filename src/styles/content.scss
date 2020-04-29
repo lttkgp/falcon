@@ -2,7 +2,7 @@
   padding: 5rem 0rem;
   margin-left: 17vw;
   &.contract {
-    margin-left: 14rem;
+    margin-left: 10rem;
   }
   @include sm {
     // padding: 2rem;
@@ -16,6 +16,7 @@
 
   .header {
     font-size: 3rem;
+    margin-left: 2rem;
     @include sm {
       margin-left: 1rem;
       margin-top: 0rem;

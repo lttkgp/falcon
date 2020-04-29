@@ -2,20 +2,25 @@ import React, { useState, useEffect } from 'react';
 import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 
-const dummyData = [1, 2, 3, 4, 5, 6, 7, 8];
+const dummyData = [
+  'tt2k8PGm-TI',
+  'cH4E_t3m3xM',
+  'e2vBLd5Egnk',
+  'k4V3Mo61fJM',
+  'e-ORhEE9VVg',
+  '2hlT8CqZ2pA',
+  'U0V1y2p1sgs',
+];
 
-type ListProps = {
-  title: string;
-};
-
-export default function List(props: ListProps) {
+export default function List(props) {
   let [scrollLeft, setScrollLeft] = useState(false);
   let [scrollRight, setScrollRight] = useState(true);
-  let hideArrows = (idname: string) => {
+
+  let hideArrows = (idname) => {
     setInterval(() => {
       let el = document.getElementById(idname);
       let scrollpp =
-        (100 * el?.scrollLeft!) / (el?.scrollWidth! - el?.clientWidth!);
+        (100 * el?.scrollLeft) / (el?.scrollWidth - el?.clientWidth);
       if (scrollpp > 99) {
         setScrollRight(false);
         setScrollLeft(true);
@@ -36,15 +41,15 @@ export default function List(props: ListProps) {
     <div className='list'>
       <h1 className='title'>{props.title}</h1>
       <div className='array' id={props.title.trim()}>
-        {dummyData.map((num) => (
-          <Card id={num} key={num + 'IDHJH'} />
+        {dummyData.map((id) => (
+          <Card key={id + 'IDHJH'} id={id} redirect={props.redirect} />
         ))}
       </div>
       <div className={'scroll left' + (scrollLeft ? '' : ' hidden')}>
         <ChevronLeft
           onClick={() => {
             let el = document.getElementById(props.title.trim());
-            el?.scrollBy({
+            el.scrollBy({
               top: 0,
               left: -el.offsetWidth * 0.75,
               behavior: 'smooth',
@@ -57,7 +62,7 @@ export default function List(props: ListProps) {
         <ChevronRight
           onClick={() => {
             let el = document.getElementById(props.title.trim());
-            el?.scrollBy({
+            el.scrollBy({
               top: 0,
               left: el.offsetWidth * 0.75,
               behavior: 'smooth',

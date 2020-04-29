@@ -1,7 +1,8 @@
 .list {
   padding-top: 5rem;
   margin-bottom: 3rem;
-  margin-right: 5rem;
+  margin-right: 4rem;
+  margin-left: 1rem;
 
   @include sm {
     margin: 0;
@@ -11,6 +12,7 @@
     color: $dark;
     position: absolute;
     margin-top: -3rem;
+    margin-left: 1rem;
     @include sm {
       margin-left: 1rem;
     }
@@ -37,7 +39,7 @@
     }
     &.left {
       float: left;
-      left: -4.5rem;
+      left: -2.5rem;
       &.hidden {
         svg {
           display: none;
@@ -78,7 +80,7 @@
     }
     transition: width 0.25s ease;
 
-    margin-left: -2.5rem;
+    margin-left: -1rem;
     padding: 0.5rem 1.5rem;
 
     @include sm {
