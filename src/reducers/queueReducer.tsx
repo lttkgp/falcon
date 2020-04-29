@@ -12,6 +12,9 @@ export default function queueReducer(
     'e-ORhEE9VVg',
     '2hlT8CqZ2pA',
     'U0V1y2p1sgs',
+    '0FqojM1TYqo',
+    'U77d9912lrw',
+    'vj7-6QTrCEk',
   ],
   action: QueueAction
 ) {

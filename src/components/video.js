@@ -30,6 +30,8 @@ export default function Video(props) {
     ...preQueue,
   ]);
 
+  let [currentIndex, changeIndex] = useState(0);
+
   useEffect(() => {
     if (document !== undefined) {
       document.body.scrollTop = 0; // For Safari
@@ -37,16 +39,24 @@ export default function Video(props) {
     }
   }, []);
 
+  let handleEndOfVideo = () => {
+    if (queue.length > 0) {
+      changeIndex(currentIndex + 1);
+    }
+
+    if (document !== undefined) {
+      let el = document.querySelector('.previous.queueCard');
+      console.log(el);
+      el.scrollIntoView();
+    }
+  };
+
   return (
     <div className='video'>
       <div className='video-container'>
         <YouTube
-          videoId={queue[0]}
-          onEnd={() => {
-            if (queue.length > 0) {
-              changeQueue(queue.slice(1));
-            }
-          }}
+          videoId={queue[currentIndex]}
+          onEnd={handleEndOfVideo}
           opts={{
             height: '550',
             width: '900',
@@ -121,25 +131,33 @@ export default function Video(props) {
       </div>
 
       <div className='queue'>
-        <h1 className='title'>Up next</h1>
-        {queue.slice(1).map((id) => (
-          <Card
-            id={id}
-            key={id + sampleData.yid}
-            className='queueCard'
-            redirect={false}
-            onClick={() => {
-              changeQueue(
-                queue.slice(
-                  queue.findIndex((item) => {
-                    return id === item;
-                  })
-                )
-              );
-              props.history.push('video?=' + id);
-            }}
-          />
-        ))}
+        <h1 className='title'>Queue</h1>
+        {queue.map((id, index) => {
+          let selectClass = '';
+          if (index === currentIndex - 1) {
+            selectClass = ' previous';
+          } else if (index === currentIndex) {
+            selectClass = ' current';
+          }
+          return (
+            <Card
+              id={id}
+              key={id + sampleData.yid}
+              className={'queueCard' + selectClass}
+              redirect={false}
+              onClick={() => {
+                changeQueue(
+                  queue.slice(
+                    queue.findIndex((item) => {
+                      return id === item;
+                    })
+                  )
+                );
+                props.history.push('video?=' + id);
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
