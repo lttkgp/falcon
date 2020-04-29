@@ -54,16 +54,23 @@ export default function Video(props) {
     }
   };
 
+  let scrollPrevVideo = (top) => {
+    if (document !== undefined) {
+      let el = document.querySelector('.previous.queueCard');
+      let Q = document.querySelector('.queue');
+      if (el !== null && Q !== null) {
+        const elementRect = el.getBoundingClientRect();
+        const queueRect = Q.getBoundingClientRect();
+        window.scrollTo(0, elementRect.top - queueRect.y + top);
+      }
+    }
+  };
+
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
       changeURLid(queue[currentIndex + 1]);
       changeIndex(currentIndex + 1);
-      if (document !== undefined) {
-        let el = document.querySelector('.previous.queueCard');
-        if (el !== null) {
-          el.scrollIntoView();
-        }
-      }
+      scrollPrevVideo(200);
     }
   };
 
@@ -71,12 +78,7 @@ export default function Video(props) {
     if (currentIndex > 0) {
       changeURLid(queue[currentIndex - 1]);
       changeIndex(currentIndex - 1);
-      if (document !== undefined) {
-        let el = document.querySelector('.previous.queueCard');
-        if (el !== null) {
-          el.scrollIntoView();
-        }
-      }
+      scrollPrevVideo(-200);
     }
   };
 
