@@ -39,8 +39,24 @@ export default function Video(props) {
     }
   }, []);
 
+  let changeURLid = (id) => {
+    if (window !== undefined) {
+      if (window.history.pushState) {
+        var newurl =
+          window.location.protocol +
+          '//' +
+          window.location.host +
+          window.location.pathname +
+          '?=' +
+          id;
+        window.history.pushState({ path: newurl }, '', newurl);
+      }
+    }
+  };
+
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
+      changeURLid(queue[currentIndex + 1]);
       changeIndex(currentIndex + 1);
       if (document !== undefined) {
         let el = document.querySelector('.previous.queueCard');
@@ -48,40 +64,17 @@ export default function Video(props) {
           el.scrollIntoView();
         }
       }
-      if (window !== undefined) {
-        if (window.history.pushState) {
-          var newurl =
-            window.location.protocol +
-            '//' +
-            window.location.host +
-            window.location.pathname +
-            '?=' +
-            queue[currentIndex + 1];
-          window.history.pushState({ path: newurl }, '', newurl);
-        }
-      }
     }
   };
 
   let playPrevVideo = () => {
     if (currentIndex > 0) {
+      changeURLid(queue[currentIndex - 1]);
       changeIndex(currentIndex - 1);
       if (document !== undefined) {
         let el = document.querySelector('.previous.queueCard');
         if (el !== null) {
           el.scrollIntoView();
-        }
-      }
-      if (window !== undefined) {
-        if (window.history.pushState) {
-          var newurl =
-            window.location.protocol +
-            '//' +
-            window.location.host +
-            window.location.pathname +
-            '?=' +
-            queue[currentIndex - 1];
-          window.history.pushState({ path: newurl }, '', newurl);
         }
       }
     }
@@ -176,14 +169,8 @@ export default function Video(props) {
               className={'queueCard' + selectClass}
               redirect={false}
               onClick={() => {
-                changeQueue(
-                  queue.slice(
-                    queue.findIndex((item) => {
-                      return id === item;
-                    })
-                  )
-                );
-                props.history.push('video?=' + id);
+                changeURLid(id);
+                changeIndex(index);
               }}
             />
           );
