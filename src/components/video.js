@@ -161,9 +161,7 @@ export default function Video(props) {
         <h1 className='title'>Queue</h1>
         {queue.map((id, index) => {
           let selectClass = '';
-          if (index === currentIndex - 1) {
-            selectClass = ' previous';
-          } else if (index === currentIndex) {
+          if (index === currentIndex) {
             selectClass = ' current';
           }
           return (
