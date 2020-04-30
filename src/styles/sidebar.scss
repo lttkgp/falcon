@@ -3,9 +3,10 @@
   flex-direction: column;
   height: 100%;
   width: 9vw;
-  padding: 5rem 5vw 5rem 3vw;
+  padding: 0rem 5vw 0rem 3vw;
   transition: width 0.25s ease-in-out;
   position: fixed;
+  justify-content: space-around;
 
   @include md {
     position: fixed;
@@ -14,12 +15,16 @@
 
   &.short {
     width: 0px;
-    padding: 2rem 4rem;
+    // padding: 2rem 4rem;
     margin-right: 3rem;
     z-index: 100;
     .logo {
       font-size: 24px;
       margin-left: 0.75rem;
+      width: 100%;
+      .drawer {
+        margin-right: 0rem;
+      }
       span.text {
         display: none;
       }
@@ -54,6 +59,9 @@
         }
       }
     }
+    .change-theme {
+      margin-left: -1rem;
+    }
   }
 
   @include sm {
@@ -72,6 +80,7 @@
     font-weight: bolder;
     font-size: 32px;
     color: $primary;
+    margin-top: 2rem;
 
     .text {
       width: inherit;
@@ -80,7 +89,6 @@
     }
 
     .drawer {
-      margin: 1rem;
       margin-left: -2rem;
       border-radius: 1rem;
       height: auto;
@@ -88,6 +96,7 @@
       justify-content: center;
       align-items: center;
       transition: transform ease-in-out 0.25s;
+      margin-right: 1rem;
       svg {
         padding: 1rem;
         width: 32px;
@@ -115,6 +124,7 @@
     padding: 5rem 0rem;
     display: flex;
     flex-direction: column;
+    height: 50%;
     @include md {
       font-size: 18px;
     }
@@ -210,6 +220,29 @@
       &:active {
         transform: scale(0.95);
       }
+    }
+  }
+
+  .change-theme {
+    margin-bottom: 2rem;
+    .icon-theme {
+      background-color: $light;
+      &:active {
+        background-color: rgba($color: $primary, $alpha: 0.5);
+        transform: scale(1.5);
+      }
+      &:hover {
+        background-color: darken($color: $light, $amount: 5%);
+      }
+      border-radius: 12px;
+      transition: all 0.1s ease-in-out;
+      width: 32px;
+      height: 32px;
+      padding: 11px;
+      background-size: 32px 32px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('/moon.svg');
     }
   }
 }

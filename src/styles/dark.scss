@@ -32,6 +32,19 @@ html.dark {
         }
       }
     }
+    .change-theme {
+      .icon-theme {
+        background-image: url('/sun.svg');
+        background-color: $light-dark;
+        &:active {
+          background-color: rgba($color: $primary, $alpha: 0.5);
+        }
+
+        &:hover {
+          background-color: lighten($color: $light-dark, $amount: 5%);
+        }
+      }
+    }
   }
 
   .header {
@@ -48,20 +61,6 @@ html.dark {
       #search {
         &:hover {
           background: lighten($light-dark, 5%);
-        }
-      }
-    }
-
-    .change-theme {
-      .icon-theme {
-        background-image: url('/sun.svg');
-        background-color: $light-dark;
-        &:active {
-          background-color: rgba($color: $primary, $alpha: 0.5);
-        }
-
-        &:hover {
-          background-color: lighten($color: $light-dark, $amount: 5%);
         }
       }
     }

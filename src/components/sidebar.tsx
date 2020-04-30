@@ -3,32 +3,49 @@ import * as Icon from 'react-feather';
 
 import { NavLink } from 'react-router-dom';
 
-export default function Sidebar() {
-  let changeExpand = () => {
-    if (document !== undefined) {
-      let el = document.querySelector('.content');
+let changeTheme = () => {
+  if (document !== undefined) {
+    let el = document.querySelector('html');
 
-      if (el?.classList !== null) {
-        console.log(el?.classList);
-        if (el?.classList.contains('expand')) {
-          el?.classList.add('contract');
-          el?.classList.remove('expand');
-        } else {
-          el?.classList.add('expand');
-          el?.classList.remove('contract');
-        }
+    if (el?.classList !== null) {
+      console.log(el?.classList);
+      if (el?.classList.contains('light')) {
+        el?.classList.add('dark');
+        el?.classList.remove('light');
+      } else {
+        el?.classList.add('light');
+        el?.classList.remove('dark');
       }
-
-      let sideb = document.querySelector('.sidebar');
-      if (sideb !== null)
-        if (sideb?.classList.contains('short')) {
-          sideb.classList.remove('short');
-        } else {
-          sideb.classList.add('short');
-        }
     }
-  };
+  }
+};
 
+let changeExpand = () => {
+  if (document !== undefined) {
+    let el = document.querySelector('.content');
+
+    if (el?.classList !== null) {
+      console.log(el?.classList);
+      if (el?.classList.contains('expand')) {
+        el?.classList.add('contract');
+        el?.classList.remove('expand');
+      } else {
+        el?.classList.add('expand');
+        el?.classList.remove('contract');
+      }
+    }
+
+    let sideb = document.querySelector('.sidebar');
+    if (sideb !== null)
+      if (sideb?.classList.contains('short')) {
+        sideb.classList.remove('short');
+      } else {
+        sideb.classList.add('short');
+      }
+  }
+};
+
+export default function Sidebar() {
   return (
     <div className='sidebar'>
       <div className='logo'>
@@ -47,6 +64,10 @@ export default function Sidebar() {
         <NavLink to='/genre' className='link'>
           <Icon.Music></Icon.Music> <span className='text'>GENRES</span>
         </NavLink>
+      </div>
+
+      <div className='change-theme' onClick={changeTheme}>
+        <div className='icon-theme'></div>
       </div>
     </div>
   );
