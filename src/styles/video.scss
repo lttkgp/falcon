@@ -76,6 +76,7 @@
         margin: 0.5rem;
         &:hover {
           cursor: pointer;
+          color: $primary;
         }
       }
       .text {
@@ -96,6 +97,9 @@
           a {
             text-decoration: none;
             color: $gray;
+            &:hover {
+              color: $primary;
+            }
           }
           svg {
             margin: 0 0.5rem;
@@ -161,9 +165,8 @@
         }
         background-color: $light;
         border-radius: 12px;
-        img {
-          box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
-        }
+        box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
+        margin-bottom: 1rem;
       }
 
       img {

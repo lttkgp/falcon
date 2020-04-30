@@ -78,4 +78,45 @@ html.dark {
       }
     }
   }
+
+  .video {
+    .video-container {
+      .desc {
+        background-color: $light-dark;
+        color: $dark;
+        h1 {
+          color: $gray;
+        }
+        .widgets {
+          .icons {
+            a {
+              color: $dark;
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+          .genres {
+            .genre-tag {
+              text-decoration: none;
+              background-color: lighten($light-dark, 10%);
+              color: $dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .queue {
+    .queueCard {
+      &.current {
+        h1 {
+          color: $primary;
+        }
+        background-color: $light-dark;
+        box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
+      }
+    }
+  }
 }
