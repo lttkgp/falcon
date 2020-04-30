@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import * as Icon from 'react-feather';
 import Card from './card';
+import { useSelector } from 'react-redux';
 
 // type VideoProps = {
 //   title: string,
@@ -16,28 +17,20 @@ const sampleData = {
   spotify: 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC',
   likes: 27,
   genres: ['soul', 'pop'],
-  queue: [
-    'zReP_EYZGEw',
-    'dQw4w9WgXcQ',
-    'PJWemSzExXs',
-    'k4V3Mo61fJM',
-    'e-ORhEE9VVg',
-    '2hlT8CqZ2pA',
-    'U0V1y2p1sgs',
-  ],
+  queue: [],
 };
 
 export default function Video(props) {
-  let preQueue;
+  let preQueue = useSelector((state) => state.queue);
   if (props.queue) {
     preQueue = props.queue;
-  } else {
-    preQueue = sampleData.queue;
   }
   let [queue, changeQueue] = useState([
     props.id || sampleData.yid,
     ...preQueue,
   ]);
+
+  let [currentIndex, changeIndex] = useState(0);
 
   useEffect(() => {
     if (document !== undefined) {
@@ -46,16 +39,61 @@ export default function Video(props) {
     }
   }, []);
 
+  let changeURLid = (id) => {
+    if (window !== undefined) {
+      if (window.history.pushState) {
+        var newurl =
+          window.location.protocol +
+          '//' +
+          window.location.host +
+          window.location.pathname +
+          '?=' +
+          id;
+        window.history.pushState({ path: newurl }, '', newurl);
+      }
+    }
+  };
+
+  let scrollCurrentVideo = (offset = 0) => {
+    setTimeout(() => {
+      if (document !== undefined) {
+        let el = document.querySelector('.current.queueCard');
+        let Q = document.querySelector('.queue');
+        if (el !== null && Q !== null) {
+          const elementRect = el.getBoundingClientRect();
+          const queueRect = Q.getBoundingClientRect();
+          window.scrollTo(0, elementRect.top - queueRect.y + offset);
+        }
+      }
+    }, 100);
+  };
+
+  let playNextVideo = () => {
+    if (queue.length > 0 && currentIndex + 1 < queue.length) {
+      changeURLid(queue[currentIndex + 1]);
+      changeIndex(currentIndex + 1);
+      scrollCurrentVideo();
+    }
+  };
+
+  let playPrevVideo = () => {
+    if (currentIndex > 0) {
+      changeURLid(queue[currentIndex - 1]);
+      changeIndex(currentIndex - 1);
+      scrollCurrentVideo();
+    }
+  };
+
+  let handleEndOfVideo = () => {
+    playNextVideo();
+  };
+
   return (
     <div className='video'>
       <div className='video-container'>
         <YouTube
-          videoId={queue[0]}
-          onEnd={() => {
-            if (queue.length > 0) {
-              changeQueue(queue.slice(1));
-            }
-          }}
+          videoId={queue[currentIndex]}
+          onEnd={handleEndOfVideo}
           opts={{
             height: '550',
             width: '900',
@@ -66,12 +104,7 @@ export default function Video(props) {
         />
 
         <div className='desc'>
-          <div
-            className='prev_song control_button'
-            onClick={() => {
-              changeQueue(queue.slice(1));
-            }}
-          >
+          <div className='prev_song control_button' onClick={playPrevVideo}>
             <Icon.ChevronLeft />
           </div>
           <div className='text'>
@@ -118,37 +151,32 @@ export default function Video(props) {
               })}
             </div>
           </div>
-          <div
-            className='next_song control_button'
-            onClick={() => {
-              changeQueue(queue.slice(1));
-            }}
-          >
+          <div className='next_song control_button' onClick={playNextVideo}>
             <Icon.ChevronRight />
           </div>
         </div>
       </div>
 
       <div className='queue'>
-        <h1 className='title'>Up next</h1>
-        {queue.slice(1).map((id) => (
-          <Card
-            id={id}
-            key={id + sampleData.yid}
-            className='queueCard'
-            redirect={false}
-            onClick={() => {
-              changeQueue(
-                queue.slice(
-                  queue.findIndex((item) => {
-                    return id === item;
-                  })
-                )
-              );
-              props.history.push('video?=' + id);
-            }}
-          />
-        ))}
+        <h1 className='title'>Queue</h1>
+        {queue.map((id, index) => {
+          let selectClass = '';
+          if (index === currentIndex) {
+            selectClass = ' current';
+          }
+          return (
+            <Card
+              id={id}
+              key={id + sampleData.yid}
+              className={'queueCard' + selectClass}
+              redirect={false}
+              onClick={() => {
+                changeURLid(id);
+                changeIndex(index);
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );

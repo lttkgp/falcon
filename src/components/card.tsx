@@ -30,7 +30,7 @@ export default function Card(props: CardProps) {
       <div className='desc'>
         <div className='text'>
           <h1>The song of rain</h1>
-          <p>Musically Artist</p>
+          <p>{props.id}</p>
         </div>
         <div className='like'>
           <Heart></Heart>
