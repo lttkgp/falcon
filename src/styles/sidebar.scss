@@ -133,10 +133,11 @@
       padding: 1rem 3rem 1rem 2rem;
       border-radius: 42px;
       width: fit-content;
-      letter-spacing: 5%;
+      letter-spacing: 2px;
 
       svg {
         margin-right: 1rem;
+        margin-top: 2px;
       }
 
       &.active {
