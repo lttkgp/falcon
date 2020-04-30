@@ -29,22 +29,6 @@ export default function Sidebar() {
     }
   };
 
-  let changeTheme = () => {
-    if (document !== undefined) {
-      let el = document.querySelector('html');
-
-      if (el?.classList !== null) {
-        console.log(el?.classList);
-        if (el?.classList.contains('light')) {
-          el?.classList.add('dark');
-          el?.classList.remove('light');
-        } else {
-          el?.classList.add('light');
-          el?.classList.remove('dark');
-        }
-      }
-    }
-  };
   return (
     <div className='sidebar'>
       <div className='logo'>
@@ -63,9 +47,6 @@ export default function Sidebar() {
         <NavLink to='/genre' className='link'>
           <Icon.Music></Icon.Music> <span className='text'>GENRES</span>
         </NavLink>
-        <div className='change-theme' onClick={changeTheme}>
-          Theme Change !!!!
-        </div>
       </div>
     </div>
   );

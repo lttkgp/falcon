@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 15vw;
-  padding: 5rem 0rem 5rem 3vw;
+  width: 9vw;
+  padding: 5rem 5vw 5rem 3vw;
   transition: width 0.25s ease-in-out;
   position: fixed;
 
@@ -87,18 +87,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: background 0.25 ease;
+      transition: transform ease-in-out 0.25s;
       svg {
         padding: 1rem;
         width: 32px;
         height: 32px;
       }
       &:hover {
-        background-color: lighten($gray, 33%);
+        background-color: $light;
         transform: scale(1.05);
       }
       &:active {
-        background-color: lighten($gray, 30%);
         transform: scale(0.95);
       }
     }
@@ -139,7 +138,7 @@
       }
 
       &.active {
-        background: lighten($gray, 33%);
+        background: $light;
       }
 
       @include md {
@@ -179,10 +178,10 @@
         padding: 1rem;
         margin: -1.25rem 0 0 0;
         width: 40px;
-        background-color: rgba($color: #fff, $alpha: 0.8);
+        background-color: rgba($color: #fff, $alpha: 0.9);
 
         &.active {
-          background: rgba($color: $primary, $alpha: 0.8);
+          background: rgba($color: $primary, $alpha: 0.9);
           color: #fff;
         }
         .text {
