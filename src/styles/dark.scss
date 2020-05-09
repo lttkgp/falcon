@@ -12,8 +12,14 @@ html.dark {
     .menu {
       a {
         color: $gray;
+        background: $light-dark;
         &.active {
-          background: $light-dark;
+          background: linear-gradient(
+            90deg,
+            $primary,
+            lighten($light-dark, 20%)
+          );
+          color: $back;
         }
 
         &:hover {
@@ -32,17 +38,21 @@ html.dark {
         }
       }
     }
-    .change-theme {
-      .icon-theme {
-        background-image: url('/sun.svg');
-        background-color: $light-dark;
-        &:active {
-          background-color: rgba($color: $primary, $alpha: 0.5);
-        }
+    @include sm {
+      background: linear-gradient(rgba($back, 0), rgba($back, 1));
+    }
+  }
 
-        &:hover {
-          background-color: lighten($color: $light-dark, $amount: 5%);
-        }
+  .change-theme {
+    .icon-theme {
+      background-image: url('/sun.svg');
+      background-color: $light-dark;
+      &:active {
+        background-color: rgba($color: $primary, $alpha: 0.5);
+      }
+
+      &:hover {
+        background-color: lighten($color: $light-dark, $amount: 5%);
       }
     }
   }
