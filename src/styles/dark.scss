@@ -16,12 +16,14 @@ html.dark {
           background: $light-dark;
         }
         &.active {
-          background: linear-gradient(
-            90deg,
-            $primary,
-            lighten($light-dark, 20%)
-          );
-          color: $back;
+          background-color: $light-dark;
+          @include sm {
+            background: linear-gradient(
+              90deg,
+              $primary,
+              lighten($light-dark, 20%)
+            );
+          }
         }
 
         &:hover {
@@ -40,9 +42,9 @@ html.dark {
         }
       }
     }
-    @include sm {
-      background: linear-gradient(rgba($back, 0), rgba($back, 1));
-    }
+  }
+  @include sm {
+    background: linear-gradient(rgba($back, 0), rgba($back, 1));
   }
 
   .change-theme {
