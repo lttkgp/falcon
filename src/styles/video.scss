@@ -84,6 +84,9 @@
         display: flex;
         min-width: 70%;
         justify-content: space-between;
+        @include sm {
+          flex-direction: column;
+        }
       }
       .control_button {
         margin: 0.5rem;
