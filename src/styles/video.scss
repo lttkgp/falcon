@@ -34,8 +34,8 @@
     }
 
     @include sm {
-      position: relative;
       width: 100vw;
+      z-index: 1000;
     }
 
     transition: all 0.25s ease-in-out;
@@ -45,6 +45,7 @@
       border-radius: 12px;
       width: calc(100vw - 17vw - 300px - 8rem);
       height: calc((100vw - 17vw - 300px - 8rem) * 9 / 16);
+      position: relative;
       @include md {
         width: calc(100vw - 5vw - 300px - 8rem);
         height: calc((100vw - 5vw - 300px - 8rem) * 9 / 16);
@@ -52,6 +53,7 @@
       @include sm {
         width: 100vw;
         height: calc(100vw * 9 / 16);
+        border-radius: 0px;
       }
       box-shadow: 0px 10px 30px rgba($color: #000, $alpha: 0.35);
       transition: all 0.25s ease-in-out;
@@ -67,10 +69,15 @@
       color: $gray;
       display: flex;
       justify-content: space-between;
+      position: relative;
       @include sm {
-        flex-direction: column;
         margin: -1rem 0 1rem;
-        padding: 2rem 1rem 1rem;
+        padding: 2rem 0rem 1rem;
+        transition: all ease-in-out 0.5s;
+        &.hidden {
+          transform: scale(0.75);
+          margin-top: -200px;
+        }
       }
       .control_button {
         margin: 0.5rem;
@@ -91,6 +98,9 @@
         }
       }
       .widgets {
+        @include sm {
+          margin-left: -0.5rem;
+        }
         .icons {
           display: flex;
           align-items: center;
@@ -136,8 +146,11 @@
     right: 0;
     margin: 1rem 2rem;
     @include sm {
-      position: relative;
-      margin: 1rem;
+      width: calc(100vw - 4rem);
+      right: inherit;
+      top: 50vh;
+      margin: 0rem 2rem;
+      padding-bottom: 10rem;
     }
 
     .title {
