@@ -26,7 +26,6 @@ export default function Video(props) {
 
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
-      console.log('mobile');
       var prevScrollpos = window.pageYOffset;
       window.onscroll = function () {
         var currentScrollPos = window.pageYOffset;
