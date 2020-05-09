@@ -12,7 +12,9 @@ html.dark {
     .menu {
       a {
         color: $gray;
-        background: $light-dark;
+        @include sm {
+          background: $light-dark;
+        }
         &.active {
           background: linear-gradient(
             90deg,

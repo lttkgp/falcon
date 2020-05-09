@@ -70,6 +70,7 @@
       display: flex;
       justify-content: space-between;
       position: relative;
+
       @include sm {
         margin: -1rem 0 1rem;
         padding: 2rem 0rem 1rem;
@@ -78,6 +79,11 @@
           transform: scale(0.75);
           margin-top: -200px;
         }
+      }
+      .middle {
+        display: flex;
+        min-width: 70%;
+        justify-content: space-between;
       }
       .control_button {
         margin: 0.5rem;
