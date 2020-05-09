@@ -1,0 +1,120 @@
+$back: #0f111a;
+$light-dark: #171a27;
+html.dark {
+  background-color: $back;
+
+  .sidebar {
+    .logo .drawer {
+      &:hover {
+        background-color: $light-dark;
+      }
+    }
+    .menu {
+      a {
+        color: $gray;
+        &.active {
+          background: $light-dark;
+        }
+
+        &:hover {
+          background: linear-gradient(
+            90deg,
+            $primary,
+            lighten($light-dark, 20%)
+          );
+          transform: scale(1.05);
+          box-shadow: 0px 0px 20px rgba($primary, 0.1);
+          color: $back;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+    .change-theme {
+      .icon-theme {
+        background-image: url('/sun.svg');
+        background-color: $light-dark;
+        &:active {
+          background-color: rgba($color: $primary, $alpha: 0.5);
+        }
+
+        &:hover {
+          background-color: lighten($color: $light-dark, $amount: 5%);
+        }
+      }
+    }
+  }
+
+  .header {
+    #search {
+      background-color: $light-dark;
+    }
+
+    .toolbar {
+      .search-box:focus-within {
+        #search {
+          background: $light-dark;
+        }
+      }
+      #search {
+        &:hover {
+          background: lighten($light-dark, 5%);
+        }
+      }
+    }
+  }
+
+  .list {
+    .title {
+      color: $gray;
+    }
+    .array .card {
+      color: $dark;
+      h1 {
+        color: $gray;
+      }
+    }
+  }
+
+  .video {
+    .video-container {
+      .desc {
+        background-color: $light-dark;
+        color: $dark;
+        h1 {
+          color: $gray;
+        }
+        .widgets {
+          .icons {
+            a {
+              color: $dark;
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+          .genres {
+            .genre-tag {
+              text-decoration: none;
+              background-color: lighten($light-dark, 10%);
+              color: $dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .queue {
+    .queueCard {
+      &.current {
+        h1 {
+          color: $primary;
+        }
+        box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
+      }
+    }
+  }
+}

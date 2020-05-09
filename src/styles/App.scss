@@ -12,7 +12,10 @@ html,
   min-height: 100vh;
   height: 100%;
 }
-
+.App {
+  width: 100%;
+  overflow-x: hidden;
+}
 // Remove Firefox dotted outline while clicking on links
 :focus {
   outline: none;
@@ -32,7 +35,9 @@ $primary: #fc58a7;
 }
 
 @import 'content';
+@import 'header';
 @import 'sidebar';
 @import 'transition';
 @import 'list';
 @import 'video';
+@import 'dark';

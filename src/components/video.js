@@ -4,12 +4,6 @@ import * as Icon from 'react-feather';
 import Card from './card';
 import { useSelector } from 'react-redux';
 
-// type VideoProps = {
-//   title: string,
-//   url: string,
-//   id: string,
-// };
-
 const sampleData = {
   title: 'Rick Astley - Never Gonna Give You Up (Video)',
   author: 'Official Rick Astley',
@@ -25,10 +19,7 @@ export default function Video(props) {
   if (props.queue) {
     preQueue = props.queue;
   }
-  let [queue, changeQueue] = useState([
-    props.id || sampleData.yid,
-    ...preQueue,
-  ]);
+  let [queue, changeQueue] = useState([props.id || 'dQw4w9WgXcQ', ...preQueue]);
 
   let [currentIndex, changeIndex] = useState(0);
 
