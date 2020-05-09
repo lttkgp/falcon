@@ -1,8 +1,6 @@
 .video {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  min-width: 82vw;
+  right: 0;
   transition: width 1ms ease !important;
   &.fade-enter .video-container {
     opacity: 0;
