@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 import * as Icon from 'react-feather';
 import Card from './card';
 import { useSelector } from 'react-redux';
+import { mobileCheck } from '../utils/video';
 
 const sampleData = {
   title: 'Rick Astley - Never Gonna Give You Up (Video)',
@@ -23,8 +24,31 @@ export default function Video(props) {
 
   let [currentIndex, changeIndex] = useState(0);
 
+  let handleModScroll = () => {
+    if (mobileCheck() && window !== null) {
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        let e = document.getElementsByClassName('desc')[0];
+        if (prevScrollpos > currentScrollPos && e !== null) {
+          e.classList.remove('hidden');
+        } else {
+          e.classList.add('hidden');
+        }
+        if (currentScrollPos === 0) {
+          e.classList.add('large');
+          e.classList.remove('hidden');
+        } else {
+          e.classList.remove('large');
+        }
+        prevScrollpos = currentScrollPos;
+      };
+    }
+  };
+
   useEffect(() => {
     if (document !== undefined) {
+      handleModScroll();
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
@@ -90,56 +114,63 @@ export default function Video(props) {
             width: '900',
             playerVars: {
               autoplay: 1,
+              playsinline: 1,
             },
           }}
         />
 
-        <div className='desc'>
+        <div className='desc large'>
           <div className='prev_song control_button' onClick={playPrevVideo}>
             <Icon.ChevronLeft />
           </div>
-          <div className='text'>
-            <h1 className='title'>{sampleData.title}</h1>
-            <h2>{sampleData.author}</h2>
-          </div>
-
-          <div className='widgets'>
-            <div className='icons'>
-              <a
-                href={'https://www.youtube.com/watch?v=' + sampleData.yid}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <Icon.Youtube></Icon.Youtube>
-              </a>
-              <a
-                href={sampleData.spotify}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <Icon.Speaker></Icon.Speaker>
-              </a>
-              <a href='#link'>
-                <Icon.Link2></Icon.Link2>
-              </a>
-              <span className='likes' target='_blank' rel='noopener noreferrer'>
-                <Icon.Heart></Icon.Heart>
-                <span>{sampleData.likes}</span>
-              </span>
+          <div className='middle'>
+            <div className='text'>
+              <h1 className='title'>{sampleData.title}</h1>
+              <h2>{sampleData.author}</h2>
             </div>
 
-            <div className='genres'>
-              {sampleData.genres.map((genre) => {
-                return (
-                  <a
-                    className='genre-tag'
-                    key={'genre-tag-' + genre + sampleData.yid}
-                    href='#genres'
-                  >
-                    {genre}
-                  </a>
-                );
-              })}
+            <div className='widgets'>
+              <div className='icons'>
+                <a
+                  href={'https://www.youtube.com/watch?v=' + sampleData.yid}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <Icon.Youtube></Icon.Youtube>
+                </a>
+                <a
+                  href={sampleData.spotify}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <Icon.Speaker></Icon.Speaker>
+                </a>
+                <a href='#link'>
+                  <Icon.Link2></Icon.Link2>
+                </a>
+                <span
+                  className='likes'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <Icon.Heart></Icon.Heart>
+                  <span>{sampleData.likes}</span>
+                </span>
+              </div>
+
+              <div className='genres'>
+                {sampleData.genres.map((genre) => {
+                  return (
+                    <a
+                      className='genre-tag'
+                      key={'genre-tag-' + genre + sampleData.yid}
+                      href='#genres'
+                    >
+                      {genre}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className='next_song control_button' onClick={playNextVideo}>

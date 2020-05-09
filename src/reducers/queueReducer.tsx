@@ -5,7 +5,6 @@ type QueueAction = {
 
 export default function queueReducer(
   state = [
-    'zReP_EYZGEw',
     'dQw4w9WgXcQ',
     'PJWemSzExXs',
     'k4V3Mo61fJM',
