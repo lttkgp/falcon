@@ -37,6 +37,7 @@ export default function Video(props) {
         }
         if (currentScrollPos === 0) {
           e.classList.add('large');
+          e.classList.remove('hidden');
         } else {
           e.classList.remove('large');
         }
