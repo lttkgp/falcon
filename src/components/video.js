@@ -35,6 +35,11 @@ export default function Video(props) {
         } else {
           e.classList.add('hidden');
         }
+        if (currentScrollPos === 0) {
+          e.classList.add('large');
+        } else {
+          e.classList.remove('large');
+        }
         prevScrollpos = currentScrollPos;
       };
     }
@@ -108,11 +113,12 @@ export default function Video(props) {
             width: '900',
             playerVars: {
               autoplay: 1,
+              playsinline: 1,
             },
           }}
         />
 
-        <div className='desc'>
+        <div className='desc large'>
           <div className='prev_song control_button' onClick={playPrevVideo}>
             <Icon.ChevronLeft />
           </div>
