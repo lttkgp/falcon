@@ -1,4 +1,8 @@
 .video {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 82vw;
   transition: width 1ms ease !important;
   &.fade-enter .video-container {
     opacity: 0;
@@ -6,6 +10,11 @@
     z-index: 1;
     transform-origin: top left;
     transition: opacity 500ms ease-in, transform 500ms ease-in;
+    @include sm {
+      .desc {
+        transform: translateY(-500px);
+      }
+    }
   }
 
   &.fade-enter.fade-enter-active .video-container {
@@ -13,16 +22,17 @@
     transform: perspective(1000px) translateX(0px) rotateY(0deg) scale(1)
       translateZ(0px);
     transition: opacity 500ms ease-in, transform 500ms ease-in;
+    @include sm {
+      .desc {
+        transform: translateY(-0px);
+      }
+    }
   }
 
   &.fade-exit {
     display: none;
   }
 
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  min-width: 80vw;
   @include sm {
     flex-direction: column;
   }
