@@ -148,7 +148,7 @@
     @include sm {
       width: calc(100vw - 4rem);
       right: inherit;
-      top: 50vh;
+      top: calc(30vh + 200px);
       margin: 0rem 2rem;
       padding-bottom: 10rem;
     }
