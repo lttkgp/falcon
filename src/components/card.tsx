@@ -7,6 +7,14 @@ type CardProps = {
   onClick: Function;
   redirect: boolean;
   id: string;
+  gkey: string;
+  data: {
+    metadata: {
+      song: {
+        name: string;
+      };
+    };
+  };
 };
 
 export default function Card(props: CardProps) {
@@ -15,21 +23,26 @@ export default function Card(props: CardProps) {
   return (
     <div
       className={props.className}
+      key={props.gkey}
       onClick={() => {
         if (props.onClick !== undefined) {
           props.onClick();
         } else if (props.redirect === true) {
-          history.push('/video?=' + props.id);
+          history.push('/video?=' + props.id.split('/').slice(-1).pop());
         }
       }}
     >
       <img
-        src={'https://img.youtube.com/vi/' + props.id + '/mqdefault.jpg'}
+        src={
+          'https://img.youtube.com/vi/' +
+          props.id.split('/').slice(-1).pop() +
+          '/mqdefault.jpg'
+        }
         alt=''
       />
       <div className='desc'>
         <div className='text'>
-          <h1>The song of rain</h1>
+          <h1>{props.data.metadata.song.name}</h1>
           <p>{props.id}</p>
         </div>
         <div className='like'>

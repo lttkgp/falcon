@@ -97,7 +97,6 @@ html {
 
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: minmax(150px, 1fr);
 
     @include sm {
@@ -171,6 +170,9 @@ html {
           h1 {
             font-size: 1.2rem;
             margin-bottom: -0.5rem;
+            max-width: 250px;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
           }
           p {
             font-size: 0.8rem;
