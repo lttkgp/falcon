@@ -11,4 +11,15 @@ let filterUniqueVideos = (frequents) => {
   return filtered;
 };
 
-export { filterUniqueVideos };
+let filterGenres = (tags) => {
+  let ftags = [];
+  for (let tag of tags) {
+    if (ftags.includes(tag) === false) {
+      ftags.push(tag);
+    }
+  }
+
+  return ftags;
+};
+
+export { filterUniqueVideos, filterGenres };

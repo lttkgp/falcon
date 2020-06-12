@@ -4,6 +4,8 @@ import * as Icon from 'react-feather';
 import Card from './card';
 import { useSelector } from 'react-redux';
 import { mobileCheck } from '../utils/video';
+import { joinArtists } from '../utils';
+import { filterGenres } from '../utils/filterList';
 
 const sampleData = {
   title: 'Rick Astley - Never Gonna Give You Up (Video)',
@@ -107,7 +109,7 @@ export default function Video(props) {
     <div className={queue.length !== 0 ? 'video' : 'video fullview'}>
       <div className='video-container'>
         <YouTube
-          videoId={props.id}
+          videoId={queue.length !== 0 ? queue[currentIndex].id : props.id}
           onEnd={handleEndOfVideo}
           opts={{
             height: '550',
@@ -119,64 +121,77 @@ export default function Video(props) {
           }}
         />
 
-        <div className='desc large'>
-          <div className='prev_song control_button' onClick={playPrevVideo}>
-            <Icon.ChevronLeft />
-          </div>
-          <div className='middle'>
-            <div className='text'>
-              <h1 className='title'>{sampleData.title}</h1>
-              <h2>{sampleData.author}</h2>
+        {queue.length !== 0 ? (
+          <div className='desc large'>
+            <div className='prev_song control_button' onClick={playPrevVideo}>
+              <Icon.ChevronLeft />
             </div>
-
-            <div className='widgets'>
-              <div className='icons'>
-                <a
-                  href={'https://www.youtube.com/watch?v=' + sampleData.yid}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Icon.Youtube></Icon.Youtube>
-                </a>
-                <a
-                  href={sampleData.spotify}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Icon.Speaker></Icon.Speaker>
-                </a>
-                <a href='#link'>
-                  <Icon.Link2></Icon.Link2>
-                </a>
-                <span
-                  className='likes'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Icon.Heart></Icon.Heart>
-                  <span>{sampleData.likes}</span>
-                </span>
+            <div className='middle'>
+              <div className='text'>
+                <h1 className='title'>
+                  {queue[currentIndex].metadata.song.name}
+                </h1>
+                <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
               </div>
 
-              <div className='genres'>
-                {sampleData.genres.map((genre) => {
-                  return (
-                    <a
-                      className='genre-tag'
-                      key={'genre-tag-' + genre + sampleData.yid}
-                      href='#genres'
-                    >
-                      {genre}
-                    </a>
-                  );
-                })}
+              <div className='widgets'>
+                <div className='icons'>
+                  <a
+                    href={
+                      'https://www.youtube.com/watch?v=' +
+                      queue[currentIndex].id
+                    }
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Icon.Youtube></Icon.Youtube>
+                  </a>
+                  {/*
+                  <a
+                    href={sampleData.spotify}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Icon.Speaker></Icon.Speaker>
+                  </a>
+                     */}
+                  <a href='#link'>
+                    <Icon.Link2></Icon.Link2>
+                  </a>
+                  <span
+                    className='likes'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Icon.Heart></Icon.Heart>
+                    <span>{queue[currentIndex].postdata.likes_count}</span>
+                  </span>
+                </div>
+
+                <div className='genres'>
+                  {filterGenres(queue[currentIndex].metadata.genre).map(
+                    (genre) => {
+                      return (
+                        <div
+                          className='genre-tag'
+                          key={'genre-tag-' + genre + sampleData.yid}
+                          href='#genres'
+                        >
+                          {genre}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
               </div>
             </div>
+            <div className='next_song control_button' onClick={playNextVideo}>
+              <Icon.ChevronRight />
+            </div>
           </div>
-          <div className='next_song control_button' onClick={playNextVideo}>
-            <Icon.ChevronRight />
-          </div>
-        </div>
+        ) : (
+          ''
+        )}
       </div>
       {queue.length !== 0 ? (
         <div className='queue'>

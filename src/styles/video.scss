@@ -139,6 +139,7 @@
       }
     }
     .widgets {
+      max-width: 300px;
       @include sm {
         transition: all ease-in-out 0.5s;
         margin-left: -0.5rem;
@@ -146,6 +147,7 @@
       .icons {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
         a {
           text-decoration: none;
           color: $gray;
@@ -162,18 +164,19 @@
         }
       }
       .genres {
-        text-align: right;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         @include sm {
           text-align: left;
         }
-        margin-top: 0.5rem;
         .genre-tag {
           text-decoration: none;
           background-color: #dee2ee;
           color: $gray;
           font-size: 0.8rem;
           padding: 0.25rem 0.5rem;
-          margin: 0 0.5rem;
+          margin: 0.25rem;
           border-radius: 6px;
         }
       }

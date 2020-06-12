@@ -6,10 +6,14 @@ let joinArtists = (
     }
   ]
 ) => {
-  return artists.reduce((combined, artist) => {
-    combined.name += ' // ' + artist.name;
-    return combined;
-  }).name;
+  let fartists: Array<string> = [];
+  for (let artist of artists) {
+    if (fartists.includes(artist.name) === false) {
+      fartists.push(artist.name);
+    }
+  }
+
+  return fartists.join(' // ');
 };
 
 export { joinArtists };
