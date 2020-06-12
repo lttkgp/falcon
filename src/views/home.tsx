@@ -8,13 +8,13 @@ export default function Home(props: Object) {
       <Header title='Home' />
 
       <List
-        title="KGP's picks 🔥"
+        title='Latest 🔥'
         url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25'
         redirect
       />
       <List
-        title='Top Weekly 🏅'
-        url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25'
+        title="KGP's picks 🏅"
+        url='https://api.lttkgp.com/v1/feed/frequent?start=0&limit=25'
         redirect
       />
       <List

@@ -3,6 +3,7 @@ import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import styled from 'styled-components';
 import axios from 'axios';
+import { filterUniqueVideos } from '../utils';
 
 const VArray = styled.div`
   grid-template-columns: repeat(${(props) => props.len}, 1fr);
@@ -38,7 +39,7 @@ export default function List(props) {
   useEffect(() => {
     axios.get(props.url).then((resp) => {
       if (resp.data) {
-        setVideoList(resp.data.posts);
+        setVideoList(filterUniqueVideos(resp.data.posts));
       }
     });
   }, []);
