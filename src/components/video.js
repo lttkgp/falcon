@@ -7,19 +7,18 @@ import { mobileCheck } from '../utils/video';
 import { joinArtists } from '../utils';
 import { filterGenres } from '../utils/filterList';
 
-const sampleData = {
-  title: 'Rick Astley - Never Gonna Give You Up (Video)',
-  author: 'Official Rick Astley',
-  yid: 'dQw4w9WgXcQ',
-  spotify: 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC',
-  likes: 27,
-  genres: ['soul', 'pop'],
-  queue: [],
-};
-
 export default function Video(props) {
   let preQueue = useSelector((state) => state.queue);
   let [queue, changeQueue] = useState(preQueue);
+  if (preQueue.length === 0) {
+    console.log(window.location.host);
+    if (window !== undefined) {
+      var home = window.location.protocol + '//' + window.location.host;
+      if (window.history.pushState) {
+        window.history.pushState({ path: home }, '', home);
+      }
+    }
+  }
 
   let [currentIndex, changeIndex] = useState(
     preQueue.map((e) => e.id).indexOf(props.id)
@@ -173,7 +172,7 @@ export default function Video(props) {
                       return (
                         <div
                           className='genre-tag'
-                          key={'genre-tag-' + genre + sampleData.yid}
+                          key={'genre-tag-' + genre + 'ssyid'}
                           href='#genres'
                         >
                           {genre}
