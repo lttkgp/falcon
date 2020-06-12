@@ -167,14 +167,17 @@ html {
         padding: 0rem 0.5rem;
 
         .text {
+          max-width: 250px;
           h1 {
-            font-size: 1.2rem;
-            margin-bottom: -0.5rem;
-            max-width: 250px;
             text-overflow: ellipsis;
             overflow-x: hidden;
+            font-size: 1.2rem;
+            margin-bottom: -0.5rem;
           }
           p {
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+
             font-size: 0.8rem;
           }
         }

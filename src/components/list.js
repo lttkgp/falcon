@@ -2,24 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const VArray = styled.div`
   grid-template-columns: repeat(${(props) => props.len}, 1fr);
 `;
 
-const dummyData = [
-  'tt2k8PGm-TI',
-  'cH4E_t3m3xM',
-  'e2vBLd5Egnk',
-  'IxszlJppRQI',
-  'BLwNSkDj1b0',
-  'ShZ978fBl6Y',
-  'r5yaoMjaAmE',
-];
-
 export default function List(props) {
   let [scrollLeft, setScrollLeft] = useState(false);
   let [scrollRight, setScrollRight] = useState(true);
+  let [videoList, setVideoList] = useState([]);
 
   let hideArrows = (idname) => {
     setInterval(() => {
@@ -38,18 +30,27 @@ export default function List(props) {
       }
     }, 1000);
   };
+
   useEffect(() => {
     hideArrows(props.title);
   }, [props.title]);
 
+  useEffect(() => {
+    axios.get(props.url).then((resp) => {
+      if (resp.data) {
+        setVideoList(resp.data.posts);
+      }
+    });
+  }, []);
+
   return (
     <div className='list' key={props.title.trim()}>
       <h1 className='title'>{props.title}</h1>
-      <VArray className='array' id={props.title.trim()} len={props.data.length}>
-        {props.data.map((vid) => (
+      <VArray className='array' id={props.title.trim()} len={videoList.length}>
+        {videoList.map((vid) => (
           <Card
-            gkey={vid.link + 'IDHJH' + props.title.trim()}
-            id={vid.link}
+            gkey={vid.id + 'IDHJH' + props.title.trim()}
+            id={vid.id}
             data={vid}
             redirect={props.redirect}
           />
