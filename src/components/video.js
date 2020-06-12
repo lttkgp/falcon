@@ -85,7 +85,7 @@ export default function Video(props) {
 
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
-      changeURLid(queue[currentIndex + 1]);
+      changeURLid(queue[currentIndex + 1].id);
       changeIndex(currentIndex + 1);
       scrollCurrentVideo();
     }
@@ -93,7 +93,7 @@ export default function Video(props) {
 
   let playPrevVideo = () => {
     if (currentIndex > 0) {
-      changeURLid(queue[currentIndex - 1]);
+      changeURLid(queue[currentIndex - 1].id);
       changeIndex(currentIndex - 1);
       scrollCurrentVideo();
     }
