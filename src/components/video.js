@@ -24,7 +24,6 @@ export default function Video(props) {
   let [currentIndex, changeIndex] = useState(
     preQueue.map((e) => e.id).indexOf(props.id)
   );
-  console.log(queue, currentIndex);
 
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
@@ -154,10 +153,10 @@ export default function Video(props) {
                   >
                     <Icon.Speaker></Icon.Speaker>
                   </a>
-                     */}
                   <a href='#link'>
                     <Icon.Link2></Icon.Link2>
                   </a>
+                     */}
                   <span
                     className='likes'
                     target='_blank'
@@ -197,7 +196,6 @@ export default function Video(props) {
         <div className='queue'>
           <h1 className='title'>Queue</h1>
           {queue.map((vid, index) => {
-            console.log(vid);
             let selectClass = '';
             if (index === currentIndex) {
               selectClass = ' current';

@@ -39,7 +39,6 @@ export default function List(props) {
   useEffect(() => {
     axios.get(props.url).then((resp) => {
       if (resp.data) {
-        console.log(resp.data.posts);
         setVideoList(filterUniqueVideos(resp.data.posts));
       }
     });
