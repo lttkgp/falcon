@@ -17,12 +17,12 @@ const sampleData = {
 
 export default function Video(props) {
   let preQueue = useSelector((state) => state.queue);
-  if (props.queue) {
-    preQueue = props.queue;
-  }
-  let [queue, changeQueue] = useState([props.id || 'dQw4w9WgXcQ', ...preQueue]);
+  let [queue, changeQueue] = useState(preQueue);
 
-  let [currentIndex, changeIndex] = useState(0);
+  let [currentIndex, changeIndex] = useState(
+    preQueue.map((e) => e.id).indexOf(props.id)
+  );
+  console.log(queue, currentIndex);
 
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
@@ -107,7 +107,7 @@ export default function Video(props) {
     <div className='video'>
       <div className='video-container'>
         <YouTube
-          videoId={queue[currentIndex]}
+          videoId={props.id}
           onEnd={handleEndOfVideo}
           opts={{
             height: '550',
@@ -181,19 +181,21 @@ export default function Video(props) {
 
       <div className='queue'>
         <h1 className='title'>Queue</h1>
-        {queue.map((id, index) => {
+        {queue.map((vid, index) => {
+          console.log(vid);
           let selectClass = '';
           if (index === currentIndex) {
             selectClass = ' current';
           }
           return (
             <Card
-              id={id}
-              key={id + sampleData.yid}
+              id={vid.id}
+              key={vid.id + 'Queue-xyppu'}
+              data={vid}
               className={'queueCard' + selectClass}
               redirect={false}
               onClick={() => {
-                changeURLid(id);
+                changeURLid(vid.id);
                 changeIndex(index);
               }}
             />

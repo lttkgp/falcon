@@ -9,22 +9,22 @@ export default function Home(props: Object) {
 
       <List
         title='Latest 🔥'
-        url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25'
+        url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25&n=30'
         redirect
       />
       <List
         title="KGP's picks 🏅"
-        url='https://api.lttkgp.com/v1/feed/frequent?start=0&limit=25'
-        redirect
-      />
-      <List
-        title='Most Played Songs 🎵'
-        url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25'
+        url='https://api.lttkgp.com/v1/feed/frequent?start=0&limit=25&n=30'
         redirect
       />
       <List
         title="Editor's Pick 👌"
-        url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25'
+        url='https://api.lttkgp.com/v1/feed/latest?start=0&limit=25&n=30'
+        redirect
+      />
+      <List
+        title='Most Played Songs 🎵'
+        url='https://api.lttkgp.com/v1/feed/frequent?start=0&limit=25&n=30'
         redirect
       />
     </div>

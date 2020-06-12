@@ -39,10 +39,11 @@ export default function List(props) {
   useEffect(() => {
     axios.get(props.url).then((resp) => {
       if (resp.data) {
+        console.log(resp.data.posts);
         setVideoList(filterUniqueVideos(resp.data.posts));
       }
     });
-  }, []);
+  }, [props.url]);
 
   return (
     <div className='list' key={props.title.trim()}>
@@ -50,9 +51,10 @@ export default function List(props) {
       <VArray className='array' id={props.title.trim()} len={videoList.length}>
         {videoList.map((vid) => (
           <Card
-            gkey={vid.id + 'IDHJH' + props.title.trim()}
             id={vid.id}
+            key={vid.id + props.title.trim()}
             data={vid}
+            queue={videoList}
             redirect={props.redirect}
           />
         ))}
