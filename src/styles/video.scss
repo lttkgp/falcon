@@ -290,15 +290,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      // width: 100%;
-      padding: 0rem 1rem;
+      padding: 0rem 0.5rem;
 
       .text {
+        max-width: 250px;
+        white-space: nowrap;
         h1 {
+          text-overflow: ellipsis;
+          overflow-x: hidden;
           font-size: 1.2rem;
           margin-bottom: -0.5rem;
         }
         p {
+          text-overflow: ellipsis;
+          overflow-x: hidden;
+
           font-size: 0.8rem;
         }
       }
