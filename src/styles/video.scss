@@ -34,6 +34,7 @@
   @include sm {
     flex-direction: column;
   }
+
   .video-container {
     position: fixed;
     width: calc(100vw - 17vw - 300px - 8rem);
@@ -315,6 +316,25 @@
     }
   }
 }
+.video.fullview {
+  .video-container {
+    width: calc(100vw - 17vw - 8rem);
+    @include md {
+      width: calc(100vw - 5vw - 8rem);
+    }
+    iframe {
+      width: calc(100vw - 17vw - 8rem);
+      height: calc((100vw - 17vw - 8rem) * 9 / 16);
+      @include md {
+        width: calc(100vw - 5vw - 8rem);
+        height: calc((100vw - 5vw - 8rem) * 9 / 16);
+      }
+    }
+  }
+  .desc {
+    display: none;
+  }
+}
 
 .contract {
   .video-container {
@@ -324,6 +344,17 @@
     iframe {
       width: calc(100vw - 9vw - 300px - 8rem);
       height: calc((100vw - 9vw - 300px - 8rem) * 9 / 16);
+    }
+  }
+  .video.fullview {
+    .video-container {
+      width: calc(100vw - 11vw - 8rem);
+
+      margin: 1rem 0;
+      iframe {
+        width: calc(100vw - 11vw - 8rem);
+        height: calc((100vw - 11vw - 8rem) * 9 / 16);
+      }
     }
   }
 }

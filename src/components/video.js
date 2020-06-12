@@ -104,7 +104,7 @@ export default function Video(props) {
   };
 
   return (
-    <div className='video'>
+    <div className={queue.length !== 0 ? 'video' : 'video fullview'}>
       <div className='video-container'>
         <YouTube
           videoId={props.id}
@@ -178,30 +178,33 @@ export default function Video(props) {
           </div>
         </div>
       </div>
-
-      <div className='queue'>
-        <h1 className='title'>Queue</h1>
-        {queue.map((vid, index) => {
-          console.log(vid);
-          let selectClass = '';
-          if (index === currentIndex) {
-            selectClass = ' current';
-          }
-          return (
-            <Card
-              id={vid.id}
-              key={vid.id + 'Queue-xyppu'}
-              data={vid}
-              className={'queueCard' + selectClass}
-              redirect={false}
-              onClick={() => {
-                changeURLid(vid.id);
-                changeIndex(index);
-              }}
-            />
-          );
-        })}
-      </div>
+      {queue.length !== 0 ? (
+        <div className='queue'>
+          <h1 className='title'>Queue</h1>
+          {queue.map((vid, index) => {
+            console.log(vid);
+            let selectClass = '';
+            if (index === currentIndex) {
+              selectClass = ' current';
+            }
+            return (
+              <Card
+                id={vid.id}
+                key={vid.id + 'Queue-xyppu'}
+                data={vid}
+                className={'queueCard' + selectClass}
+                redirect={false}
+                onClick={() => {
+                  changeURLid(vid.id);
+                  changeIndex(index);
+                }}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
