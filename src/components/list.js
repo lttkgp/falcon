@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
+import styled from 'styled-components';
+import axios from 'axios';
+import { filterUniqueVideos } from '../utils';
 
-const dummyData = [
-  'tt2k8PGm-TI',
-  'cH4E_t3m3xM',
-  'e2vBLd5Egnk',
-  'IxszlJppRQI',
-  'Y63UW-Vs5PM',
-  'BLwNSkDj1b0',
-  'ShZ978fBl6Y',
-  'r5yaoMjaAmE',
-];
+const VArray = styled.div`
+  grid-template-columns: repeat(${(props) => props.len}, 1fr);
+`;
 
 export default function List(props) {
   let [scrollLeft, setScrollLeft] = useState(false);
   let [scrollRight, setScrollRight] = useState(true);
+  let [videoList, setVideoList] = useState([]);
 
   let hideArrows = (idname) => {
     setInterval(() => {
@@ -34,18 +31,33 @@ export default function List(props) {
       }
     }, 1000);
   };
+
   useEffect(() => {
     hideArrows(props.title);
   }, [props.title]);
 
+  useEffect(() => {
+    axios.get(props.url).then((resp) => {
+      if (resp.data) {
+        setVideoList(filterUniqueVideos(resp.data.posts));
+      }
+    });
+  }, [props.url]);
+
   return (
-    <div className='list'>
+    <div className='list' key={props.title.trim()}>
       <h1 className='title'>{props.title}</h1>
-      <div className='array' id={props.title.trim()}>
-        {dummyData.map((id) => (
-          <Card key={id + 'IDHJH'} id={id} redirect={props.redirect} />
+      <VArray className='array' id={props.title.trim()} len={videoList.length}>
+        {videoList.map((vid) => (
+          <Card
+            id={vid.id}
+            key={vid.id + props.title.trim()}
+            data={vid}
+            queue={videoList}
+            redirect={props.redirect}
+          />
         ))}
-      </div>
+      </VArray>
       <div className={'scroll left' + (scrollLeft ? '' : ' hidden')}>
         <ChevronLeft
           onClick={() => {

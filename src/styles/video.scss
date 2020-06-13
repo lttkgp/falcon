@@ -34,6 +34,7 @@
   @include sm {
     flex-direction: column;
   }
+
   .video-container {
     position: fixed;
     width: calc(100vw - 17vw - 300px - 8rem);
@@ -120,7 +121,7 @@
       }
     }
     .control_button {
-      margin: 0.5rem;
+      padding: 0.5rem;
       &:hover {
         cursor: pointer;
         color: $primary;
@@ -138,6 +139,7 @@
       }
     }
     .widgets {
+      max-width: 300px;
       @include sm {
         transition: all ease-in-out 0.5s;
         margin-left: -0.5rem;
@@ -145,6 +147,7 @@
       .icons {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
         a {
           text-decoration: none;
           color: $gray;
@@ -161,18 +164,19 @@
         }
       }
       .genres {
-        text-align: right;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         @include sm {
           text-align: left;
         }
-        margin-top: 0.5rem;
         .genre-tag {
           text-decoration: none;
           background-color: #dee2ee;
           color: $gray;
           font-size: 0.8rem;
           padding: 0.25rem 0.5rem;
-          margin: 0 0.5rem;
+          margin: 0.25rem;
           border-radius: 6px;
         }
       }
@@ -186,6 +190,7 @@
   flex-direction: column;
   right: 0;
   margin: 1rem 2rem;
+  padding-bottom: 5rem;
   @include sm {
     width: calc(100vw - 4rem);
     right: inherit;
@@ -218,7 +223,7 @@
         color: $primary;
       }
       border-radius: 12px;
-      box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
+      // box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
       margin-bottom: 1rem;
       &::before {
         content: '';
@@ -286,15 +291,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      // width: 100%;
-      padding: 0rem 1rem;
+      padding: 0rem 0.5rem;
 
       .text {
+        max-width: 250px;
+        white-space: nowrap;
         h1 {
+          text-overflow: ellipsis;
+          overflow-x: hidden;
           font-size: 1.2rem;
           margin-bottom: -0.5rem;
         }
         p {
+          text-overflow: ellipsis;
+          overflow-x: hidden;
+
           font-size: 0.8rem;
         }
       }
@@ -315,6 +326,25 @@
     }
   }
 }
+.video.fullview {
+  .video-container {
+    width: calc(100vw - 17vw - 8rem);
+    @include md {
+      width: calc(100vw - 5vw - 8rem);
+    }
+    iframe {
+      width: calc(100vw - 17vw - 8rem);
+      height: calc((100vw - 17vw - 8rem) * 9 / 16);
+      @include md {
+        width: calc(100vw - 5vw - 8rem);
+        height: calc((100vw - 5vw - 8rem) * 9 / 16);
+      }
+    }
+  }
+  .desc {
+    display: none;
+  }
+}
 
 .contract {
   .video-container {
@@ -324,6 +354,17 @@
     iframe {
       width: calc(100vw - 9vw - 300px - 8rem);
       height: calc((100vw - 9vw - 300px - 8rem) * 9 / 16);
+    }
+  }
+  .video.fullview {
+    .video-container {
+      width: calc(100vw - 11vw - 8rem);
+
+      margin: 1rem 0;
+      iframe {
+        width: calc(100vw - 11vw - 8rem);
+        height: calc((100vw - 11vw - 8rem) * 9 / 16);
+      }
     }
   }
 }

@@ -112,7 +112,7 @@ html.dark {
           .genres {
             .genre-tag {
               text-decoration: none;
-              background-color: lighten($light-dark, 10%);
+              background-color: lighten($light-dark, 4%);
               color: $dark;
             }
           }
@@ -127,7 +127,6 @@ html.dark {
         h1 {
           color: $primary;
         }
-        box-shadow: 0px 10px 20px rgba($color: $primary, $alpha: 0.33);
       }
     }
   }

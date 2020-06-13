@@ -97,7 +97,6 @@ html {
 
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: minmax(150px, 1fr);
 
     @include sm {
@@ -168,11 +167,17 @@ html {
         padding: 0rem 0.5rem;
 
         .text {
+          max-width: 250px;
           h1 {
+            text-overflow: ellipsis;
+            overflow-x: hidden;
             font-size: 1.2rem;
             margin-bottom: -0.5rem;
           }
           p {
+            text-overflow: ellipsis;
+            overflow-x: hidden;
+
             font-size: 0.8rem;
           }
         }
@@ -206,6 +211,10 @@ html {
     //   padding: 1rem;
     //   border-radius: 10rem;
     // }
+
+    .right {
+      right: 2rem;
+    }
 
     .array {
       width: calc(100vw - 18rem);

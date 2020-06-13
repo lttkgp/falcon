@@ -4,25 +4,25 @@ import * as Icon from 'react-feather';
 import Card from './card';
 import { useSelector } from 'react-redux';
 import { mobileCheck } from '../utils/video';
-
-const sampleData = {
-  title: 'Rick Astley - Never Gonna Give You Up (Video)',
-  author: 'Official Rick Astley',
-  yid: 'dQw4w9WgXcQ',
-  spotify: 'https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC',
-  likes: 27,
-  genres: ['soul', 'pop'],
-  queue: [],
-};
+import { joinArtists } from '../utils';
+import { filterGenres } from '../utils/filterList';
 
 export default function Video(props) {
   let preQueue = useSelector((state) => state.queue);
-  if (props.queue) {
-    preQueue = props.queue;
+  let [queue, changeQueue] = useState(preQueue);
+  if (preQueue.length === 0) {
+    console.log(window.location.host);
+    if (window !== undefined) {
+      var home = window.location.protocol + '//' + window.location.host;
+      if (window.history.pushState) {
+        window.history.pushState({ path: home }, '', home);
+      }
+    }
   }
-  let [queue, changeQueue] = useState([props.id || 'dQw4w9WgXcQ', ...preQueue]);
 
-  let [currentIndex, changeIndex] = useState(0);
+  let [currentIndex, changeIndex] = useState(
+    preQueue.map((e) => e.id).indexOf(props.id)
+  );
 
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
@@ -85,7 +85,7 @@ export default function Video(props) {
 
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
-      changeURLid(queue[currentIndex + 1]);
+      changeURLid(queue[currentIndex + 1].id);
       changeIndex(currentIndex + 1);
       scrollCurrentVideo();
     }
@@ -93,7 +93,7 @@ export default function Video(props) {
 
   let playPrevVideo = () => {
     if (currentIndex > 0) {
-      changeURLid(queue[currentIndex - 1]);
+      changeURLid(queue[currentIndex - 1].id);
       changeIndex(currentIndex - 1);
       scrollCurrentVideo();
     }
@@ -104,10 +104,10 @@ export default function Video(props) {
   };
 
   return (
-    <div className='video'>
+    <div className={queue.length !== 0 ? 'video' : 'video fullview'}>
       <div className='video-container'>
         <YouTube
-          videoId={queue[currentIndex]}
+          videoId={queue.length !== 0 ? queue[currentIndex].id : props.id}
           onEnd={handleEndOfVideo}
           opts={{
             height: '550',
@@ -119,87 +119,104 @@ export default function Video(props) {
           }}
         />
 
-        <div className='desc large'>
-          <div className='prev_song control_button' onClick={playPrevVideo}>
-            <Icon.ChevronLeft />
-          </div>
-          <div className='middle'>
-            <div className='text'>
-              <h1 className='title'>{sampleData.title}</h1>
-              <h2>{sampleData.author}</h2>
+        {queue.length !== 0 ? (
+          <div className='desc large'>
+            <div className='prev_song control_button' onClick={playPrevVideo}>
+              <Icon.ChevronLeft />
             </div>
-
-            <div className='widgets'>
-              <div className='icons'>
-                <a
-                  href={'https://www.youtube.com/watch?v=' + sampleData.yid}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Icon.Youtube></Icon.Youtube>
-                </a>
-                <a
-                  href={sampleData.spotify}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Icon.Speaker></Icon.Speaker>
-                </a>
-                <a href='#link'>
-                  <Icon.Link2></Icon.Link2>
-                </a>
-                <span
-                  className='likes'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Icon.Heart></Icon.Heart>
-                  <span>{sampleData.likes}</span>
-                </span>
+            <div className='middle'>
+              <div className='text'>
+                <h1 className='title'>
+                  {queue[currentIndex].metadata.song.name}
+                </h1>
+                <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
               </div>
 
-              <div className='genres'>
-                {sampleData.genres.map((genre) => {
-                  return (
-                    <a
-                      className='genre-tag'
-                      key={'genre-tag-' + genre + sampleData.yid}
-                      href='#genres'
-                    >
-                      {genre}
-                    </a>
-                  );
-                })}
+              <div className='widgets'>
+                <div className='icons'>
+                  <a
+                    href={
+                      'https://www.youtube.com/watch?v=' +
+                      queue[currentIndex].id
+                    }
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Icon.Youtube></Icon.Youtube>
+                  </a>
+                  {/*
+                  <a
+                    href={sampleData.spotify}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Icon.Speaker></Icon.Speaker>
+                  </a>
+                  <a href='#link'>
+                    <Icon.Link2></Icon.Link2>
+                  </a>
+                     */}
+                  <span
+                    className='likes'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <Icon.Heart></Icon.Heart>
+                    <span>{queue[currentIndex].postdata.likes_count}</span>
+                  </span>
+                </div>
+
+                <div className='genres'>
+                  {filterGenres(queue[currentIndex].metadata.genre).map(
+                    (genre) => {
+                      return (
+                        <div
+                          className='genre-tag'
+                          key={'genre-tag-' + genre + 'ssyid'}
+                          href='#genres'
+                        >
+                          {genre}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
               </div>
             </div>
+            <div className='next_song control_button' onClick={playNextVideo}>
+              <Icon.ChevronRight />
+            </div>
           </div>
-          <div className='next_song control_button' onClick={playNextVideo}>
-            <Icon.ChevronRight />
-          </div>
+        ) : (
+          ''
+        )}
+      </div>
+      {queue.length !== 0 ? (
+        <div className='queue'>
+          <h1 className='title'>Queue</h1>
+          {queue.map((vid, index) => {
+            let selectClass = '';
+            if (index === currentIndex) {
+              selectClass = ' current';
+            }
+            return (
+              <Card
+                id={vid.id}
+                key={vid.id + 'Queue-xyppu'}
+                data={vid}
+                className={'queueCard' + selectClass}
+                redirect={false}
+                onClick={() => {
+                  changeURLid(vid.id);
+                  changeIndex(index);
+                }}
+              />
+            );
+          })}
         </div>
-      </div>
-
-      <div className='queue'>
-        <h1 className='title'>Queue</h1>
-        {queue.map((id, index) => {
-          let selectClass = '';
-          if (index === currentIndex) {
-            selectClass = ' current';
-          }
-          return (
-            <Card
-              id={id}
-              key={id + sampleData.yid}
-              className={'queueCard' + selectClass}
-              redirect={false}
-              onClick={() => {
-                changeURLid(id);
-                changeIndex(index);
-              }}
-            />
-          );
-        })}
-      </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
