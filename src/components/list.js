@@ -51,8 +51,8 @@ export default function List(props) {
     <div className='list' key={props.title.trim()}>
       <div className='list-header'>
         <h1 className='title'>{props.title}</h1>
-        <Button queue={videoList} shuffle>
-          <Icon.Shuffle></Icon.Shuffle> Random
+        <Button queue={videoList} shuffle className='shuffle'>
+          <Icon.Shuffle></Icon.Shuffle> Shuffle
         </Button>
       </div>
       <VArray className='array' id={props.title.trim()} len={videoList.length}>
