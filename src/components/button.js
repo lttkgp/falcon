@@ -7,6 +7,10 @@ import shuffle from '../utils/knuth-shuffle';
 export default function Button(props) {
   const history = useHistory();
   const dispatch = useDispatch();
+  let nqueue = props.queue;
+  if (props.shuffle === true) {
+    nqueue = shuffle(Array.from(props.queue));
+  }
   return (
     <div
       className={props.className + ' button'}
@@ -14,10 +18,8 @@ export default function Button(props) {
         if (props.onClick !== undefined) {
           props.onClick();
         } else {
-          if (props.shuffle === true) {
-            dispatch(setQueue(shuffle(props.queue)));
-            history.push('/video?=' + props.queue[0].id);
-          }
+          dispatch(setQueue(nqueue));
+          history.push('/video?=' + nqueue[0].id);
         }
       }}
     >
