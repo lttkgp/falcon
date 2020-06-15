@@ -10,6 +10,7 @@ import { filterGenres } from '../utils/filterList';
 export default function Video(props) {
   let preQueue = useSelector((state) => state.queue);
   let [queue, changeQueue] = useState(preQueue);
+
   if (preQueue.length === 0) {
     console.log(window.location.host);
     if (window !== undefined) {
@@ -20,8 +21,28 @@ export default function Video(props) {
     }
   }
 
+  let changeURLid = (id) => {
+    if (window !== undefined) {
+      if (window.history.pushState) {
+        var newurl =
+          window.location.protocol +
+          '//' +
+          window.location.host +
+          window.location.pathname +
+          '?=' +
+          id;
+        window.history.pushState({ path: newurl }, '', newurl);
+      }
+    }
+  };
+
   let [currentIndex, changeIndex] = useState(
-    preQueue.map((e) => e.id).indexOf(props.id)
+    (() => {
+      if (props.id) {
+        return preQueue.map((e) => e.id).indexOf(props.id);
+      }
+      return 0;
+    })()
   );
 
   let handleModScroll = () => {
@@ -53,21 +74,6 @@ export default function Video(props) {
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
   }, []);
-
-  let changeURLid = (id) => {
-    if (window !== undefined) {
-      if (window.history.pushState) {
-        var newurl =
-          window.location.protocol +
-          '//' +
-          window.location.host +
-          window.location.pathname +
-          '?=' +
-          id;
-        window.history.pushState({ path: newurl }, '', newurl);
-      }
-    }
-  };
 
   let scrollCurrentVideo = (offset = 0) => {
     setTimeout(() => {
