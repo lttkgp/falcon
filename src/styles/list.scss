@@ -10,14 +10,45 @@ html {
   @include sm {
     margin: 0;
   }
-  .title {
-    z-index: 1;
-    color: $dark;
-    position: absolute;
+
+  .list-header {
     margin-top: -3rem;
     margin-left: 1rem;
+    z-index: 1;
+
+    display: flex;
+
     @include sm {
       margin-left: 1rem;
+    }
+
+    .title {
+      color: $dark;
+      margin: 0;
+    }
+
+    .button {
+      width: min-content;
+      background-color: $light;
+      display: flex;
+      align-items: center;
+      margin: 0 1rem;
+      padding: 0.5rem;
+      padding-right: 1rem;
+      border-radius: 12px;
+      transition: all 0.1s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background-color: $light-gray;
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+      svg {
+        width: 18px;
+        height: 18px;
+        margin: 4px;
+      }
     }
   }
 

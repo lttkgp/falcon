@@ -51,10 +51,6 @@ html.dark {
     .icon-theme {
       background-image: url('/sun.svg');
       background-color: $light-dark;
-      &:active {
-        background-color: rgba($color: $primary, $alpha: 0.5);
-      }
-
       &:hover {
         background-color: lighten($color: $light-dark, $amount: 5%);
       }
@@ -83,6 +79,13 @@ html.dark {
   .list {
     .title {
       color: $gray;
+    }
+    .button {
+      background-color: $light-dark;
+      &:hover {
+        background-color: $light-dark;
+        background-color: lighten($color: $light-dark, $amount: 5%);
+      }
     }
     .array .card {
       color: $dark;

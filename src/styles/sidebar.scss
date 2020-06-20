@@ -239,11 +239,10 @@
     .icon-theme {
       background-color: $light;
       &:active {
-        background-color: rgba($color: $primary, $alpha: 0.5);
         transform: scale(1.5);
       }
       &:hover {
-        background-color: darken($color: $light, $amount: 5%);
+        background-color: $light-gray;
       }
       border-radius: 12px;
       transition: all 0.1s ease-in-out;

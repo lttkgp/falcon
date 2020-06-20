@@ -3,7 +3,10 @@ import Card from './card';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import styled from 'styled-components';
 import axios from 'axios';
+import * as Icon from 'react-feather';
 import { filterUniqueVideos } from '../utils';
+import Button from './button';
+import shuffle from '../utils/knuth-shuffle';
 
 const VArray = styled.div`
   grid-template-columns: repeat(${(props) => props.len}, 1fr);
@@ -46,7 +49,12 @@ export default function List(props) {
 
   return (
     <div className='list' key={props.title.trim()}>
-      <h1 className='title'>{props.title}</h1>
+      <div className='list-header'>
+        <h1 className='title'>{props.title}</h1>
+        <Button queue={videoList} shuffle className='shuffle'>
+          <Icon.Shuffle></Icon.Shuffle> Shuffle
+        </Button>
+      </div>
       <VArray className='array' id={props.title.trim()} len={videoList.length}>
         {videoList.map((vid) => (
           <Card

@@ -1,0 +1,8 @@
+$gray: #8c99aa;
+$dark: #515970;
+$light: #f8f9fc;
+$light-gray: darken(
+  $color: $light,
+  $amount: 5%,
+);
+$primary: #fc58a7;

@@ -1,4 +1,5 @@
 @import 'responsive';
+@import 'vars';
 
 @import url('https://rsms.me/inter/inter.css');
 
@@ -23,11 +24,6 @@ html,
 ::-moz-focus-inner {
   border: 0;
 }
-
-$gray: #8c99aa;
-$dark: #515970;
-$light: #f8f9fc;
-$primary: #fc58a7;
 
 .App {
   color: $gray;
