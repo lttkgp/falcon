@@ -5,8 +5,8 @@ import { changeTheme } from '../utils';
 export default function Header(props: { title: string }) {
   return (
     <div className='header'>
-      <h1>{props.title}</h1>
       <div className='toolbar'>
+        <h1>{props.title}</h1>
         {/* <div className='search-box'>
           <Icon.Search />
           <input type='text' id='search' placeholder='Search' />

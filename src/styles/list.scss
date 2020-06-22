@@ -105,7 +105,7 @@ html {
   }
 
   .array {
-    width: calc(100vw - 8rem - 17vw);
+    width: calc(100vw - 6rem - 17vw);
     @include sm {
       width: calc(100vw - 2rem);
     }
@@ -115,7 +115,7 @@ html {
     transition: width 0.25s ease;
 
     margin-left: -1rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
 
     @include sm {
       margin: 0;
@@ -199,6 +199,9 @@ html {
 
         .text {
           max-width: 250px;
+          @include sm {
+            max-width: 160px;
+          }
           h1 {
             text-overflow: ellipsis;
             overflow-x: hidden;
@@ -248,7 +251,7 @@ html {
     }
 
     .array {
-      width: calc(100vw - 18rem);
+      width: calc(100vw - 16rem);
     }
   }
 }
