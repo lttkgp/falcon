@@ -9,6 +9,7 @@ html {
 
   @include sm {
     margin: 0;
+    margin-left: 1rem;
   }
 
   .list-header {
@@ -120,6 +121,7 @@ html {
     @include sm {
       margin: 0;
       padding: 1rem;
+      margin-left: -1rem;
     }
 
     overflow-x: scroll;
