@@ -130,27 +130,28 @@ export default function Video(props) {
             <div className='prev_song control_button' onClick={playPrevVideo}>
               <Icon.ChevronLeft />
             </div>
-            <div className='middle'>
-              <div className='text'>
-                <h1 className='title'>
-                  {queue[currentIndex].metadata.song.name}
-                </h1>
-                <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
-              </div>
+            <div className='info'>
+              <div className='middle'>
+                <div className='text'>
+                  <h1 className='title'>
+                    {queue[currentIndex].metadata.song.name}
+                  </h1>
+                  <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
+                </div>
 
-              <div className='widgets'>
-                <div className='icons'>
-                  <a
-                    href={
-                      'https://www.youtube.com/watch?v=' +
-                      queue[currentIndex].id
-                    }
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    <Icon.Youtube></Icon.Youtube>
-                  </a>
-                  {/*
+                <div className='widgets'>
+                  <div className='icons'>
+                    <a
+                      href={
+                        'https://www.youtube.com/watch?v=' +
+                        queue[currentIndex].id
+                      }
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Icon.Youtube></Icon.Youtube>
+                    </a>
+                    {/*
                   <a
                     href={sampleData.spotify}
                     target='_blank'
@@ -162,31 +163,31 @@ export default function Video(props) {
                     <Icon.Link2></Icon.Link2>
                   </a>
                      */}
-                  <span
-                    className='likes'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    <Icon.Heart></Icon.Heart>
-                    <span>{queue[currentIndex].postdata.likes_count}</span>
-                  </span>
+                    <span
+                      className='likes'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Icon.Heart></Icon.Heart>
+                      <span>{queue[currentIndex].postdata.likes_count}</span>
+                    </span>
+                  </div>
                 </div>
-
-                <div className='genres'>
-                  {filterGenres(queue[currentIndex].metadata.genre).map(
-                    (genre) => {
-                      return (
-                        <div
-                          className='genre-tag'
-                          key={'genre-tag-' + genre + 'ssyid'}
-                          href='#genres'
-                        >
-                          {genre}
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
+              </div>
+              <div className='genres'>
+                {filterGenres(queue[currentIndex].metadata.genre).map(
+                  (genre) => {
+                    return (
+                      <div
+                        className='genre-tag'
+                        key={'genre-tag-' + genre + 'ssyid'}
+                        href='#genres'
+                      >
+                        {genre}
+                      </div>
+                    );
+                  }
+                )}
               </div>
             </div>
             <div className='next_song control_button' onClick={playNextVideo}>

@@ -84,9 +84,17 @@
       transition: all 0.5s ease-in-out;
       &.large {
         box-shadow: none;
-        .widgets {
+        .widgets,
+        .genres {
           height: inherit;
           opacity: 1;
+        }
+        .icons {
+          justify-content: flex-start;
+          margin-bottom: 0.5rem;
+        }
+        .genres {
+          margin-left: -0.25rem;
         }
         .text {
           h1 {
@@ -105,16 +113,19 @@
         &.hidden {
           transform: translateY(-200px);
         }
-        .widgets {
+        .widgets,
+        .genres {
           height: 0px;
           opacity: 0;
         }
         // margin-top: -200px;
       }
     }
+    .info {
+      min-width: 70%;
+    }
     .middle {
       display: flex;
-      min-width: 70%;
       justify-content: space-between;
       @include sm {
         flex-direction: column;
@@ -128,14 +139,23 @@
       }
     }
     .text {
+      max-width: 85%;
       h1 {
         font-size: 1rem;
         color: $dark;
         margin: 0 0 0.5rem;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
       }
       h2 {
         font-size: 0.8rem;
         margin-top: 0;
+
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
     .widgets {
@@ -163,22 +183,21 @@
           align-items: center;
         }
       }
-      .genres {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        @include sm {
-          text-align: left;
-        }
-        .genre-tag {
-          text-decoration: none;
-          background-color: $light-gray;
-          color: $gray;
-          font-size: 0.8rem;
-          padding: 0.25rem 0.5rem;
-          margin: 0.25rem;
-          border-radius: 6px;
-        }
+    }
+    .genres {
+      display: flex;
+      flex-wrap: wrap;
+      @include sm {
+        text-align: left;
+      }
+      .genre-tag {
+        text-decoration: none;
+        background-color: $light-gray;
+        color: $gray;
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem;
+        border-radius: 6px;
       }
     }
   }
