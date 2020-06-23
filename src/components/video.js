@@ -9,6 +9,7 @@ import { filterGenres } from '../utils/filterList';
 
 export default function Video(props) {
   let preQueue = useSelector((state) => state.queue);
+  // eslint-disable-next-line
   let [queue, changeQueue] = useState(preQueue);
 
   if (preQueue.length === 0) {
