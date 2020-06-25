@@ -1,5 +1,5 @@
 .header {
-  margin-left: 2rem;
+  margin-left: 1rem;
   margin-bottom: 1.5rem;
   @include sm {
     margin-left: 1rem;
@@ -52,6 +52,7 @@
   @include sm {
     .change-theme {
       display: inherit;
+      margin-right: 0.5rem;
       .icon-theme {
         background-color: $light;
         &:active {

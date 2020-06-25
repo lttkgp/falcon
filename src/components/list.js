@@ -6,7 +6,6 @@ import axios from 'axios';
 import * as Icon from 'react-feather';
 import { filterUniqueVideos } from '../utils';
 import Button from './button';
-import shuffle from '../utils/knuth-shuffle';
 
 const VArray = styled.div`
   grid-template-columns: repeat(${(props) => props.len}, 1fr);
