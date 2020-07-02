@@ -133,4 +133,10 @@ html.dark {
       }
     }
   }
+
+  .feed {
+    .feed-list .feed-card .post-desc {
+      background-color: $light-dark;
+    }
+  }
 }
