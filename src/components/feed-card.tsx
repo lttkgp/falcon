@@ -76,6 +76,14 @@ export default function FeedCard(props: CardProps) {
           {props.data.postdata ? <p>{props.data.postdata.likes_count}</p> : ''}
         </div>
       </div>
+      {props.data.postdata ? (
+        <div className='post-desc'>
+          <div className='post-d'>{props.data.postdata.caption}</div>
+          <div className='post-date'>{props.data.postdata.share_date}</div>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
