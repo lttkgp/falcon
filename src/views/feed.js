@@ -5,7 +5,7 @@ import FeedCard from '../components/feed-card';
 import styled from 'styled-components';
 
 const FArray = styled.div`
-  grid-template-rows: repeat(${(props) => Math.ceil(props.len / 3)}, 1fr);
+  grid-template-rows: repeat(${(props) => Math.ceil(props.len / 2)}, 1fr);
 `;
 
 export default function Feed() {
@@ -23,7 +23,7 @@ export default function Feed() {
 
   return (
     <div className='feed'>
-      <h1>Feed</h1>
+      <h1 className='page-title'>Feed</h1>
       <FArray className='feed-list' len={videoList.length}>
         {videoList.map((vid) => (
           <FeedCard
@@ -35,54 +35,6 @@ export default function Feed() {
           />
         ))}
       </FArray>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque
-        nisi, tempora debitis in dolorem porro laboriosam quaerat vero
-        blanditiis rem voluptates omnis odit et architecto sint aliquid quisquam
-        at.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sit
-        quaerat amet facilis fugit ipsam corrupti reiciendis vitae laboriosam ab
-        dolore quis nihil ut modi, corporis voluptatum aspernatur consectetur
-        officiis?
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque
-        nisi, tempora debitis in dolorem porro laboriosam quaerat vero
-        blanditiis rem voluptates omnis odit et architecto sint aliquid quisquam
-        at.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sit
-        quaerat amet facilis fugit ipsam corrupti reiciendis vitae laboriosam ab
-        dolore quis nihil ut modi, corporis voluptatum aspernatur consectetur
-        officiis?
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque
-        nisi, tempora debitis in dolorem porro laboriosam quaerat vero
-        blanditiis rem voluptates omnis odit et architecto sint aliquid quisquam
-        at.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sit
-        quaerat amet facilis fugit ipsam corrupti reiciendis vitae laboriosam ab
-        dolore quis nihil ut modi, corporis voluptatum aspernatur consectetur
-        officiis?
-      </p>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque
-        nisi, tempora debitis in dolorem porro laboriosam quaerat vero
-        blanditiis rem voluptates omnis odit et architecto sint aliquid quisquam
-        at.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sit
-        quaerat amet facilis fugit ipsam corrupti reiciendis vitae laboriosam ab
-        dolore quis nihil ut modi, corporis voluptatum aspernatur consectetur
-        officiis?
-      </p>
     </div>
   );
 }
