@@ -1,19 +1,24 @@
 .feed {
-  padding-right: 5rem;
+  @include lg {
+    padding-right: 5rem;
+  }
   h1.page-title {
     text-align: center;
   }
   .feed-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    @include sm {
+      display: inherit;
+    }
     .feed-card {
       // display: inline-block;
       width: 400px;
       @include sm {
-        width: 200px;
+        width: 300px;
       }
       @include md {
-        width: 250px;
+        width: 300px;
       }
       flex-grow: 1;
       margin: 1rem auto;
