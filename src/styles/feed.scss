@@ -29,13 +29,16 @@
 
   .feed-list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    @include md {
+      grid-template-columns: 1fr 1fr;
+    }
     @include sm {
       display: inherit;
     }
     .feed-card {
       // display: inline-block;
-      width: 400px;
+      width: 350px;
       @include sm {
         width: 300px;
       }
