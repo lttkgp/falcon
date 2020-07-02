@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { filterUniqueVideos } from '../utils';
 import FeedCard from '../components/feed-card';
+import * as Icon from 'react-feather';
+import Header from '../components/header';
 import styled from 'styled-components';
 
 const FArray = styled.div`
@@ -10,6 +12,7 @@ const FArray = styled.div`
 
 export default function Feed() {
   let [videoList, setVideoList] = useState([]);
+  let [lastLoaded, setLastLoaded] = useState(0);
 
   useEffect(() => {
     axios
@@ -17,13 +20,37 @@ export default function Feed() {
       .then((resp) => {
         if (resp.data) {
           setVideoList(filterUniqueVideos(resp.data.posts));
+          setLastLoaded(50);
         }
       });
   }, []);
 
+  let loadMore = () => {
+    axios
+      .get(
+        'https://api.lttkgp.com/v1/feed/latest?start=' +
+          lastLoaded +
+          '&limit=50'
+      )
+      .then((resp) => {
+        if (resp.data) {
+          setVideoList([...videoList, ...filterUniqueVideos(resp.data.posts)]);
+          setLastLoaded(lastLoaded + 50);
+        }
+      });
+  };
+
   return (
     <div className='feed'>
-      <h1 className='page-title'>Feed</h1>
+      <Header title='Feed' />
+      {videoList.length === 0 ? (
+        <div className='loading'>
+          <Icon.Loader />
+          <h2>Loading</h2>
+        </div>
+      ) : (
+        ''
+      )}
       <FArray className='feed-list' len={videoList.length}>
         {videoList.map((vid) => (
           <FeedCard
@@ -35,6 +62,9 @@ export default function Feed() {
           />
         ))}
       </FArray>
+      <div className='load-more' onClick={loadMore}>
+        <Icon.DownloadCloud /> Load More
+      </div>
     </div>
   );
 }

@@ -135,8 +135,18 @@ html.dark {
   }
 
   .feed {
+    .loading {
+      color: $dark;
+    }
     .feed-list .feed-card .post-desc {
       background-color: $light-dark;
+    }
+    .load-more {
+      background-color: $light-dark;
+      &:hover {
+        background-color: $light-dark;
+        background-color: lighten($color: $light-dark, $amount: 5%);
+      }
     }
   }
 }

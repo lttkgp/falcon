@@ -2,9 +2,31 @@
   @include lg {
     padding-right: 5rem;
   }
-  h1.page-title {
-    text-align: center;
+
+  .header .toolbar {
+    justify-content: center;
+    @include sm {
+      justify-content: space-between;
+    }
   }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    padding: 5rem;
+    color: lighten($gray, 20%);
+    h2 {
+      font-size: 3rem;
+    }
+    svg {
+      min-height: 5rem;
+      min-width: 5rem;
+    }
+  }
+
   .feed-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -109,6 +131,26 @@
           margin-top: 0.5rem;
         }
       }
+    }
+  }
+
+  .load-more {
+    width: 10rem;
+    background-color: $light;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 1rem;
+    padding-right: 1rem;
+    border-radius: 12px;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      background-color: $light-gray;
+    }
+    &:active {
+      transform: scale(0.9);
     }
   }
 }
