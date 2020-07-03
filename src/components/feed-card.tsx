@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Heart } from 'react-feather';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -79,7 +80,11 @@ export default function FeedCard(props: CardProps) {
       {props.data.postdata ? (
         <div className='post-desc'>
           <div className='post-d'>{props.data.postdata.caption}</div>
-          <div className='post-date'>{props.data.postdata.share_date}</div>
+          <div className='post-date'>
+            {moment(props.data.postdata.share_date).format(
+              'D, MMM YYYY, h:mm a '
+            )}
+          </div>
         </div>
       ) : (
         ''
