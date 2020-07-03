@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './styles/App.scss';
 import Sidebar from './components/sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import CSwitch from './components/CSwitch.js';
+import { setThemeOnUserPref } from './utils';
 
 function App() {
+  useEffect(setThemeOnUserPref, []);
+
   return (
     <div className='App'>
       <Router>
