@@ -7,9 +7,9 @@ import Header from '../components/header';
 import styled from 'styled-components';
 
 const FArray = styled.div`
-  grid-template-rows: repeat(${(props) => Math.ceil(props.len / 3)}, 1fr);
+  grid-template-rows: repeat(${(props) => Math.ceil(props.len / 3)}, auto);
   @media (min-width: 577px) and (max-width: 1449px) {
-    grid-template-rows: repeat(${(props) => Math.ceil(props.len / 2)}, 1fr);
+    grid-template-rows: repeat(${(props) => Math.ceil(props.len / 2)}, auto);
   }
 `;
 
