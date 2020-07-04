@@ -1,7 +1,7 @@
-
 <p align="center">
   <img src="label.png">
 </p>
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/53019faa-4880-4a66-b36d-d738327f4d56/deploy-status)](https://app.netlify.com/sites/lttkgp-beta/deploys) ![GitHub issues](https://img.shields.io/github/issues/lttkgp/falcon) ![](https://img.shields.io/badge/created-with%20%E2%9D%A4%EF%B8%8F-F14D9E)
 
 ---
@@ -50,7 +50,7 @@ The homepage is meant to be a go-to place for a regular user of the application.
 
 Feed is the main feed of the community. It replicates the feed of the facebook page and can be used to browse all the videos posted there.
 
-**3. Genre (:hammer_and_wrench: _planned_)**
+**3. Genre (:hammer*and_wrench: \_planned*)**
 
 Genre page is meant to allow users to discover/navigate the posts according to genres.
 
@@ -60,7 +60,7 @@ This is another route which is not exactly a generic view. This component is ren
 
 The route changes to `/video?=<id>` where `<id>`is the of the currently playing song.
 
-This component consists of the video player, which uses the `YouTube` component from `react-youtube` library to display the youtube video and functions/logic to change the video and display the queue. 
+This component consists of the video player, which uses the `YouTube` component from `react-youtube` library to display the youtube video and functions/logic to change the video and display the queue.
 
 ### Components
 
@@ -82,7 +82,7 @@ The logic to change theme and sidebar size is abstracted away in utility functio
 
 A simple header that is used for the heading of a page. It includes the title and also the theme switcher for dark-mode that is displayed in the mobile view.
 
-> :hammer_and_wrench: The search input to be added later can be added here, although there will be better approaches as the route would most probably be changed to `/search` after entering the query. 
+> :hammer_and_wrench: The search input to be added later can be added here, although there will be better approaches as the route would most probably be changed to `/search` after entering the query.
 
 **List**
 
@@ -108,7 +108,7 @@ Do remember to set the queue whenever you switch to a video page to play a video
 
 ### Utils
 
-These are utilitarian functions that are used throughout the application. 
+These are utilitarian functions that are used throughout the application.
 
 These are present in `/src/utils` with appropriate names.
 
@@ -120,12 +120,12 @@ Some of these are discussed here:
 4. `shuffle` : Performs a knuth-shuffle on a given array.
 5. `changeTheme` : Changes the theme of the app, it coverts light -> dark and vice-versa.
 6. `setThemeOnUserPref` : This checks if user prefers dark mode in system settings and applies the dark mode if he/she does.
-7. `changeExpand` : Changes the class of the sidebar in desktop mode to switch between the expanded and contracted variant. 
+7. `changeExpand` : Changes the class of the sidebar in desktop mode to switch between the expanded and contracted variant.
 8. `mobileCheck` : This function returns true if the app is currently being visited via a mobile.
 
 ## Styles
 
-The styling of the project is done mainly in SCSS. Some dynamic elements such as grid sizes are handled using styled-components. 
+The styling of the project is done mainly in SCSS. Some dynamic elements such as grid sizes are handled using styled-components.
 
 However, it is recommended to keep the styles in SCSS files and only put the styles that depend exclusively upon javascript variables to be written in styled-components.
 
@@ -135,9 +135,9 @@ All the files are imported in the main `App.scss` file. If you create a new file
 
 There are several helpful variables and mixins used throughout the SCSS:
 
-### Color variables 
+### Color variables
 
-These variables are used throughout for the basis and the sass functions such as `lighten` etc. are used wherever necessary to slightly alter these. 
+These variables are used throughout for the basis and the sass functions such as `lighten` etc. are used wherever necessary to slightly alter these.
 
 The variables necessary for dark mode are contained in the `dark.scss` file.
 
@@ -153,7 +153,7 @@ These can be used in the SCSS files as shown below:
 
 ```scss
 @include sm {
-	// your styles here
+  // your styles here
 }
 ```
 
@@ -161,7 +161,7 @@ These can be used in the SCSS files as shown below:
 
 ```scss
 @include md {
-	// your styles here
+  // your styles here
 }
 ```
 
@@ -169,7 +169,7 @@ These can be used in the SCSS files as shown below:
 
 ```scss
 @include lg {
-	// your styles here
+  // your styles here
 }
 ```
 
@@ -177,5 +177,4 @@ These can be used in the SCSS files as shown below:
 
 The styles that are specific to dark mode are present here. Since the dark mode is applied globally, the only necessary thing to change is the icon and the colors of the page.
 
-It is recommended to keep all logic except that of the colors in the original styles for the component and use the  `dark.scss` file to override the colors involved.
-
+It is recommended to keep all logic except that of the colors in the original styles for the component and use the `dark.scss` file to override the colors involved.
