@@ -112,12 +112,12 @@ html.dark {
               }
             }
           }
-          .genres {
-            .genre-tag {
-              text-decoration: none;
-              background-color: lighten($light-dark, 4%);
-              color: $dark;
-            }
+        }
+        .genres {
+          .genre-tag {
+            text-decoration: none;
+            background-color: lighten($light-dark, 4%);
+            color: $dark;
           }
         }
       }
@@ -130,6 +130,22 @@ html.dark {
         h1 {
           color: $primary;
         }
+      }
+    }
+  }
+
+  .feed {
+    .loading {
+      color: $dark;
+    }
+    .feed-list .feed-card .post-desc {
+      background-color: $light-dark;
+    }
+    .load-more {
+      background-color: $light-dark;
+      &:hover {
+        background-color: $light-dark;
+        background-color: lighten($color: $light-dark, $amount: 5%);
       }
     }
   }

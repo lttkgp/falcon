@@ -38,6 +38,7 @@ html {
       padding-right: 1rem;
       border-radius: 12px;
       transition: all 0.1s ease-in-out;
+      height: 2rem;
       &:hover {
         cursor: pointer;
         background-color: $light-gray;
