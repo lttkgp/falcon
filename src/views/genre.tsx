@@ -15,7 +15,7 @@ export default function Genre(props: Object) {
       </p>
       <p>
         We discuss the development at{' '}
-        <a href='https://join.slack.com/t/listentothiskgp/shared_invite/zt-ej4jij2r-zZrqAn6yE2hxL6J1iudlNA'>
+        <a href='https://join.slack.com/t/listentothiskgp/shared_invite/zt-fnw7qgoz-may2PvJTg78aUctgr6DOGg'>
           our Slack workspace
         </a>
       </p>
