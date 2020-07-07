@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { mobileCheck } from '../utils/video';
 import { joinArtists } from '../utils';
 import { filterGenres } from '../utils/filterList';
+import { Helmet } from 'react-helmet';
 
 export default function Video(props) {
   let preQueue = useSelector((state) => state.queue);
@@ -137,6 +138,11 @@ export default function Video(props) {
                   <h1 className='title'>
                     {queue[currentIndex].metadata.song.name}
                   </h1>
+                  <Helmet>
+                    <title>
+                      {queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶
+                    </title>
+                  </Helmet>
                   <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
                 </div>
 
