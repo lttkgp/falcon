@@ -12,7 +12,7 @@ import Video from './video.js';
 
 export default function CSwitch() {
   let location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   return (
     <TransitionGroup>
