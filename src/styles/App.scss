@@ -30,6 +30,29 @@ html,
   display: flex;
 }
 
+.genre-page {
+  @include sm {
+    height: 100vh;
+    padding: 1rem;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  img {
+    @include sm {
+      height: 300px;
+    }
+    height: 400px;
+    width: auto;
+  }
+  a {
+    text-decoration: none;
+    color: $primary;
+  }
+}
+
 @import 'content';
 @import 'header';
 @import 'sidebar';
