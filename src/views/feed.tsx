@@ -21,7 +21,7 @@ const FArray = styled.div<FArrayProps>`
   }
 `;
 
-export default function Feed() {
+export const Feed = () => {
   const feedLimit = 50;
   let [videoList, setVideoList] = React.useState<Post[]>([]);
   let [lastLoaded, setLastLoaded] = React.useState(0);
@@ -71,4 +71,4 @@ export default function Feed() {
       </div>
     </div>
   );
-}
+};

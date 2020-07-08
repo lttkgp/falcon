@@ -37,7 +37,7 @@ type FetchLatestActionTypes =
 type FetchFrequentActionTypes =
   | FetchFrequentLoading
   | FetchFrequentSuccess
-  | FetchLatestFailure;
+  | FetchFrequentFailure;
 
 export type FetchListActionTypes =
   | FetchLatestActionTypes

@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
-import Home from "../views/home";
-import Feed from "../views/feed";
-import Genre from "../views/genre";
+import { Home } from "../views/home";
+import { Feed } from "../views/feed";
+import { Genre } from "../views/genre";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Video } from "./video";
 
@@ -17,7 +17,9 @@ export const CSwitch = () => {
           <Route path="/genre" component={Genre} />
           <Route
             path="/video"
-            render={(props) => <Video id={`${location.search.slice(2)}`} />}
+            render={(props) => (
+              <Video id={`${location.search.slice(2)}`} {...props} />
+            )}
           />
           <Route path="/" component={Home} />
         </Switch>

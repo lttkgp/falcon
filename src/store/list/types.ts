@@ -1,3 +1,5 @@
+export type FeedListType = "frequent" | "latest";
+
 export interface FeedState {
   latest: FeedResponse;
   frequent: FeedResponse;

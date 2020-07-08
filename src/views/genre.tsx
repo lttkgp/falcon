@@ -1,7 +1,7 @@
 import React from "react";
 import underDev from "../images/under-dev.png";
 
-export default function Genre() {
+export const Genre = () => {
   return (
     <div className="genre-page">
       <h1>Genre</h1>
@@ -21,4 +21,4 @@ export default function Genre() {
       </p>
     </div>
   );
-}
+};
