@@ -34,10 +34,10 @@ export const List = ({ title, type, redirect }: ListProps) => {
   React.useEffect(() => {
     switch (type) {
       case "frequent":
-        setVideoList(filterUniqueVideos(frequent.posts));
+        setVideoList(filterUniqueVideos(frequent.posts).slice(0, 25));
         break;
       case "latest":
-        setVideoList(filterUniqueVideos(latest.posts));
+        setVideoList(filterUniqueVideos(latest.posts).slice(0, 25));
         break;
       default:
         setVideoList([]);
