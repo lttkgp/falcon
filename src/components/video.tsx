@@ -189,13 +189,12 @@ export const Video = (props: VideoProps) => {
                 {filterGenres(queue[currentIndex].metadata.genre).map(
                   (genre) => {
                     return (
-                      <a
+                      <div
                         className="genre-tag"
                         key={"genre-tag-" + genre + "ssyid"}
-                        href="#genres"
                       >
                         {genre}
-                      </a>
+                      </div>
                     );
                   }
                 )}

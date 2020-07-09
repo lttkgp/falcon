@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import {
   fetchLatestLoading,
-  fetchLatestSucces,
+  fetchLatestSuccess,
   fetchLatestFailure,
   fetchFrequentLoading,
   fetchFrequentSuccess,
@@ -15,7 +15,7 @@ export const getLatestFeed = (start: number, limit: number) => (
 
   feedService
     .getLatest(start, limit)
-    .then((latestResponse) => dispatch(fetchLatestSucces(latestResponse.data)))
+    .then((latestResponse) => dispatch(fetchLatestSuccess(latestResponse.data)))
     .catch((error) => dispatch(fetchLatestFailure(error)));
 };
 

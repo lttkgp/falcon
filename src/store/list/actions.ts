@@ -13,7 +13,7 @@ export const fetchLatestLoading = (): FetchLatestLoading => ({
   type: FETCH_LATEST.LOADING,
 });
 
-export const fetchLatestSucces = (feed: FeedResponse): FetchLatestSuccess => ({
+export const fetchLatestSuccess = (feed: FeedResponse): FetchLatestSuccess => ({
   type: FETCH_LATEST.SUCCESS,
   feed,
 });
