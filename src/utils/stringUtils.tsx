@@ -1,10 +1,8 @@
 let joinArtists = (
-  artists: [
-    {
-      name: string;
-      image: string;
-    }
-  ]
+  artists: {
+    name: string;
+    image: string;
+  }[]
 ) => {
   let fartists: Array<string> = [];
   for (let artist of artists) {
@@ -13,7 +11,7 @@ let joinArtists = (
     }
   }
 
-  return fartists.join(' // ');
+  return fartists.join(" // ");
 };
 
 export { joinArtists };
