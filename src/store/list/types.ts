@@ -1,8 +1,15 @@
-export type FeedListType = "frequent" | "latest";
+export enum FeedListType {
+  frequent = "frequent",
+  latest = "latest",
+}
 
 export interface FeedState {
-  latest: FeedResponse;
-  frequent: FeedResponse;
+  latest: ListState;
+  frequent: ListState;
+}
+
+export interface ListState extends FeedResponse {
+  isLoading: boolean;
 }
 
 export interface FeedResponse {

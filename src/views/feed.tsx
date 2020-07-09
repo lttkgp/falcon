@@ -6,9 +6,9 @@ import * as Icon from "react-feather";
 import { filterUniqueVideos } from "../utils";
 import FeedCard from "../components/feed-card";
 import Header from "../components/header";
-import { getLatestFeed } from "../store/list/effects";
+import { getSongList } from "../store/list/effects";
 import { FalconRootState } from "../store/rootReducer";
-import { Post } from "../store/list/types";
+import { Post, FeedListType } from "../store/list/types";
 
 interface FArrayProps {
   readonly len: number;
@@ -24,30 +24,28 @@ const FArray = styled.div<FArrayProps>`
 export const Feed = () => {
   const feedLimit = 50;
   let [videoList, setVideoList] = React.useState<Post[]>([]);
-  let [lastLoaded, setLastLoaded] = React.useState(0);
   let dispatch = useDispatch();
   let { latest } = useSelector((state: FalconRootState) => state.feed);
 
   React.useEffect(() => {
     if (!latest.posts.length) {
-      dispatch(getLatestFeed(0, feedLimit));
+      dispatch(getSongList(FeedListType.latest, 0, feedLimit));
     }
-  }, [latest, dispatch]);
+  }, [latest.posts.length, dispatch]);
 
   React.useEffect(() => {
     setVideoList(filterUniqueVideos(latest.posts));
-    setLastLoaded((l) => l + 50);
-  }, [latest]);
+  }, [latest.posts]);
 
   let loadMore = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
-    dispatch(getLatestFeed(lastLoaded, feedLimit));
+    dispatch(getSongList(FeedListType.latest, latest.posts.length, feedLimit));
   };
 
   return (
     <div className="feed">
       <Header title="Feed" />
-      {videoList.length === 0 ? (
+      {videoList.length === 0 && latest.isLoading ? (
         <div className="loading">
           <Icon.Loader />
           <h2>Loading</h2>
@@ -66,9 +64,19 @@ export const Feed = () => {
           />
         ))}
       </FArray>
-      <div className="load-more" onClick={loadMore}>
-        <Icon.DownloadCloud /> Load More
-      </div>
+      {!latest.isLoading && (
+        <div className="load-more" onClick={loadMore}>
+          <Icon.DownloadCloud /> Load More
+        </div>
+      )}
+      {videoList.length > 0 && latest.isLoading ? (
+        <div className="loading">
+          <Icon.Loader />
+          <h2>Loading</h2>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

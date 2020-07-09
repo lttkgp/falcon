@@ -1,40 +1,30 @@
-import { FETCH_LATEST, FETCH_FREQUENT } from "./constants";
-import { FeedResponse } from "./types";
+import { FETCH_LIST } from "./constants";
+import { FeedResponse, FeedListType } from "./types";
 import {
-  FetchLatestLoading,
-  FetchLatestSuccess,
-  FetchLatestFailure,
-  FetchFrequentLoading,
-  FetchFrequentSuccess,
-  FetchFrequentFailure,
+  FetchListLoading,
+  FetchListSuccess,
+  FetchListFailure,
 } from "./action.types";
 
-export const fetchLatestLoading = (): FetchLatestLoading => ({
-  type: FETCH_LATEST.LOADING,
+export const fetchListLoading = (listType: FeedListType): FetchListLoading => ({
+  type: FETCH_LIST.LOADING,
+  listType,
 });
 
-export const fetchLatestSuccess = (feed: FeedResponse): FetchLatestSuccess => ({
-  type: FETCH_LATEST.SUCCESS,
-  feed,
-});
-
-export const fetchLatestFailure = (error: Error): FetchLatestFailure => ({
-  type: FETCH_LATEST.FAILURE,
-  error,
-});
-
-export const fetchFrequentLoading = (): FetchFrequentLoading => ({
-  type: FETCH_FREQUENT.LOADING,
-});
-
-export const fetchFrequentSuccess = (
+export const fetchListSuccess = (
+  listType: FeedListType,
   feed: FeedResponse
-): FetchFrequentSuccess => ({
-  type: FETCH_FREQUENT.SUCCESS,
+): FetchListSuccess => ({
+  type: FETCH_LIST.SUCCESS,
+  listType,
   feed,
 });
 
-export const fetchFrequentFailure = (error: Error): FetchFrequentFailure => ({
-  type: FETCH_FREQUENT.FAILURE,
+export const fetchListFailure = (
+  listType: FeedListType,
+  error: Error
+): FetchListFailure => ({
+  type: FETCH_LIST.FAILURE,
+  listType,
   error,
 });

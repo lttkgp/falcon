@@ -1,33 +1,35 @@
 import { Dispatch } from "redux";
 import {
-  fetchLatestLoading,
-  fetchLatestSuccess,
-  fetchLatestFailure,
-  fetchFrequentLoading,
-  fetchFrequentSuccess,
+  fetchListLoading,
+  fetchListSuccess,
+  fetchListFailure,
 } from "./actions";
 import { feedService } from "../../services/feedService";
+import { FeedListType, FeedResponse } from "./types";
+import { AxiosResponse } from "axios";
 
-export const getLatestFeed = (start: number, limit: number) => (
-  dispatch: Dispatch
-) => {
-  dispatch(fetchLatestLoading());
-
-  feedService
-    .getLatest(start, limit)
-    .then((latestResponse) => dispatch(fetchLatestSuccess(latestResponse.data)))
-    .catch((error) => dispatch(fetchLatestFailure(error)));
+const getList = (listType: FeedListType) => {
+  switch (listType) {
+    case "frequent":
+      return feedService.getFrequent;
+    case "latest":
+      return feedService.getLatest;
+    default:
+      return () =>
+        new Promise<AxiosResponse<FeedResponse>>((resolve) => resolve());
+  }
 };
 
-export const getFrequentFeed = (start: number, limit: number) => (
-  dispatch: Dispatch
-) => {
-  dispatch(fetchFrequentLoading());
+export const getSongList = (
+  listType: FeedListType,
+  start: number,
+  limit: number
+) => (dispatch: Dispatch) => {
+  dispatch(fetchListLoading(listType));
 
-  feedService
-    .getFrequent(start, limit)
-    .then((frequentResponse) =>
-      dispatch(fetchFrequentSuccess(frequentResponse.data))
+  getList(listType)(start, limit)
+    .then((latestResponse) =>
+      dispatch(fetchListSuccess(listType, latestResponse.data))
     )
-    .catch((error) => dispatch(fetchLatestFailure(error)));
+    .catch((error) => dispatch(fetchListFailure(listType, error)));
 };

@@ -56,17 +56,14 @@ export const List = ({ title, type, redirect }: ListProps) => {
   }, [title]);
 
   React.useEffect(() => {
-    switch (type) {
-      case "frequent":
-        setVideoList(filterUniqueVideos(frequent.posts).slice(0, 25));
-        break;
-      case "latest":
-        setVideoList(filterUniqueVideos(latest.posts).slice(0, 25));
-        break;
-      default:
-        setVideoList([]);
-    }
-  }, [type, frequent, latest]);
+    if (type === FeedListType.frequent)
+      setVideoList(filterUniqueVideos(frequent.posts).slice(0, 25));
+  }, [frequent.posts, type]);
+
+  React.useEffect(() => {
+    if (type === FeedListType.latest)
+      setVideoList(filterUniqueVideos(latest.posts).slice(0, 25));
+  }, [latest.posts, type]);
 
   return (
     <div className="list" key={title.trim()}>
