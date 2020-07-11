@@ -1,39 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import YouTube from 'react-youtube';
-import * as Icon from 'react-feather';
-import Card from './card';
-import { useSelector } from 'react-redux';
-import { mobileCheck } from '../utils/video';
-import { joinArtists } from '../utils';
-import { filterGenres } from '../utils/filterList';
-import { Helmet } from 'react-helmet';
+import React, { useState, useEffect } from "react";
+import YouTube from "react-youtube";
+import * as Icon from "react-feather";
+import Card from "./card";
+import { useSelector } from "react-redux";
+import { mobileCheck } from "../utils/video";
+import { joinArtists } from "../utils";
+import { filterGenres } from "../utils/filterList";
+import { FalconRootState } from "../store/rootReducer";
+import { Helmet } from "react-helmet";
 
-export default function Video(props) {
-  let preQueue = useSelector((state) => state.queue);
-  // eslint-disable-next-line
-  let [queue, changeQueue] = useState(preQueue);
+interface VideoProps {
+  id: string;
+}
+
+export const Video = (props: VideoProps) => {
+  let preQueue = useSelector((state: FalconRootState) => state.queue.posts);
+  let [queue] = useState(preQueue);
 
   if (preQueue.length === 0) {
     console.log(window.location.host);
     if (window !== undefined) {
-      var home = window.location.protocol + '//' + window.location.host;
+      var home = window.location.protocol + "//" + window.location.host;
       if (window.history.pushState) {
-        window.history.pushState({ path: home }, '', home);
+        window.history.pushState({ path: home }, "", home);
       }
     }
   }
 
-  let changeURLid = (id) => {
+  let changeURLid = (id: string) => {
     if (window !== undefined) {
       if (window.history.pushState) {
         var newurl =
           window.location.protocol +
-          '//' +
+          "//" +
           window.location.host +
           window.location.pathname +
-          '?=' +
+          "?=" +
           id;
-        window.history.pushState({ path: newurl }, '', newurl);
+        window.history.pushState({ path: newurl }, "", newurl);
       }
     }
   };
@@ -52,17 +56,17 @@ export default function Video(props) {
       var prevScrollpos = window.pageYOffset;
       window.onscroll = function () {
         var currentScrollPos = window.pageYOffset;
-        let e = document.getElementsByClassName('desc')[0];
+        let e = document.getElementsByClassName("desc")[0];
         if (prevScrollpos > currentScrollPos && e !== null) {
-          e.classList.remove('hidden');
+          e.classList.remove("hidden");
         } else {
-          e.classList.add('hidden');
+          e.classList.add("hidden");
         }
         if (currentScrollPos === 0) {
-          e.classList.add('large');
-          e.classList.remove('hidden');
+          e.classList.add("large");
+          e.classList.remove("hidden");
         } else {
-          e.classList.remove('large');
+          e.classList.remove("large");
         }
         prevScrollpos = currentScrollPos;
       };
@@ -80,8 +84,8 @@ export default function Video(props) {
   let scrollCurrentVideo = (offset = 0) => {
     setTimeout(() => {
       if (document !== undefined) {
-        let el = document.querySelector('.current.queueCard');
-        let Q = document.querySelector('.queue');
+        let el = document.querySelector(".current.queueCard");
+        let Q = document.querySelector(".queue");
         if (el !== null && Q !== null) {
           const elementRect = el.getBoundingClientRect();
           const queueRect = Q.getBoundingClientRect();
@@ -112,14 +116,14 @@ export default function Video(props) {
   };
 
   return (
-    <div className={queue.length !== 0 ? 'video' : 'video fullview'}>
-      <div className='video-container'>
+    <div className={queue.length !== 0 ? "video" : "video fullview"}>
+      <div className="video-container">
         <YouTube
           videoId={queue.length !== 0 ? queue[currentIndex].id : props.id}
           onEnd={handleEndOfVideo}
           opts={{
-            height: '550',
-            width: '900',
+            height: "550",
+            width: "900",
             playerVars: {
               autoplay: 1,
               playsinline: 1,
@@ -128,14 +132,14 @@ export default function Video(props) {
         />
 
         {queue.length !== 0 ? (
-          <div className='desc large'>
-            <div className='prev_song control_button' onClick={playPrevVideo}>
+          <div className="desc large">
+            <div className="prev_song control_button" onClick={playPrevVideo}>
               <Icon.ChevronLeft />
             </div>
-            <div className='info'>
-              <div className='middle'>
-                <div className='text'>
-                  <h1 className='title'>
+            <div className="info">
+              <div className="middle">
+                <div className="text">
+                  <h1 className="title">
                     {queue[currentIndex].metadata.song.name}
                   </h1>
                   <Helmet>
@@ -146,15 +150,15 @@ export default function Video(props) {
                   <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
                 </div>
 
-                <div className='widgets'>
-                  <div className='icons'>
+                <div className="widgets">
+                  <div className="icons">
                     <a
                       href={
-                        'https://www.youtube.com/watch?v=' +
+                        "https://www.youtube.com/watch?v=" +
                         queue[currentIndex].id
                       }
-                      target='_blank'
-                      rel='noopener noreferrer'
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Icon.Youtube></Icon.Youtube>
                     </a>
@@ -171,9 +175,9 @@ export default function Video(props) {
                   </a>
                      */}
                     <span
-                      className='likes'
-                      target='_blank'
-                      rel='noopener noreferrer'
+                      className="likes"
+                      // target="_blank"
+                      // rel="noopener noreferrer"
                     >
                       <Icon.Heart></Icon.Heart>
                       <span>{queue[currentIndex].postdata.likes_count}</span>
@@ -181,14 +185,13 @@ export default function Video(props) {
                   </div>
                 </div>
               </div>
-              <div className='genres'>
+              <div className="genres">
                 {filterGenres(queue[currentIndex].metadata.genre).map(
                   (genre) => {
                     return (
                       <div
-                        className='genre-tag'
-                        key={'genre-tag-' + genre + 'ssyid'}
-                        href='#genres'
+                        className="genre-tag"
+                        key={"genre-tag-" + genre + "ssyid"}
                       >
                         {genre}
                       </div>
@@ -197,40 +200,41 @@ export default function Video(props) {
                 )}
               </div>
             </div>
-            <div className='next_song control_button' onClick={playNextVideo}>
+            <div className="next_song control_button" onClick={playNextVideo}>
               <Icon.ChevronRight />
             </div>
           </div>
         ) : (
-          ''
+          ""
         )}
       </div>
       {queue.length !== 0 ? (
-        <div className='queue'>
-          <h1 className='title'>Queue</h1>
+        <div className="queue">
+          <h1 className="title">Queue</h1>
           {queue.map((vid, index) => {
-            let selectClass = '';
+            let selectClass = "";
             if (index === currentIndex) {
-              selectClass = ' current';
+              selectClass = " current";
             }
             return (
               <Card
                 id={vid.id}
-                key={vid.id + 'Queue-xyppu'}
+                key={vid.id + "Queue-xyppu"}
                 data={vid}
-                className={'queueCard' + selectClass}
+                className={"queueCard" + selectClass}
                 redirect={false}
                 onClick={() => {
                   changeURLid(vid.id);
                   changeIndex(index);
                 }}
+                queue={[]}
               />
             );
           })}
         </div>
       ) : (
-        ''
+        ""
       )}
     </div>
   );
-}
+};
