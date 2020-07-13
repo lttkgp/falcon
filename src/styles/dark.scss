@@ -49,7 +49,7 @@ html.dark {
 
   .change-theme {
     .icon-theme {
-      background-image: url('/sun.svg');
+      background-image: url("/sun.svg");
       background-color: $light-dark;
       &:hover {
         background-color: lighten($color: $light-dark, $amount: 5%);
