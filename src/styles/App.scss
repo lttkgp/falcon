@@ -1,10 +1,10 @@
-@import 'responsive';
-@import 'vars';
+@import "responsive";
+@import "vars";
 
-@import url('https://rsms.me/inter/inter.css');
+@import url("https://rsms.me/inter/inter.css");
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body,
@@ -53,11 +53,11 @@ html,
   }
 }
 
-@import 'content';
-@import 'header';
-@import 'sidebar';
-@import 'transition';
-@import 'list';
-@import 'video';
-@import 'dark';
-@import 'feed';
+@import "content";
+@import "header";
+@import "sidebar";
+@import "transition";
+@import "list";
+@import "video";
+@import "dark";
+@import "feed";
