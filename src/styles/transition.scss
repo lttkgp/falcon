@@ -8,8 +8,7 @@
 
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transform: perspective(1000px) translateX(0px) rotateY(0deg) scale(1)
-    translateZ(0px);
+  transform: perspective(1000px) translateX(0px) rotateY(0deg) scale(1) translateZ(0px);
   transition: opacity 500ms ease-in, transform 500ms ease-in;
 }
 

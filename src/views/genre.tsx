@@ -8,10 +8,7 @@ export const Genre = () => {
       <img src={underDev} alt="" />
       <h2>Under Development</h2>
       <p>
-        Head to{" "}
-        <a href="https://github.com/lttkgp/">
-          our Github Organisation to contribute!
-        </a>
+        Head to <a href="https://github.com/lttkgp/">our Github Organisation to contribute!</a>
       </p>
       <p>
         We discuss the development at{" "}

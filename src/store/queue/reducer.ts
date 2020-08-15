@@ -7,10 +7,7 @@ let initialQueueState: QueueState = {
   posts: [],
 };
 
-export const queueReducer: Reducer<QueueState, QueueAction> = (
-  state = initialQueueState,
-  action
-): QueueState => {
+export const queueReducer: Reducer<QueueState, QueueAction> = (state = initialQueueState, action): QueueState => {
   switch (action.type) {
     case QUEUE_ADD:
       return { posts: [...state.posts, ...action.payload] };

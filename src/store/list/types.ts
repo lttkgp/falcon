@@ -1,10 +1,14 @@
 export enum FeedListType {
   frequent = "frequent",
   latest = "latest",
+  popular = "popular",
+  underrated = "underrated",
 }
 
 export interface FeedState {
   latest: ListState;
+  popular: ListState;
+  underrated: ListState;
   frequent: ListState;
 }
 

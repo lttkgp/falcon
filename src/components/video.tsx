@@ -30,13 +30,7 @@ export const Video = (props: VideoProps) => {
   let changeURLid = (id: string) => {
     if (window !== undefined) {
       if (window.history.pushState) {
-        var newurl =
-          window.location.protocol +
-          "//" +
-          window.location.host +
-          window.location.pathname +
-          "?=" +
-          id;
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?=" + id;
         window.history.pushState({ path: newurl }, "", newurl);
       }
     }
@@ -139,12 +133,13 @@ export const Video = (props: VideoProps) => {
             <div className="info">
               <div className="middle">
                 <div className="text">
-                  <h1 className="title">
-                    {queue[currentIndex].metadata.song.name}
-                  </h1>
+                  <h1 className="title">{queue[currentIndex].metadata.song.name}</h1>
                   <Helmet>
                     <title>
-                      {queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶
+                      {queue[currentIndex].metadata.song.name} - LTTKGP{" "}
+                      <span role="img" aria-label="Panda">
+                        🎶 🎶 🎶
+                      </span>
                     </title>
                   </Helmet>
                   <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
@@ -153,10 +148,7 @@ export const Video = (props: VideoProps) => {
                 <div className="widgets">
                   <div className="icons">
                     <a
-                      href={
-                        "https://www.youtube.com/watch?v=" +
-                        queue[currentIndex].id
-                      }
+                      href={"https://www.youtube.com/watch?v=" + queue[currentIndex].id}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -186,18 +178,13 @@ export const Video = (props: VideoProps) => {
                 </div>
               </div>
               <div className="genres">
-                {filterGenres(queue[currentIndex].metadata.genre).map(
-                  (genre) => {
-                    return (
-                      <div
-                        className="genre-tag"
-                        key={"genre-tag-" + genre + "ssyid"}
-                      >
-                        {genre}
-                      </div>
-                    );
-                  }
-                )}
+                {filterGenres(queue[currentIndex].metadata.genre).map((genre) => {
+                  return (
+                    <div className="genre-tag" key={"genre-tag-" + genre + "ssyid"}>
+                      {genre}
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="next_song control_button" onClick={playNextVideo}>

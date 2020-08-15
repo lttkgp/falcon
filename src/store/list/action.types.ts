@@ -19,7 +19,4 @@ export interface FetchListFailure extends Action {
   error: Error;
 }
 
-export type FetchListActionTypes =
-  | FetchListLoading
-  | FetchListSuccess
-  | FetchListFailure;
+export type FetchListActionTypes = FetchListLoading | FetchListSuccess | FetchListFailure;

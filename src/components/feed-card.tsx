@@ -34,10 +34,7 @@ export default function FeedCard(props: CardProps) {
 
   return (
     <div className={props.className} onClick={onCardClick}>
-      <img
-        src={"https://img.youtube.com/vi/" + props.id + "/mqdefault.jpg"}
-        alt=""
-      />
+      <img src={"https://img.youtube.com/vi/" + props.id + "/mqdefault.jpg"} alt="" />
       <div className="desc">
         <div className="text">
           {props.data.metadata ? (
@@ -57,11 +54,7 @@ export default function FeedCard(props: CardProps) {
       {props.data.postdata ? (
         <div className="post-desc">
           <div className="post-d">{props.data.postdata.caption}</div>
-          <div className="post-date">
-            {moment(props.data.postdata.share_date).format(
-              "D, MMM YYYY, h:mm a "
-            )}
-          </div>
+          <div className="post-date">{moment(props.data.postdata.share_date).format("D, MMM YYYY, h:mm a ")}</div>
         </div>
       ) : (
         ""

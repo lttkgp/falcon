@@ -33,10 +33,7 @@ export default function Card(props: CardProps) {
         }
       }}
     >
-      <img
-        src={"https://img.youtube.com/vi/" + props.id + "/mqdefault.jpg"}
-        alt=""
-      />
+      <img src={"https://img.youtube.com/vi/" + props.id + "/mqdefault.jpg"} alt="" />
       <div className="desc">
         <div className="text">
           {props.data.metadata ? (

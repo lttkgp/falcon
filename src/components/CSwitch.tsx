@@ -15,12 +15,7 @@ export const CSwitch = () => {
         <Switch location={location}>
           <Route path="/feed" component={Feed} />
           <Route path="/genre" component={Genre} />
-          <Route
-            path="/video"
-            render={(props) => (
-              <Video id={`${location.search.slice(2)}`} {...props} />
-            )}
-          />
+          <Route path="/video" render={(props) => <Video id={`${location.search.slice(2)}`} {...props} />} />
           <Route path="/" component={Home} />
         </Switch>
       </CSSTransition>

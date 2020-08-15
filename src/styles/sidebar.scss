@@ -215,8 +215,7 @@
         }
       }
 
-      transition: all 0.25s ease-in-out, box-shadow 0.5s ease-in-out,
-        color 10ms linear;
+      transition: all 0.25s ease-in-out, box-shadow 0.5s ease-in-out, color 10ms linear;
 
       &:hover {
         background: linear-gradient(90deg, $primary, lighten($primary, 20%));

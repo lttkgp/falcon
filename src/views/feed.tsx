@@ -55,13 +55,7 @@ export const Feed = () => {
       )}
       <FArray className="feed-list" len={videoList.length}>
         {videoList.map((vid) => (
-          <FeedCard
-            id={vid.id}
-            key={vid.id + "feedX"}
-            data={vid}
-            queue={videoList}
-            redirect
-          />
+          <FeedCard id={vid.id} key={vid.id + "feedX"} data={vid} queue={videoList} redirect />
         ))}
       </FArray>
       {!latest.isLoading && (

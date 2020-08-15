@@ -18,20 +18,12 @@ html.dark {
         &.active {
           background-color: $light-dark;
           @include sm {
-            background: linear-gradient(
-              90deg,
-              $primary,
-              lighten($light-dark, 20%)
-            );
+            background: linear-gradient(90deg, $primary, lighten($light-dark, 20%));
           }
         }
 
         &:hover {
-          background: linear-gradient(
-            90deg,
-            $primary,
-            lighten($light-dark, 20%)
-          );
+          background: linear-gradient(90deg, $primary, lighten($light-dark, 20%));
           transform: scale(1.05);
           box-shadow: 0px 0px 20px rgba($primary, 0.1);
           color: $back;
