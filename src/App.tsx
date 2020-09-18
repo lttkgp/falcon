@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-
-import "./styles/App.scss";
-import Sidebar from "./components/sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { CSwitch } from "./components/CSwitch";
 import { setThemeOnUserPref } from "./utils";
+
+import Sidebar from "./components/sidebar";
+import { CSwitch } from "./components/CSwitch";
+
+import "./styles/App.scss";
 
 function App() {
   useEffect(setThemeOnUserPref, []);

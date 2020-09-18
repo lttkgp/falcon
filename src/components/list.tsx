@@ -1,13 +1,16 @@
 import React from "react";
-import Card from "./card";
-import { ChevronRight, ChevronLeft } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import * as Icon from "react-feather";
-import { filterUniqueVideos } from "../utils";
-import Button from "./button";
+
 import { Post, FeedListType } from "../store/list/types";
-import { useSelector } from "react-redux";
+import { getSongList } from "../store/list/effects";
 import { FalconRootState } from "../store/rootReducer";
+import { filterUniqueVideos } from "../utils";
+
+import Card from "./card";
+import Button from "./button";
+
+import { ChevronRight, ChevronLeft, Shuffle } from "react-feather";
 
 interface VArrayProps {
   len: number;
@@ -24,10 +27,17 @@ interface ListProps {
 }
 
 export const List = ({ title, type, redirect }: ListProps) => {
+  let dispatch = useDispatch();
   let [scrollLeft, setScrollLeft] = React.useState(false);
   let [scrollRight, setScrollRight] = React.useState(true);
   let [videoList, setVideoList] = React.useState<Post[]>([]);
   let vList = useSelector((state: FalconRootState) => state.feed[type]);
+
+  React.useEffect(() => {
+    if (!vList.posts.length) {
+      dispatch(getSongList(type, 0, 25));
+    }
+  }, [vList.posts.length, dispatch, type]);
 
   let hideArrows = (idname: string) => {
     setInterval(() => {
@@ -61,7 +71,7 @@ export const List = ({ title, type, redirect }: ListProps) => {
       <div className="list-header">
         <h1 className="title">{title}</h1>
         <Button queue={videoList} shuffle className="shuffle">
-          <Icon.Shuffle></Icon.Shuffle> Shuffle
+          <Shuffle></Shuffle> Shuffle
         </Button>
       </div>
       <VArray className="array" id={title.trim()} len={videoList.length}>

@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import * as Icon from "react-feather";
 
 import { filterUniqueVideos } from "../utils";
-import FeedCard from "../components/feed-card";
-import Header from "../components/header";
 import { getSongList } from "../store/list/effects";
 import { FalconRootState } from "../store/rootReducer";
 import { Post, FeedListType } from "../store/list/types";
+
+import Header from "../components/header";
+import FeedCard from "../components/feed-card";
+
+import * as Icon from "react-feather";
 
 interface FArrayProps {
   readonly len: number;

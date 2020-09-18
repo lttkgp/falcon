@@ -1,4 +1,5 @@
 import React from "react";
+
 import underDev from "../images/under-dev.png";
 
 export const Genre = () => {

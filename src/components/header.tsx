@@ -1,6 +1,7 @@
 import React from "react";
-// import { Search as SearchIcon } from "react-feather";
 import { changeTheme } from "../utils";
+
+// import { Search as SearchIcon } from "react-feather";
 
 export default function Header(props: { title: string }) {
   return (

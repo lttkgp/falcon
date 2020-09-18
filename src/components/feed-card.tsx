@@ -1,11 +1,13 @@
 import React from "react";
 import moment from "moment";
-import { Heart } from "react-feather";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import { joinArtists } from "../utils";
 import { setQueue } from "../store/queue/actions";
 import { Post } from "../store/list/types";
+
+import { Heart } from "react-feather";
 
 type CardProps = {
   id: string;

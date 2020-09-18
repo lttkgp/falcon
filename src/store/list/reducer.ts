@@ -1,5 +1,6 @@
-import { FeedState } from "./types";
 import { Reducer } from "redux";
+
+import { FeedState } from "./types";
 import { FetchListActionTypes } from "./action.types";
 import { FETCH_LIST } from "./constants";
 

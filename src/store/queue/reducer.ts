@@ -1,6 +1,7 @@
+import { Reducer } from "redux";
+
 import { QueueAction } from "./action.types";
 import { QUEUE_ADD, QUEUE_RESET } from "./constants";
-import { Reducer } from "redux";
 import { QueueState } from "./types";
 
 let initialQueueState: QueueState = {
