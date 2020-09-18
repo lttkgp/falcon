@@ -27,7 +27,7 @@ export const List = ({ title, type, redirect }: ListProps) => {
   let [scrollLeft, setScrollLeft] = React.useState(false);
   let [scrollRight, setScrollRight] = React.useState(true);
   let [videoList, setVideoList] = React.useState<Post[]>([]);
-  let { frequent, latest, popular, underrated } = useSelector((state: FalconRootState) => state.feed);
+  let vList = useSelector((state: FalconRootState) => state.feed[type]);
 
   let hideArrows = (idname: string) => {
     setInterval(() => {
@@ -53,20 +53,8 @@ export const List = ({ title, type, redirect }: ListProps) => {
   }, [title]);
 
   React.useEffect(() => {
-    if (type === FeedListType.frequent) setVideoList(filterUniqueVideos(frequent.posts).slice(0, 25));
-  }, [frequent.posts, type]);
-
-  React.useEffect(() => {
-    if (type === FeedListType.latest) setVideoList(filterUniqueVideos(latest.posts).slice(0, 25));
-  }, [latest.posts, type]);
-
-  React.useEffect(() => {
-    if (type === FeedListType.popular) setVideoList(filterUniqueVideos(popular.posts).slice(0, 25));
-  }, [popular.posts, type]);
-
-  React.useEffect(() => {
-    if (type === FeedListType.underrated) setVideoList(filterUniqueVideos(underrated.posts).slice(0, 25));
-  }, [underrated.posts, type]);
+    setVideoList(filterUniqueVideos(vList.posts).slice(0, 25));
+  }, [vList, type]);
 
   return (
     <div className="list" key={title.trim()}>
