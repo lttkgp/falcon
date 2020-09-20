@@ -143,6 +143,31 @@ html {
     &::-webkit-scrollbar {
       display: none;
     }
+    .empty-card {
+      width: 300px;
+      height: 200px;
+      @include sm {
+        width: 200px;
+      }
+      @include md {
+        width: 250px;
+      }
+      flex-grow: 1;
+      margin: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      background-color: rgba($color: #8989a7, $alpha: 0.1);
+      border-radius: 2rem;
+
+      svg {
+        opacity: 0.5;
+        width: 4rem;
+        height: 4rem;
+      }
+    }
     .card {
       // display: inline-block;
       width: 300px;
