@@ -1,8 +1,9 @@
 import { Dispatch } from "redux";
+import { AxiosResponse } from "axios";
+
 import { fetchListLoading, fetchListSuccess, fetchListFailure } from "./actions";
 import { feedService } from "../../services/feedService";
 import { FeedListType, FeedResponse } from "./types";
-import { AxiosResponse } from "axios";
 
 const getList = (listType: FeedListType) => {
   switch (listType) {

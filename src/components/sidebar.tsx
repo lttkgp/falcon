@@ -1,7 +1,9 @@
 import React from "react";
-import * as Icon from "react-feather";
-import { changeTheme, changeExpand } from "../utils";
 import { NavLink } from "react-router-dom";
+
+import { changeTheme, changeExpand } from "../utils";
+
+import * as Icon from "react-feather";
 
 export default function Sidebar() {
   return (

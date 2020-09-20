@@ -1,9 +1,10 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
 import { Home } from "../views/home";
 import { Feed } from "../views/feed";
 import { Genre } from "../views/genre";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Video } from "./video";
 
 export const CSwitch = () => {

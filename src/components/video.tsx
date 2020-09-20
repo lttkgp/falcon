@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import YouTube from "react-youtube";
-import * as Icon from "react-feather";
-import Card from "./card";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
+import YouTube from "react-youtube";
+
 import { mobileCheck } from "../utils/video";
 import { joinArtists } from "../utils";
 import { filterGenres } from "../utils/filterList";
 import { FalconRootState } from "../store/rootReducer";
-import { Helmet } from "react-helmet";
+
+import Card from "./card";
+
+import * as Icon from "react-feather";
 
 interface VideoProps {
   id: string;

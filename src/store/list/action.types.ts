@@ -1,4 +1,5 @@
 import { Action } from "redux";
+
 import { FETCH_LIST } from "./constants";
 import { FeedResponse, FeedListType } from "./types";
 
