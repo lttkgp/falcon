@@ -10,7 +10,7 @@ import { filterUniqueVideos } from "../utils";
 import Card from "./card";
 import Button from "./button";
 
-import { ChevronRight, ChevronLeft, Shuffle } from "react-feather";
+import { ChevronRight, ChevronLeft, Shuffle, Loader } from "react-feather";
 
 interface VArrayProps {
   len: number;
@@ -74,11 +74,22 @@ export const List = ({ title, type, redirect }: ListProps) => {
           <Shuffle></Shuffle> Shuffle
         </Button>
       </div>
-      <VArray className="array" id={title.trim()} len={videoList.length}>
-        {videoList.map((vid) => (
-          <Card id={vid.id} key={vid.id + title.trim()} data={vid} queue={videoList} redirect={redirect} />
-        ))}
-      </VArray>
+      {vList.posts.length === 0 ? (
+        <VArray className="array" id={title.trim()} len={6}>
+          {Array(6).fill(
+            <div className="empty-card">
+              <Loader></Loader>
+              <p>LOADING</p>
+            </div>
+          )}
+        </VArray>
+      ) : (
+        <VArray className="array" id={title.trim()} len={videoList.length}>
+          {videoList.map((vid) => (
+            <Card id={vid.id} key={vid.id + title.trim()} data={vid} queue={videoList} redirect={redirect} />
+          ))}
+        </VArray>
+      )}
       <div className={"scroll left" + (scrollLeft ? "" : " hidden")}>
         <ChevronLeft
           onClick={() => {

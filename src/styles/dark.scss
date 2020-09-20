@@ -3,6 +3,10 @@ $light-dark: #171a27;
 html.dark {
   background-color: $back;
 
+  .App {
+    color: $gray;
+  }
+
   .sidebar {
     .logo .drawer {
       &:hover {
