@@ -9,11 +9,11 @@ export const Genre = () => {
       <img src={underDev} alt="" />
       <h2>Under Development</h2>
       <p>
-        Head to <a href="https://github.com/lttkgp/">our Github Organisation to contribute!</a>
+        Head to <a target="_blank" href="https://github.com/lttkgp/">our Github Organisation to contribute!</a>
       </p>
       <p>
         We discuss the development at{" "}
-        <a href="https://join.slack.com/t/listentothiskgp/shared_invite/zt-hig5iqx1-6RnYvxpuXdh3jz7mnHfoDQ">
+        <a target="_blank" href="https://join.slack.com/t/listentothiskgp/shared_invite/zt-hig5iqx1-6RnYvxpuXdh3jz7mnHfoDQ">
           our Slack workspace
         </a>
       </p>
