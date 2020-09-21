@@ -181,6 +181,10 @@
           display: flex;
           align-items: center;
         }
+        .fb-icon svg {
+          fill: currentColor;
+          stroke: none;
+        }
       }
     }
     .genres {
