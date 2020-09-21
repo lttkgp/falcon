@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -138,12 +139,7 @@ export const Video = (props: VideoProps) => {
                 <div className="text">
                   <h1 className="title">{queue[currentIndex].metadata.song.name}</h1>
                   <Helmet>
-                    <title>
-                      {queue[currentIndex].metadata.song.name} - LTTKGP{" "}
-                      <span role="img" aria-label="Panda">
-                        🎶 🎶 🎶
-                      </span>
-                    </title>
+                    <title>{queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶</title>
                   </Helmet>
                   <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
                 </div>
