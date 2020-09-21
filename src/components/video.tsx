@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -21,7 +22,6 @@ export const Video = (props: VideoProps) => {
   let [queue] = useState(preQueue);
 
   if (preQueue.length === 0) {
-    console.log(window.location.host);
     if (window !== undefined) {
       var home = window.location.protocol + "//" + window.location.host;
       if (window.history.pushState) {
@@ -70,33 +70,44 @@ export const Video = (props: VideoProps) => {
     }
   };
 
-  useEffect(() => {
-    if (document !== undefined) {
-      handleModScroll();
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-  }, []);
-
-  let scrollCurrentVideo = (offset = 0) => {
+  let scrollCurrentVideo = (timeout = 100, offset = 0) => {
     setTimeout(() => {
       if (document !== undefined) {
         let el = document.querySelector(".current.queueCard");
         let Q = document.querySelector(".queue");
+
         if (el !== null && Q !== null) {
           const elementRect = el.getBoundingClientRect();
           const queueRect = Q.getBoundingClientRect();
-          window.scrollTo(0, elementRect.top - queueRect.y + offset);
+          window.scroll({
+            left: 0,
+            top: elementRect.top - queueRect.y + offset,
+            behavior: "smooth",
+          });
         }
       }
-    }, 100);
+    }, timeout);
   };
+
+  useEffect(() => {
+    if (document !== undefined) {
+      handleModScroll();
+
+      // When the page loads, it takes some time to render queue
+      // hence we are using a delayed scroll
+      scrollCurrentVideo(750);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Scroll whenever the currentIndex changes
+    scrollCurrentVideo();
+  }, [currentIndex]);
 
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
       changeURLid(queue[currentIndex + 1].id);
       changeIndex(currentIndex + 1);
-      scrollCurrentVideo();
     }
   };
 
@@ -104,7 +115,6 @@ export const Video = (props: VideoProps) => {
     if (currentIndex > 0) {
       changeURLid(queue[currentIndex - 1].id);
       changeIndex(currentIndex - 1);
-      scrollCurrentVideo();
     }
   };
 
@@ -137,13 +147,8 @@ export const Video = (props: VideoProps) => {
               <div className="middle">
                 <div className="text">
                   <h1 className="title">{queue[currentIndex].metadata.song.name}</h1>
-                  <Helmet>
-                    <title>
-                      {queue[currentIndex].metadata.song.name} - LTTKGP{" "}
-                      <span role="img" aria-label="Panda">
-                        🎶 🎶 🎶
-                      </span>
-                    </title>
+                  <Helmet defer={false}>
+                    <title>{queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶</title>
                   </Helmet>
                   <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
                 </div>
