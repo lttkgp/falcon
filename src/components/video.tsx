@@ -22,7 +22,6 @@ export const Video = (props: VideoProps) => {
   let [queue] = useState(preQueue);
 
   if (preQueue.length === 0) {
-    console.log(window.location.host);
     if (window !== undefined) {
       var home = window.location.protocol + "//" + window.location.host;
       if (window.history.pushState) {

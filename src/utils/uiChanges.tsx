@@ -31,7 +31,7 @@ let changeExpand = () => {
     let el = document.querySelector(".content");
 
     if (el?.classList !== null) {
-      console.log(el?.classList);
+      // console.log(el?.classList);
       if (el?.classList.contains("expand")) {
         el?.classList.add("contract");
         el?.classList.remove("expand");
