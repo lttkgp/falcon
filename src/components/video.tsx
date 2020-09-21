@@ -162,14 +162,10 @@ export const Video = (props: VideoProps) => {
                     >
                       <Icon.Youtube></Icon.Youtube>
                     </a>
+                    <a href={queue[currentIndex].postdata.permalink_url} target="_blank" rel="noopener noreferrer">
+                      <Icon.Facebook></Icon.Facebook>
+                    </a>
                     {/*
-                  <a
-                    href={sampleData.spotify}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    <Icon.Speaker></Icon.Speaker>
-                  </a>
                   <a href='#link'>
                     <Icon.Link2></Icon.Link2>
                   </a>
