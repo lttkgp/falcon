@@ -138,7 +138,7 @@ export const Video = (props: VideoProps) => {
               <div className="middle">
                 <div className="text">
                   <h1 className="title">{queue[currentIndex].metadata.song.name}</h1>
-                  <Helmet>
+                  <Helmet defer={false}>
                     <title>{queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶</title>
                   </Helmet>
                   <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
