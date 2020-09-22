@@ -124,85 +124,87 @@ export const Video = (props: VideoProps) => {
 
   return (
     <div className={queue.length !== 0 ? "video" : "video fullview"}>
-      <div className="video-container">
-        <YouTube
-          videoId={queue.length !== 0 ? queue[currentIndex].id : props.id}
-          onEnd={handleEndOfVideo}
-          opts={{
-            height: "550",
-            width: "900",
-            playerVars: {
-              autoplay: 1,
-              playsinline: 1,
-            },
-          }}
-        />
+      <div className="player-wrapper">
+        <div className="video-container">
+          <YouTube
+            videoId={queue.length !== 0 ? queue[currentIndex].id : props.id}
+            onEnd={handleEndOfVideo}
+            opts={{
+              height: "550",
+              width: "900",
+              playerVars: {
+                autoplay: 1,
+                playsinline: 1,
+              },
+            }}
+          />
 
-        {queue.length !== 0 ? (
-          <div className="desc large">
-            <div className="prev_song control_button" onClick={playPrevVideo}>
-              <Icon.ChevronLeft />
-            </div>
-            <div className="info">
-              <div className="middle">
-                <div className="text">
-                  <h1 className="title">{queue[currentIndex].metadata.song.name}</h1>
-                  <Helmet defer={false}>
-                    <title>{queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶</title>
-                  </Helmet>
-                  <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
-                </div>
+          {queue.length !== 0 ? (
+            <div className="desc large">
+              <div className="prev_song control_button" onClick={playPrevVideo}>
+                <Icon.ChevronLeft />
+              </div>
+              <div className="info">
+                <div className="middle">
+                  <div className="text">
+                    <h1 className="title">{queue[currentIndex].metadata.song.name}</h1>
+                    <Helmet defer={false}>
+                      <title>{queue[currentIndex].metadata.song.name} - LTTKGP 🎶 🎶 🎶</title>
+                    </Helmet>
+                    <h2>{joinArtists(queue[currentIndex].metadata.artists)}</h2>
+                  </div>
 
-                <div className="widgets">
-                  <div className="icons">
-                    <a
-                      href={"https://www.youtube.com/watch?v=" + queue[currentIndex].id}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon.Youtube></Icon.Youtube>
-                    </a>
-                    <a
-                      href={queue[currentIndex].postdata.permalink_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="fb-icon"
-                    >
-                      <Icon.Facebook></Icon.Facebook>
-                    </a>
-                    {/*
+                  <div className="widgets">
+                    <div className="icons">
+                      <a
+                        href={"https://www.youtube.com/watch?v=" + queue[currentIndex].id}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon.Youtube></Icon.Youtube>
+                      </a>
+                      <a
+                        href={queue[currentIndex].postdata.permalink_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="fb-icon"
+                      >
+                        <Icon.Facebook></Icon.Facebook>
+                      </a>
+                      {/*
                   <a href='#link'>
                     <Icon.Link2></Icon.Link2>
                   </a>
                      */}
-                    <span
-                      className="likes"
-                      // target="_blank"
-                      // rel="noopener noreferrer"
-                    >
-                      <Icon.Heart></Icon.Heart>
-                      <span>{queue[currentIndex].postdata.likes_count}</span>
-                    </span>
+                      <span
+                        className="likes"
+                        // target="_blank"
+                        // rel="noopener noreferrer"
+                      >
+                        <Icon.Heart></Icon.Heart>
+                        <span>{queue[currentIndex].postdata.likes_count}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
+                <div className="genres">
+                  {filterGenres(queue[currentIndex].metadata.genre).map((genre) => {
+                    return (
+                      <div className="genre-tag" key={"genre-tag-" + genre + "ssyid"}>
+                        {genre}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="genres">
-                {filterGenres(queue[currentIndex].metadata.genre).map((genre) => {
-                  return (
-                    <div className="genre-tag" key={"genre-tag-" + genre + "ssyid"}>
-                      {genre}
-                    </div>
-                  );
-                })}
+              <div className="next_song control_button" onClick={playNextVideo}>
+                <Icon.ChevronRight />
               </div>
             </div>
-            <div className="next_song control_button" onClick={playNextVideo}>
-              <Icon.ChevronRight />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
       {queue.length !== 0 ? (
         <div className="queue">
