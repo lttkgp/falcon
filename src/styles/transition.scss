@@ -2,7 +2,7 @@
   opacity: 0;
   transform: perspective(1000px) translateX(0px) rotateY(3deg) scale(1);
   z-index: 1;
-  transform-origin: top left;
+  transform-origin: left 50vh;
   transition: opacity 500ms ease-in, transform 500ms ease-in;
 }
 
