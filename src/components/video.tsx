@@ -48,6 +48,8 @@ export const Video = (props: VideoProps) => {
     })()
   );
 
+  let [keyPressed, setKeyPressed] = useState('')
+
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
       var prevScrollpos = window.pageYOffset;
@@ -103,6 +105,21 @@ export const Video = (props: VideoProps) => {
     // Scroll whenever the currentIndex changes
     scrollCurrentVideo();
   }, [currentIndex]);
+
+  useEffect(() => {
+    // listening for shortcut keys
+    // Shift + n for next video and Shift + p for the prev video
+    window.addEventListener("keydown", event => {
+      if (event.key === "Shift")
+        setKeyPressed("shift")
+      else {
+        if(keyPressed === "shift" && event.key === "N") 
+          playNextVideo()
+        else if(keyPressed === "shift" && event.key === "P") 
+          playPrevVideo()    
+      }
+    })
+  })
 
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
