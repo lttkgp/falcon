@@ -113,10 +113,11 @@ export const Video = (props: VideoProps) => {
       if (event.key === "Shift")
         setKeyPressed("shift")
       else {
-        if(keyPressed === "shift" && event.key === "N") 
+        if(keyPressed === "shift" && (event.key === "N" || event.key === "n")) 
           playNextVideo()
-        else if(keyPressed === "shift" && event.key === "P") 
-          playPrevVideo()    
+        else if(keyPressed === "shift" && (event.key === "P" || event.key === "p")) 
+          playPrevVideo()
+        setKeyPressed("")
       }
     })
   })
