@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { setThemeOnUserPref, themeChecker } from "./utils";
+import { setThemeOnUserPref } from "./utils";
 
 import Sidebar from "./components/sidebar";
 import { CSwitch } from "./components/CSwitch";
@@ -9,7 +9,6 @@ import { CSwitch } from "./components/CSwitch";
 import "./styles/App.scss";
 
 function App() {
-  useEffect(themeChecker, []);
   useEffect(setThemeOnUserPref, []);
 
   return (

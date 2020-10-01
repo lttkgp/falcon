@@ -1,9 +1,20 @@
-let themeChecker = () => {
+let setThemeOnUserPref = () => {
   let el = document.querySelector("html");
 
-  if(window.localStorage.getItem("theme") === "dark"){
-    el?.classList.remove("light");
-    el?.classList.add("dark");
+  if(window.localStorage.getItem("theme") !== null){
+    if(window.localStorage.getItem("theme") === "dark"){
+      el?.classList.remove("light");
+      el?.classList.add("dark");
+    }
+  } else {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      // dark mode
+
+      if (el?.classList !== null) {
+        el?.classList.add("dark");
+        el?.classList.remove("light");
+      }
+    }
   }
 };
 
@@ -21,18 +32,6 @@ let changeTheme = () => {
         el?.classList.remove("dark");
         window.localStorage.setItem("theme", "light");
       }
-    }
-  }
-};
-
-let setThemeOnUserPref = () => {
-  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    // dark mode
-    let el = document.querySelector("html");
-
-    if (el?.classList !== null) {
-      el?.classList.add("dark");
-      el?.classList.remove("light");
     }
   }
 };
@@ -62,4 +61,4 @@ let changeExpand = () => {
   }
 };
 
-export { changeTheme, changeExpand, setThemeOnUserPref, themeChecker };
+export { changeTheme, changeExpand, setThemeOnUserPref };
