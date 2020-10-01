@@ -1,3 +1,12 @@
+let themeChecker = () => {
+  let el = document.querySelector("html");
+
+  if(window.localStorage.getItem("theme") === "dark"){
+    el?.classList.remove("light");
+    el?.classList.add("dark");
+  }
+};
+
 let changeTheme = () => {
   if (document !== undefined) {
     let el = document.querySelector("html");
@@ -6,9 +15,11 @@ let changeTheme = () => {
       if (el?.classList.contains("light")) {
         el?.classList.add("dark");
         el?.classList.remove("light");
+        window.localStorage.setItem("theme", "dark");
       } else {
         el?.classList.add("light");
         el?.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
       }
     }
   }
@@ -51,4 +62,4 @@ let changeExpand = () => {
   }
 };
 
-export { changeTheme, changeExpand, setThemeOnUserPref };
+export { changeTheme, changeExpand, setThemeOnUserPref, themeChecker };
