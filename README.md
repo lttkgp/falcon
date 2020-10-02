@@ -118,8 +118,8 @@ Some of these are discussed here:
 2. `filterUniqueVideos` : Removes duplicate videos from a list of posts.
 3. `filterGenres` : Removes duplicate genres from the array of genres.
 4. `shuffle` : Performs a knuth-shuffle on a given array.
-5. `changeTheme` : Changes the theme of the app, it coverts light -> dark and vice-versa.
-6. `setThemeOnUserPref` : This checks if user prefers dark mode in system settings and applies the dark mode if he/she does.
+5. `changeTheme` : Changes the theme of the app, it coverts light -> dark and vice-versa, and stores it in the localStorage.
+6. `setThemeOnUserPref` : This checks if the user prefers dark mode by, first checking the localStorage and then in the system settings. It then applies the dark mode.
 7. `changeExpand` : Changes the class of the sidebar in desktop mode to switch between the expanded and contracted variant.
 8. `mobileCheck` : This function returns true if the app is currently being visited via a mobile.
 
