@@ -48,7 +48,7 @@ export const Video = (props: VideoProps) => {
     })()
   );
 
-  let [keyPressed, setKeyPressed] = useState('')
+  let [shiftKeyPressed, setShiftKeyPressed] = useState(false)
 
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
@@ -106,20 +106,20 @@ export const Video = (props: VideoProps) => {
     scrollCurrentVideo();
   }, [currentIndex]);
 
-  useEffect(() => {
-    // listening for shortcut keys
-    // Shift + n for next video and Shift + p for the prev video
-    window.addEventListener("keydown", event => {
-      if (event.key === "Shift")
-        setKeyPressed("shift")
-      else {
-        if(keyPressed === "shift" && (event.key === "N" || event.key === "n")) 
-          playNextVideo()
-        else if(keyPressed === "shift" && (event.key === "P" || event.key === "p")) 
-          playPrevVideo()
-        setKeyPressed("")
-      }
-    })
+  document.addEventListener("keyup", e => {
+    if (e.key === "Shift") 
+      setShiftKeyPressed(true)
+    else {
+      if (shiftKeyPressed && e.code === "KeyN") 
+        playNextVideo()
+      else if (shiftKeyPressed && e.code === "KeyP")
+        playPrevVideo()
+    }
+  })
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Shift")
+      setShiftKeyPressed(false)
   })
 
   let playNextVideo = () => {
