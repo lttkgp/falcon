@@ -48,8 +48,6 @@ export const Video = (props: VideoProps) => {
     })()
   );
 
-  let [shiftKeyPressed, setShiftKeyPressed] = useState(false)
-
   let handleModScroll = () => {
     if (mobileCheck() && window !== null) {
       var prevScrollpos = window.pageYOffset;
@@ -106,21 +104,30 @@ export const Video = (props: VideoProps) => {
     scrollCurrentVideo();
   }, [currentIndex]);
 
-  document.addEventListener("keyup", e => {
-    if (e.key === "Shift") 
-      setShiftKeyPressed(true)
-    else {
-      if (shiftKeyPressed && e.code === "KeyN") 
-        playNextVideo()
-      else if (shiftKeyPressed && e.code === "KeyP")
-        playPrevVideo()
+  
+  
+  useEffect(() => {
+
+    const handleKeyPress = (event: any) => {
+      if (event.code === "KeyN" && event.shiftKey) {
+        playNextVideo();
+      } else if (event.code === "KeyP" && event.shiftKey) {
+        playPrevVideo();
+      }
+    }
+    
+    window.addEventListener('keyup', handleKeyPress)
+    // clean up after component unmounts
+    return () => {
+      window.removeEventListener('keyup', handleKeyPress)
     }
   })
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Shift")
-      setShiftKeyPressed(false)
-  })
+  
+  // useEffect(() => {
+  //   return () => {
+  //     window.removeEventListener('keyup', handleKeyPress)
+  //   }
+  // })
 
   let playNextVideo = () => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
