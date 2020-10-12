@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import YouTube from "react-youtube";
@@ -104,48 +104,39 @@ export const Video = (props: VideoProps) => {
     scrollCurrentVideo();
   }, [currentIndex]);
 
-  
-  
-  useEffect(() => {
-
-    const handleKeyPress = (event: any) => {
-      if (event.code === "KeyN" && event.shiftKey) {
-        playNextVideo();
-      } else if (event.code === "KeyP" && event.shiftKey) {
-        playPrevVideo();
-      }
-    }
-    
-    window.addEventListener('keyup', handleKeyPress)
-    // clean up after component unmounts
-    return () => {
-      window.removeEventListener('keyup', handleKeyPress)
-    }
-  })
-  
-  // useEffect(() => {
-  //   return () => {
-  //     window.removeEventListener('keyup', handleKeyPress)
-  //   }
-  // })
-
-  let playNextVideo = () => {
+  let playNextVideo = useCallback(() => {
     if (queue.length > 0 && currentIndex + 1 < queue.length) {
       changeURLid(queue[currentIndex + 1].id);
       changeIndex(currentIndex + 1);
     }
-  };
+  }, [queue, currentIndex]);
 
-  let playPrevVideo = () => {
+  let playPrevVideo = useCallback(() => {
     if (currentIndex > 0) {
       changeURLid(queue[currentIndex - 1].id);
       changeIndex(currentIndex - 1);
     }
-  };
+  }, [queue, currentIndex]);
 
   let handleEndOfVideo = () => {
     playNextVideo();
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if ((event.key === "n" || event.key === "N") && event.shiftKey) {
+        playNextVideo();
+      } else if ((event.key === "p" || event.key === "P") && event.shiftKey) {
+        playPrevVideo();
+      }
+    };
+
+    window.addEventListener("keyup", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keyup", handleKeyPress);
+    };
+  }, [playPrevVideo, playNextVideo]);
 
   return (
     <div className={queue.length !== 0 ? "video" : "video fullview"}>
