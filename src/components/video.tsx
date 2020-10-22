@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import YouTube from "react-youtube";
 
+import { getSongList } from "../store/list/effects";
+import { FeedListType } from "../store/list/types";
 import { mobileCheck } from "../utils/video";
 import { joinArtists } from "../utils";
 import { filterGenres } from "../utils/filterList";
@@ -18,10 +20,11 @@ interface VideoProps {
 }
 
 export const Video = (props: VideoProps) => {
-  let preQueue = useSelector((state: FalconRootState) => state.queue.posts);
-  let [queue] = useState(preQueue);
+  let dispatch = useDispatch();
+  let { type, posts } = useSelector((state: FalconRootState) => state.queue);
+  let [queue] = useState(posts);
 
-  if (preQueue.length === 0) {
+  if (posts.length === 0) {
     if (window !== undefined) {
       var home = window.location.protocol + "//" + window.location.host;
       if (window.history.pushState) {
@@ -42,7 +45,7 @@ export const Video = (props: VideoProps) => {
   let [currentIndex, changeIndex] = useState(
     (() => {
       if (props.id) {
-        return preQueue.map((e) => e.id).indexOf(props.id);
+        return posts.map((e) => e.id).indexOf(props.id);
       }
       return 0;
     })()
@@ -105,9 +108,15 @@ export const Video = (props: VideoProps) => {
   }, [currentIndex]);
 
   let playNextVideo = useCallback(() => {
-    if (queue.length > 0 && currentIndex + 1 < queue.length) {
-      changeURLid(queue[currentIndex + 1].id);
-      changeIndex(currentIndex + 1);
+    if (queue.length > 0) {
+      if (currentIndex + 1 < queue.length) {
+        changeURLid(queue[currentIndex + 1].id);
+        changeIndex(currentIndex + 1);
+      } else {
+        // Fetch the songs of the current list type
+        // append the songs to the queue
+        // Play the next song
+      }
     }
   }, [queue, currentIndex]);
 
@@ -235,6 +244,7 @@ export const Video = (props: VideoProps) => {
                 id={vid.id}
                 key={vid.id + "Queue-xyppu"}
                 data={vid}
+                type={type}
                 className={"queueCard" + selectClass}
                 redirect={false}
                 onClick={() => {
