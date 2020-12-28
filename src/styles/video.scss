@@ -148,7 +148,9 @@
       }
     }
     .control_button {
-      padding: 0.5rem;
+      padding: 0.5rem 0.5rem 1rem;
+      display: flex;
+      align-items: center;
       &:hover {
         cursor: pointer;
         color: $primary;
@@ -176,6 +178,7 @@
     }
     .widgets {
       max-width: 300px;
+      display: flex;
       @include sm {
         transition: all ease-in-out 0.5s;
         margin-left: -0.5rem;
