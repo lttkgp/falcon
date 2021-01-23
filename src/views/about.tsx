@@ -1,6 +1,13 @@
 import React from "react";
-
+import ReactMarkdown from "react-markdown";
 import Header from "../components/header";
+import gfm from "remark-gfm";
+
+const changelogs = `
+# Changelogs
+- this is for testing purposes
+- try to delocalize this markdown
+`;
 
 export const About = () => {
     return (
@@ -20,6 +27,8 @@ export const About = () => {
                 Let us know what you think by talking to us directly through our <a href="#" target="_blank" rel="noreferrer">Slack workspace</a>. 
                 You can also see how all of this comes together and works at the programming level by taking a look at our <a href="#" target="_blank" rel="noreferrer">Github repositories</a>.
             </p>
+            
+            <ReactMarkdown plugins={[gfm]} children={changelogs} />
         </div>
     );
 }
