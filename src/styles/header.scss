@@ -71,6 +71,20 @@
         background-repeat: no-repeat;
         background-image: url("/moon.svg");
       }
+      .about-icon {
+        background-color: $light;
+        &:active {
+          background-color: rgba($color: $primary, $alpha: 0.5);
+        }
+        &:hover {
+          background-color: darken($color: $light, $amount: 5%);
+        }
+        border-radius: 12px;
+        transition: all 0.1s ease-in-out;
+        padding: 11px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
     }
   }
 }

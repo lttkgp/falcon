@@ -253,5 +253,19 @@
       background-repeat: no-repeat;
       background-image: url("/moon.svg");
     }
+    .about-icon {
+      &:active {
+        transform: scale(1.5);
+      }
+      &:hover {
+        background-color: $light-gray;
+      }
+      border-radius: 12px;
+      color: $primary;
+      transition: all 0.1s ease-in-out;
+      padding: 11px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   }
 }
