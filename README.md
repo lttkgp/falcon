@@ -26,7 +26,7 @@ $ yarn start
 
 ## Deployment
 
-Currently the master branch is set to auto-deploy on netlify and can be viewed at: [beta.lttkgp.com](https://beta.lttkgp.com/).
+Currently the master branch is set to auto-deploy on netlify and can be viewed at: [lttkgp.com](https://lttkgp.com/).
 
 Netlify also automatically builds deploy previews of any pull requests which can be accessed in the specific PRs themselves.
 
