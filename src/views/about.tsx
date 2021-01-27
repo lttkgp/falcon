@@ -24,8 +24,8 @@ export const About = () => {
 
             <h2>Let's improve this together</h2>
             <p>
-                Let us know what you think by talking to us directly through our <a href="#" target="_blank" rel="noreferrer">Slack workspace</a>. 
-                You can also see how all of this comes together and works at the programming level by taking a look at our <a href="#" target="_blank" rel="noreferrer">Github repositories</a>.
+                Let us know what you think by talking to us directly through our <a href="https://join.slack.com/t/listentothiskgp/shared_invite/zt-l4pt2o1z-~qDftV6hhSmY1V5Y1GsL3g" target="_blank" rel="noreferrer noopener">Slack workspace</a>. 
+                You can also see how all of this comes together and works at the programming level by taking a look at our <a href="https://github.com/lttkgp" target="_blank" rel="noreferrer noopener">Github repositories</a>.
             </p>
             
             <ReactMarkdown plugins={[gfm]} children={changelogs} />
