@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown/with-html";
 import Header from "../components/header";
 import gfm from "remark-gfm";
 
@@ -19,7 +19,7 @@ export const About = () => {
     return (
         <div className="about-page">
             <Header title="About LTTKGP" />
-            <ReactMarkdown plugins={[gfm]} children={text} />
+            <ReactMarkdown plugins={[gfm]} children={text} allowDangerousHtml />
         </div>
     );
 }

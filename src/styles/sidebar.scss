@@ -62,7 +62,7 @@
         }
       }
     }
-    .change-theme {
+    .icon-links {
       margin-left: -1rem;
     }
   }
@@ -230,7 +230,7 @@
     }
   }
 
-  .change-theme {
+  .icon-links {
     @include sm {
       display: none;
     }
@@ -264,6 +264,7 @@
       color: $primary;
       transition: all 0.1s ease-in-out;
       padding: 11px;
+      display: inline-block;
       background-position: center;
       background-repeat: no-repeat;
     }

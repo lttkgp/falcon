@@ -14,13 +14,13 @@ export default function Header(props: { title: string }) {
           <SearchIcon />
           <input type='text' id='search' placeholder='Search' />
         </div> */}
-        <div className="change-theme">
+        <div className="icon-links">
           <NavLink to="/about" className="about-icon">
             <Icon.Info></Icon.Info>
           </NavLink>
         </div>
         
-        <div className="change-theme" onClick={changeTheme}>
+        <div className="icon-links" onClick={changeTheme}>
           <div className="icon-theme"></div>
         </div>
       </div>

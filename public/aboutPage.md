@@ -6,5 +6,5 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, magnam. Minima, m
 
 ## Let's Improve this together 
 
-Let us know what you think by talking to us directly through our [Slack workspace](https://join.slack.com/t/listentothiskgp/shared_invite/zt-l4pt2o1z-~qDftV6hhSmY1V5Y1GsL3g). You can also see how all of this comes together and works at the programming level by taking a look at our [Github repositories](https://github.com/lttkgp)
+Let us know what you think by talking to us directly through our <a href="https://join.slack.com/t/listentothiskgp/shared_invite/zt-l4pt2o1z-~qDftV6hhSmY1V5Y1GsL3g" target="_blank" rel="noreferrer noopener">Slack workspace</a>. You can also see how all of this comes together and works at the programming level by taking a look at our <a href="https://github.com/lttkgp" target="_blank" rel="noreferrer noopener">Github repositories</a>
 

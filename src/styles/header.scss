@@ -46,11 +46,11 @@
       }
     }
   }
-  .change-theme {
+  .icon-links {
     display: none;
   }
   @include sm {
-    .change-theme {
+    .icon-links {
       display: inherit;
       margin-right: 0.5rem;
       .icon-theme {

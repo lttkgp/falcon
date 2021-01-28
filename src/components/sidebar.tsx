@@ -26,13 +26,13 @@ export default function Sidebar() {
         </NavLink>
       </div>
 
-      <div className="change-theme">
+      <div className="icon-links">
         <NavLink to="/about" className="about-icon">
           <Icon.Info size="32"></Icon.Info>
         </NavLink>
       </div>
 
-      <div className="change-theme" onClick={changeTheme}>
+      <div className="icon-links" onClick={changeTheme}>
         <div className="icon-theme"></div>
       </div>
     </div>
