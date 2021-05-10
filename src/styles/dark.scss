@@ -43,12 +43,45 @@ html.dark {
     }
   }
 
-  .change-theme {
-    .icon-theme {
+  .sidebar-button {
+    .sidebar-icon.change-theme-icon {
       background-image: url("/sun.svg");
+      background-color: #00000000;
+      background-size: 32px 32px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .sidebar-icon {
       background-color: $light-dark;
       &:hover {
         background-color: lighten($color: $light-dark, $amount: 5%);
+      }
+    }
+  }
+
+  .configModal-wrapper {
+    .configModal {
+      &.open {
+        color: $light;
+        background: linear-gradient(30deg, $light-dark 0%, darken($primary, 50%) 100%);
+        box-shadow: none;
+      }
+
+      .close-icon {
+      }
+
+      .theme-switcher {
+        background-color: rgba($dark, 0.1);
+        .sidebar-button .sidebar-icon:hover {
+          background-color: #00000000;
+        }
+      }
+
+      .icon-link {
+        color: $light;
+        &:hover {
+          background-color: rgba($light, 0.1);
+        }
       }
     }
   }

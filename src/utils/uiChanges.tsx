@@ -1,8 +1,10 @@
+import { useState } from "react";
+
 let setThemeOnUserPref = () => {
   let el = document.querySelector("html");
 
-  if(window.localStorage.getItem("theme") !== null){
-    if(window.localStorage.getItem("theme") === "dark"){
+  if (window.localStorage.getItem("theme") !== null) {
+    if (window.localStorage.getItem("theme") === "dark") {
       el?.classList.remove("light");
       el?.classList.add("dark");
     }
@@ -22,7 +24,7 @@ let changeTheme = () => {
   if (document !== undefined) {
     let el = document.querySelector("html");
 
-    if (el?.classList !== null) {
+    if (el?.classList !== null)
       if (el?.classList.contains("light")) {
         el?.classList.add("dark");
         el?.classList.remove("light");
@@ -32,33 +34,29 @@ let changeTheme = () => {
         el?.classList.remove("dark");
         window.localStorage.setItem("theme", "light");
       }
-    }
   }
 };
 
-let changeExpand = () => {
-  if (document !== undefined) {
-    let el = document.querySelector(".content");
+let useSidebarOpen = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-    if (el?.classList !== null) {
-      // console.log(el?.classList);
-      if (el?.classList.contains("expand")) {
-        el?.classList.add("contract");
-        el?.classList.remove("expand");
-      } else {
-        el?.classList.add("expand");
-        el?.classList.remove("contract");
+  function toggleSidebar(e: any) {
+    if (document !== undefined) {
+      let el = document.querySelector(".content");
+      if (el?.classList !== null) {
+        if (sidebarOpen) {
+          el?.classList.add("contract");
+          el?.classList.remove("expand");
+        } else {
+          el?.classList.add("expand");
+          el?.classList.remove("contract");
+        }
       }
     }
-
-    let sideb = document.querySelector(".sidebar");
-    if (sideb !== null)
-      if (sideb?.classList.contains("short")) {
-        sideb.classList.remove("short");
-      } else {
-        sideb.classList.add("short");
-      }
+    setSidebarOpen(() => !sidebarOpen);
   }
+
+  return { sidebarOpen, toggleSidebar };
 };
 
-export { changeTheme, changeExpand, setThemeOnUserPref };
+export { changeTheme, useSidebarOpen, setThemeOnUserPref };
