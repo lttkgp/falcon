@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { changeTheme, useSidebarOpen } from "../utils";
+import { useSidebarOpen } from "../utils";
 import ConfigModal from "./configModal";
 import * as Icon from "react-feather";
 

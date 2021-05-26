@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Icon from "react-feather";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import { changeTheme } from "../utils";
 
@@ -25,24 +25,34 @@ export default function ConfigModal() {
 
       <CSSTransition key={"ok"} in={modalOpen} className="configModal" classNames="configModal" timeout={300}>
         <div onMouseLeave={hoverClose}>
-          <a href="" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <a href="/#about" target="_blank" rel="noopener noreferrer" className="icon-link">
             <Icon.Info></Icon.Info>
             <div className="link_text">About LTTKGP</div>
           </a>
-          <a href="" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <a href="https://github.com/lttkgp/" target="_blank" rel="noopener noreferrer" className="icon-link">
             <Icon.GitHub></Icon.GitHub>
             <div className="link_text">Code @ Github</div>
           </a>
-          <a href="" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <a
+            href="https://join.slack.com/t/listentothiskgp/shared_invite/zt-qskw7wok-7~fHJxOls4VMk3~1H98rmw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="icon-link"
+          >
             <Icon.Slack></Icon.Slack>
             <div className="link_text">Join us on Slack</div>
           </a>
-          <a href="" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <a
+            href="https://www.facebook.com/groups/lttkgp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="icon-link"
+          >
             <Icon.Facebook></Icon.Facebook>
             <div className="link_text">Facebook Group</div>
           </a>
           <hr />
-          <a href="" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <a href="https://api.lttkgp.com/" target="_blank" rel="noopener noreferrer" className="icon-link">
             <Icon.CheckCircle />
             <div className="link_text">Posts are up to date.</div>
           </a>
