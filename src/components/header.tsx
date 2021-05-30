@@ -1,5 +1,4 @@
 import React from "react";
-import { changeTheme } from "../utils";
 import ConfigModal from "./configModal";
 
 // import { Search as SearchIcon } from "react-feather";

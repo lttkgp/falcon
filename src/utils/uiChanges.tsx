@@ -34,19 +34,6 @@ let changeTheme = () => {
   }
 };
 
-let fetchTheme = (): Theme => {
-  if (document !== undefined) {
-    let el = document.querySelector("html");
-    if (el?.classList !== null)
-      if (el?.classList.contains("light")) {
-        return "Light";
-      } else {
-        return "Dark";
-      }
-  }
-  return "Light";
-};
-
 let fetchPrefTheme = (): Theme => {
   if (document !== undefined) {
     let el = document.querySelector("html");
