@@ -266,16 +266,23 @@
     position: absolute;
     z-index: 100;
     transform-origin: left bottom;
-    font-size: 0rem;
+    // font-size: 0rem;
     overflow: hidden;
     transition: 300ms all ease-in-out;
+
     color: $darker;
     background: linear-gradient(30deg, $light 0%, lighten($primary, 20%) 100%);
+
     bottom: -1rem;
     left: -1rem;
     border-radius: 1rem;
+
+    // display: inherit;
     height: 0px;
     width: 0px;
+    transform: scale(0.1) rotateY(60deg);
+    opacity: 0;
+    // pointer-events: none;
 
     @include sm {
       bottom: initial;
@@ -330,6 +337,7 @@
     }
     &-exit-active {
       opacity: 0;
+      transition: 0.5s all ease-in-out;
       transform: scale(0.1) rotateY(60deg);
       font-size: 1.5rem;
       padding: 3rem 3rem;
