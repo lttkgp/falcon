@@ -61,36 +61,6 @@ html.dark {
 
   .configModal-wrapper {
     .configModal {
-      &-enter-done {
-        color: $light;
-        background: linear-gradient(30deg, $light-dark 30%, darken($primary, 55%) 100%);
-        box-shadow: 0px 10px 50px rgba($color: $back, $alpha: 1);
-      }
-
-      .theme-switcher {
-        background-color: rgba($dark, 0.1);
-
-        .sidebar-button .sidebar-icon:hover {
-          background-color: #00000000;
-        }
-      }
-
-      hr {
-        border-color: rgba(#fff, 0.2);
-      }
-
-      .icon-link {
-        color: $light-gray;
-        &:hover {
-          color: $primary;
-          background-color: rgba($primary, 0.066);
-        }
-      }
-    }
-  }
-
-  .configModal-wrapper {
-    .configModal {
       color: $light;
       background: linear-gradient(30deg, $light-dark 30%, darken($primary, 55%) 100%);
 
@@ -106,10 +76,11 @@ html.dark {
       }
 
       .theme-switcher {
-        background-color: rgba($dark, 0.1);
-
         .sidebar-button .sidebar-icon:hover {
           background-color: #00000000;
+        }
+        &:hover {
+          background-color: rgba($primary, 0.1);
         }
       }
 

@@ -1,13 +1,22 @@
 import React, { useState } from "react";
-import * as Icon from "react-feather";
+import {
+  Info as InfoIcon,
+  GitHub as GitHubIcon,
+  Slack as SlackIcon,
+  Facebook as FBIcon,
+  CheckCircle as FreshIcon,
+  X as CloseIcon,
+  Menu as MenuIcon,
+} from "react-feather";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
-import { changeTheme } from "../utils";
+import { useTheme, invertTheme } from "../utils";
 
 const Modal = styled.div``;
 
 export default function ConfigModal() {
   const [modalOpen, setModalOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const toggle = (e: any) => {
     setModalOpen(() => !modalOpen);
@@ -20,17 +29,17 @@ export default function ConfigModal() {
   return (
     <Modal className="configModal-wrapper">
       <div className="sidebar-button" onClick={toggle}>
-        <Icon.Menu className="sidebar-icon"></Icon.Menu>
+        <MenuIcon className="sidebar-icon" />
       </div>
 
       <CSSTransition key={"ok"} in={modalOpen} className="configModal" classNames="configModal" timeout={300}>
         <div onMouseLeave={hoverClose}>
           <a href="/#about" target="_blank" rel="noopener noreferrer" className="icon-link">
-            <Icon.Info></Icon.Info>
+            <InfoIcon />
             <div className="link_text">About LTTKGP</div>
           </a>
           <a href="https://github.com/lttkgp/" target="_blank" rel="noopener noreferrer" className="icon-link">
-            <Icon.GitHub></Icon.GitHub>
+            <GitHubIcon />
             <div className="link_text">Code @ Github</div>
           </a>
           <a
@@ -39,7 +48,7 @@ export default function ConfigModal() {
             rel="noopener noreferrer"
             className="icon-link"
           >
-            <Icon.Slack></Icon.Slack>
+            <SlackIcon />
             <div className="link_text">Join us on Slack</div>
           </a>
           <a
@@ -48,22 +57,25 @@ export default function ConfigModal() {
             rel="noopener noreferrer"
             className="icon-link"
           >
-            <Icon.Facebook></Icon.Facebook>
+            <FBIcon />
             <div className="link_text">Facebook Group</div>
           </a>
           <hr />
           <a href="https://api.lttkgp.com/" target="_blank" rel="noopener noreferrer" className="icon-link">
-            <Icon.CheckCircle />
+            <FreshIcon />
             <div className="link_text">Posts are up to date.</div>
           </a>
-          <div className="theme-switcher" onClick={changeTheme}>
-            <div className="sidebar-button">
-              <div className="sidebar-icon change-theme-icon"></div>
+
+          <div className="bottom-tools">
+            <div className="sidebar-button close-icon">
+              <CloseIcon className="sidebar-icon" onClick={toggle} />
             </div>
-            <div>SWITCH THEME</div>
-          </div>
-          <div className="sidebar-button close-icon">
-            <Icon.X className="sidebar-icon" onClick={toggle}></Icon.X>
+            <div className="theme-switcher" onClick={toggleTheme}>
+              <p>{invertTheme(theme)} Theme</p>
+              <div className="sidebar-button">
+                <div className="sidebar-icon change-theme-icon"></div>
+              </div>
+            </div>
           </div>
         </div>
       </CSSTransition>
