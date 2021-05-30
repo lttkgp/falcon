@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import YouTube from "react-youtube";
 
-import { getSongList } from "../store/list/effects";
-import { FeedListType } from "../store/list/types";
 import { mobileCheck } from "../utils/video";
 import { joinArtists } from "../utils";
 import { filterGenres } from "../utils/filterList";
@@ -20,7 +18,6 @@ interface VideoProps {
 }
 
 export const Video = (props: VideoProps) => {
-  let dispatch = useDispatch();
   let { type, posts } = useSelector((state: FalconRootState) => state.queue);
   let [queue] = useState(posts);
 
