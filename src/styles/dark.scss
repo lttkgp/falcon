@@ -57,6 +57,12 @@ html.dark {
         background-color: lighten($color: $light-dark, $amount: 5%);
       }
     }
+    .about-icon {
+      background-color: $light-dark;
+      &:hover {
+        background-color: lighten($color: $light-dark, $amount: 5%);
+      }
+    }
   }
 
   .header {

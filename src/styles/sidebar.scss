@@ -63,7 +63,7 @@
         }
       }
     }
-    .change-theme {
+    .icon-links {
       margin-left: -1rem;
     }
   }
@@ -438,6 +438,21 @@
         // color: $primary;
         background-color: rgba($dark, 0.1);
       }
+    }
+    .about-icon {
+      &:active {
+        transform: scale(1.5);
+      }
+      &:hover {
+        background-color: $light-gray;
+      }
+      border-radius: 12px;
+      color: $primary;
+      transition: all 0.1s ease-in-out;
+      padding: 11px;
+      display: inline-block;
+      background-position: center;
+      background-repeat: no-repeat;
     }
   }
 }

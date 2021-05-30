@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Info as InfoIcon,
   GitHub as GitHubIcon,
@@ -8,6 +8,7 @@ import {
   X as CloseIcon,
   Menu as MenuIcon,
 } from "react-feather";
+import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import { useTheme, invertTheme } from "../utils";
@@ -34,10 +35,10 @@ export default function ConfigModal() {
 
       <CSSTransition key={"ok"} in={modalOpen} className="configModal" classNames="configModal" timeout={300}>
         <div onMouseLeave={hoverClose}>
-          <a href="/#about" target="_blank" rel="noopener noreferrer" className="icon-link">
+          <Link to="/about" className="icon-link">
             <InfoIcon />
             <div className="link_text">About LTTKGP</div>
-          </a>
+          </Link>
           <a href="https://github.com/lttkgp/" target="_blank" rel="noopener noreferrer" className="icon-link">
             <GitHubIcon />
             <div className="link_text">Code @ Github</div>
