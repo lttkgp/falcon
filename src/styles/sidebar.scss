@@ -298,11 +298,10 @@
       width: max-content;
       background-color: $light;
       height: inherit;
-      box-shadow: 0px 10px 20px rgba($color: $dark, $alpha: 0.5);
+      box-shadow: 0px 10px 40px rgba($color: $dark, $alpha: 0.35);
       @include sm {
         font-size: 1.5rem;
         padding: 2rem 0;
-        // width: 90vw;
       }
     }
     &-exit-done,
@@ -323,7 +322,7 @@
       background-color: $light;
       width: max-content;
       height: inherit;
-      box-shadow: 0px 10px 20px rgba($color: $dark, $alpha: 0.5);
+      box-shadow: 0px 10px 40px rgba($color: $dark, $alpha: 0.35);
       @include sm {
         font-size: 1.5rem;
         padding: 2rem 0;
@@ -337,7 +336,7 @@
       background-color: $light;
       width: max-content;
       height: inherit;
-      box-shadow: 0px 10px 20px rgba($color: $dark, $alpha: 0.5);
+      box-shadow: 0px 10px 40px rgba($color: $dark, $alpha: 0.35);
     }
 
     .bottom-tools {
