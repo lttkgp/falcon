@@ -1,16 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { changeTheme, changeExpand } from "../utils";
-
+import { useSidebarOpen } from "../utils";
+import ConfigModal from "./configModal";
 import * as Icon from "react-feather";
 
 export default function Sidebar() {
+  const { sidebarOpen, toggleSidebar } = useSidebarOpen();
+
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${sidebarOpen ? "" : "short"}`}>
       <div className="logo">
-        <div className="drawer" onClick={changeExpand}>
-          <Icon.Menu />
+        <div className="drawer" onClick={toggleSidebar}>
+          {sidebarOpen ? <Icon.ChevronsLeft /> : <Icon.ChevronsRight />}
         </div>
         <span className="text">LTTKGP</span>
       </div>
@@ -26,9 +28,7 @@ export default function Sidebar() {
         </NavLink>
       </div>
 
-      <div className="change-theme" onClick={changeTheme}>
-        <div className="icon-theme"></div>
-      </div>
+      <ConfigModal />
     </div>
   );
 }

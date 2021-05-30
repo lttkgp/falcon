@@ -46,10 +46,14 @@
       }
     }
   }
+  .configModal-wrapper,
   .change-theme {
     display: none;
   }
   @include sm {
+    .configModal-wrapper {
+      display: block;
+    }
     .change-theme {
       display: inherit;
       margin-right: 0.5rem;

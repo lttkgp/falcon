@@ -1,5 +1,5 @@
 import React from "react";
-import { changeTheme } from "../utils";
+import ConfigModal from "./configModal";
 
 // import { Search as SearchIcon } from "react-feather";
 
@@ -12,9 +12,7 @@ export default function Header(props: { title: string }) {
           <SearchIcon />
           <input type='text' id='search' placeholder='Search' />
         </div> */}
-        <div className="change-theme" onClick={changeTheme}>
-          <div className="icon-theme"></div>
-        </div>
+        <ConfigModal />
       </div>
     </div>
   );
