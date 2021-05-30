@@ -18,8 +18,10 @@ export const About = () => {
 
   return (
     <div className="about-page">
-      <Header title="About LTTKGP" />
-      <ReactMarkdown plugins={[gfm]} children={text} />
+      <Header title="About" />
+      <div style={{ marginLeft: "2rem", marginRight: "2rem" }}>
+        <ReactMarkdown plugins={[gfm]} children={text} />
+      </div>
     </div>
   );
 };
