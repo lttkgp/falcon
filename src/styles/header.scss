@@ -46,11 +46,15 @@
       }
     }
   }
-  .icon-links {
+  .configModal-wrapper,
+  .change-theme {
     display: none;
   }
   @include sm {
-    .icon-links {
+    .configModal-wrapper {
+      display: block;
+    }
+    .change-theme {
       display: inherit;
       margin-right: 0.5rem;
       .icon-theme {
@@ -69,7 +73,7 @@
         background-size: 32px 32px;
         background-position: center;
         background-repeat: no-repeat;
-        background-image: url("/moon.svg");
+        background-image: url("../images/moon.svg");
       }
       .about-icon {
         background-color: $light;

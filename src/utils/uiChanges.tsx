@@ -1,20 +1,19 @@
+import { useState } from "react";
+
+type Theme = "Dark" | "Light";
+
 let setThemeOnUserPref = () => {
+  let currentTheme = fetchPrefTheme();
+  setInitialTheme(currentTheme);
+  console.log("Setting theme", { currentTheme });
+};
+
+let setInitialTheme = (theme: Theme) => {
   let el = document.querySelector("html");
 
-  if(window.localStorage.getItem("theme") !== null){
-    if(window.localStorage.getItem("theme") === "dark"){
-      el?.classList.remove("light");
-      el?.classList.add("dark");
-    }
-  } else {
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      // dark mode
-
-      if (el?.classList !== null) {
-        el?.classList.add("dark");
-        el?.classList.remove("light");
-      }
-    }
+  if (theme === "Dark") {
+    el?.classList.add("dark");
+    el?.classList.remove("light");
   }
 };
 
@@ -22,7 +21,7 @@ let changeTheme = () => {
   if (document !== undefined) {
     let el = document.querySelector("html");
 
-    if (el?.classList !== null) {
+    if (el?.classList !== null)
       if (el?.classList.contains("light")) {
         el?.classList.add("dark");
         el?.classList.remove("light");
@@ -32,33 +31,67 @@ let changeTheme = () => {
         el?.classList.remove("dark");
         window.localStorage.setItem("theme", "light");
       }
-    }
   }
 };
 
-let changeExpand = () => {
+let fetchPrefTheme = (): Theme => {
   if (document !== undefined) {
-    let el = document.querySelector(".content");
+    let el = document.querySelector("html");
 
-    if (el?.classList !== null) {
-      // console.log(el?.classList);
-      if (el?.classList.contains("expand")) {
-        el?.classList.add("contract");
-        el?.classList.remove("expand");
-      } else {
-        el?.classList.add("expand");
-        el?.classList.remove("contract");
+    if (window.localStorage.getItem("theme") !== null) {
+      if (window.localStorage.getItem("theme") === "dark") {
+        return "Dark";
+      } else return "Light";
+    } else {
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        if (el?.classList !== null) {
+          return "Dark";
+        } else return "Light";
       }
     }
+  }
+  // Defaults to Light Theme
+  return "Light";
+};
 
-    let sideb = document.querySelector(".sidebar");
-    if (sideb !== null)
-      if (sideb?.classList.contains("short")) {
-        sideb.classList.remove("short");
-      } else {
-        sideb.classList.add("short");
-      }
+const useTheme = () => {
+  const [theme, setTheme] = useState<Theme>("Dark");
+
+  const toggleTheme = () => {
+    changeTheme();
+    setTheme(() => invertTheme(theme));
+  };
+  return { theme, toggleTheme };
+};
+
+const invertTheme = (theme: Theme): Theme => {
+  if (theme === "Dark") {
+    return "Light";
+  } else {
+    return "Dark";
   }
 };
 
-export { changeTheme, changeExpand, setThemeOnUserPref };
+let useSidebarOpen = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  function toggleSidebar(e: any) {
+    if (document !== undefined) {
+      let el = document.querySelector(".content");
+      if (el?.classList !== null) {
+        if (sidebarOpen) {
+          el?.classList.add("contract");
+          el?.classList.remove("expand");
+        } else {
+          el?.classList.add("expand");
+          el?.classList.remove("contract");
+        }
+      }
+    }
+    setSidebarOpen(() => !sidebarOpen);
+  }
+
+  return { sidebarOpen, toggleSidebar };
+};
+
+export { changeTheme, useSidebarOpen, setThemeOnUserPref, useTheme, invertTheme };
