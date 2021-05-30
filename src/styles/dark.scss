@@ -59,6 +59,25 @@ html.dark {
     }
   }
 
+  .header {
+    #search {
+      background-color: $light-dark;
+    }
+
+    .toolbar {
+      .search-box:focus-within {
+        #search {
+          background: $light-dark;
+        }
+      }
+      #search {
+        &:hover {
+          background: lighten($light-dark, 5%);
+        }
+      }
+    }
+  }
+
   .configModal-wrapper {
     .configModal {
       color: $light;
@@ -97,26 +116,6 @@ html.dark {
       }
     }
   }
-
-  .header {
-    #search {
-      background-color: $light-dark;
-    }
-
-    .toolbar {
-      .search-box:focus-within {
-        #search {
-          background: $light-dark;
-        }
-      }
-      #search {
-        &:hover {
-          background: lighten($light-dark, 5%);
-        }
-      }
-    }
-  }
-
   .list {
     .title {
       color: $gray;
