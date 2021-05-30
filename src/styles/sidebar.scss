@@ -426,7 +426,8 @@
       }
       transition: transform 0.25s ease-in-out;
       @include hover;
-      &:hover {
+      &:hover,
+      &:active {
         // color: $primary;
         background-color: rgba($dark, 0.1);
       }
