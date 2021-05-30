@@ -46,10 +46,14 @@
       }
     }
   }
+  .configModal-wrapper,
   .change-theme {
     display: none;
   }
   @include sm {
+    .configModal-wrapper {
+      display: block;
+    }
     .change-theme {
       display: inherit;
       margin-right: 0.5rem;
@@ -69,7 +73,21 @@
         background-size: 32px 32px;
         background-position: center;
         background-repeat: no-repeat;
-        background-image: url("/moon.svg");
+        background-image: url("../images/moon.svg");
+      }
+      .about-icon {
+        background-color: $light;
+        &:active {
+          background-color: rgba($color: $primary, $alpha: 0.5);
+        }
+        &:hover {
+          background-color: darken($color: $light, $amount: 5%);
+        }
+        border-radius: 12px;
+        transition: all 0.1s ease-in-out;
+        padding: 11px;
+        background-position: center;
+        background-repeat: no-repeat;
       }
     }
   }

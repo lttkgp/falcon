@@ -76,12 +76,12 @@ export const List = ({ title, type, redirect }: ListProps) => {
       </div>
       {vList.posts.length === 0 ? (
         <VArray className="array" id={title.trim()} len={6}>
-          {Array(6).fill(
-            <div className="empty-card">
+          {Array(6).map((_, Index) => (
+            <div className="empty-card" key={`key_empty_card_${Index}`}>
               <Loader></Loader>
               <p>LOADING</p>
             </div>
-          )}
+          ))}
         </VArray>
       ) : (
         <VArray className="array" id={title.trim()} len={videoList.length}>

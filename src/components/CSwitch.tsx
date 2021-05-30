@@ -5,6 +5,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Home } from "../views/home";
 import { Feed } from "../views/feed";
 import { Genre } from "../views/genre";
+import { About } from "../views/about";
 import { Video } from "./video";
 
 export const CSwitch = () => {
@@ -16,6 +17,7 @@ export const CSwitch = () => {
         <Switch location={location}>
           <Route path="/feed" component={Feed} />
           <Route path="/genre" component={Genre} />
+          <Route path="/about" component={About} />
           <Route path="/video" render={(props) => <Video id={`${location.search.slice(2)}`} {...props} />} />
           <Route path="/" component={Home} />
         </Switch>
