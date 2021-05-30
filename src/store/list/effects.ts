@@ -1,9 +1,8 @@
 import { Dispatch } from "redux";
-import { AxiosResponse } from "axios";
 
 import { fetchListLoading, fetchListSuccess, fetchListFailure } from "./actions";
 import { feedService } from "../../services/feedService";
-import { FeedListType, FeedResponse } from "./types";
+import { FeedListType } from "./types";
 
 const getList = (listType: FeedListType) => {
   switch (listType) {
@@ -16,7 +15,7 @@ const getList = (listType: FeedListType) => {
     case "underrated":
       return feedService.getUnderrated;
     default:
-      return () => new Promise<AxiosResponse<FeedResponse>>((resolve) => resolve());
+      return () => new Promise<any>((resolve) => resolve(""));
   }
 };
 
