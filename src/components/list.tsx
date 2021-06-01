@@ -43,16 +43,21 @@ export const List = ({ title, type, redirect }: ListProps) => {
     setInterval(() => {
       let el = document.getElementById(idname);
       if (el) {
-        let scrollpp = (100 * el.scrollLeft) / (el.scrollWidth - el.clientWidth);
-        if (scrollpp > 99) {
-          setScrollRight(false);
-          setScrollLeft(true);
-        } else if (scrollpp < 1) {
+        if (el.scrollWidth <= el.clientWidth) {
           setScrollLeft(false);
-          setScrollRight(true);
+          setScrollRight(false);
         } else {
-          setScrollLeft(true);
-          setScrollRight(true);
+          let scrollpp = (100 * el.scrollLeft) / (el.scrollWidth - el.clientWidth);
+          if (scrollpp > 99) {
+            setScrollRight(false);
+            setScrollLeft(true);
+          } else if (scrollpp < 1) {
+            setScrollLeft(false);
+            setScrollRight(true);
+          } else {
+            setScrollLeft(true);
+            setScrollRight(true);
+          }
         }
       }
     }, 1000);
