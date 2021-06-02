@@ -62,26 +62,20 @@ html {
     z-index: 10;
     height: auto;
     bottom: 13.5rem;
+    &.hidden {
+      svg {
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(0.5);
+      }
+    }
     &.right {
       float: right;
       right: -2rem;
-
-      &.hidden {
-        svg {
-          display: none;
-          transform: scale(0.5);
-        }
-      }
     }
     &.left {
       float: left;
       left: -2.5rem;
-      &.hidden {
-        svg {
-          display: none;
-          transform: scale(0.5);
-        }
-      }
     }
     svg {
       transition: all 0.25s ease;
