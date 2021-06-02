@@ -39,33 +39,48 @@ export const List = ({ title, type, redirect }: ListProps) => {
     }
   }, [vList.posts.length, dispatch, type]);
 
-  let hideArrows = (idname: string) => {
-    setInterval(() => {
-      let el = document.getElementById(idname);
-      if (el) {
-        if (el.scrollWidth <= el.clientWidth) {
-          setScrollLeft(false);
-          setScrollRight(false);
-        } else {
-          let scrollpp = (100 * el.scrollLeft) / (el.scrollWidth - el.clientWidth);
-          if (scrollpp > 99) {
-            setScrollRight(false);
-            setScrollLeft(true);
-          } else if (scrollpp < 1) {
-            setScrollLeft(false);
-            setScrollRight(true);
-          } else {
-            setScrollLeft(true);
-            setScrollRight(true);
-          }
-        }
+  const hideArrows = (el: HTMLElement) => {
+    if (el.scrollWidth <= el.clientWidth) {
+      setScrollLeft(false);
+      setScrollRight(false);
+    } else {
+      const scrollpp = (100 * el.scrollLeft) / (el.scrollWidth - el.clientWidth);
+      if (scrollpp > 99) {
+        setScrollRight(false);
+        setScrollLeft(true);
+      } else if (scrollpp < 1) {
+        setScrollLeft(false);
+        setScrollRight(true);
+      } else {
+        setScrollLeft(true);
+        setScrollRight(true);
       }
-    }, 1000);
+    }
   };
 
   React.useEffect(() => {
-    hideArrows(title);
+    const el = document.getElementById(title.trim());
+    if (el) {
+      el.addEventListener("scroll", ({ target }) => {
+        if (target && target instanceof HTMLElement) {
+          hideArrows(target);
+        }
+      });
+
+      window.addEventListener("resize", (_event) => {
+        console.log(title.trim());
+        hideArrows(el);
+      });
+    }
   }, [title]);
+
+  React.useEffect(() => {
+    const el = document.getElementById(title.trim());
+    if (el) {
+      hideArrows(el);
+    }
+  }, [title, videoList.length]);
+
 
   React.useEffect(() => {
     setVideoList(filterUniqueVideos(vList.posts).slice(0, 25));
@@ -104,7 +119,6 @@ export const List = ({ title, type, redirect }: ListProps) => {
               left: -el.offsetWidth * 0.75,
               behavior: "smooth",
             });
-            setScrollLeft(true);
           }}
         ></ChevronLeft>
       </div>
@@ -117,7 +131,6 @@ export const List = ({ title, type, redirect }: ListProps) => {
               left: el.offsetWidth * 0.75,
               behavior: "smooth",
             });
-            setScrollRight(true);
           }}
         ></ChevronRight>
       </div>
