@@ -1,4 +1,4 @@
-Listen To This KGP (LTTKGP) is a music streaming platform that brings together people using the songs that recommend on our Facebook page. This is was a join effort by few students on IIT KGP, but the developer base is consistently getting larger due to the this being an Open Source platform.
+Listen To This KGP (LTTKGP) is a music streaming platform that brings together people using the songs that are recommended on our Facebook page. This was a joint effort by few students on IIT KGP, but the developer base is consistently getting larger due to this being an Open Source platform.
 
 ## Let's Improve this together 
 
