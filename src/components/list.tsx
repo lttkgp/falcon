@@ -106,7 +106,14 @@ export const List = ({ title, type, redirect }: ListProps) => {
       ) : (
         <VArray className="array" id={title.trim()} len={videoList.length}>
           {videoList.map((vid) => (
-            <Card id={vid.id} key={vid.id + title.trim()} data={vid} queue={videoList} redirect={redirect} />
+            <Card
+              id={vid.id}
+              key={vid.id + title.trim()}
+              data={vid}
+              queue={videoList}
+              redirect={redirect}
+              type={type}
+            />
           ))}
         </VArray>
       )}

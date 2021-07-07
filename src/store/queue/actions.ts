@@ -1,9 +1,9 @@
 import { QueueAction } from "./action.types";
-import { Post } from "../list/types";
+import { FeedListType, Post } from "../list/types";
 
-export const setQueue = (list: Post[]): QueueAction => {
+export const setQueue = (list: Post[], type: FeedListType): QueueAction => {
   return {
     type: "new queue",
-    payload: list,
+    payload: { type, posts: list },
   };
 };

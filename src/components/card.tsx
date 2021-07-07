@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { joinArtists } from "../utils";
 import { setQueue } from "../store/queue/actions";
-import { Post } from "../store/list/types";
+import { FeedListType, Post } from "../store/list/types";
 
 import { Heart } from "react-feather";
 
@@ -17,6 +17,7 @@ type CardProps = {
   onClick?: Function;
   gkey?: string;
   listName?: string;
+  type: FeedListType;
 };
 
 export default function Card(props: CardProps) {
@@ -30,7 +31,7 @@ export default function Card(props: CardProps) {
         if (props.onClick !== undefined) {
           props.onClick();
         } else if (props.redirect === true) {
-          dispatch(setQueue(props.queue));
+          dispatch(setQueue(props.queue, props.type));
           history.push("/video?=" + props.id);
         }
       }}

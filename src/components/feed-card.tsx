@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { joinArtists } from "../utils";
 import { setQueue } from "../store/queue/actions";
-import { Post } from "../store/list/types";
+import { FeedListType, Post } from "../store/list/types";
 
 import { Heart } from "react-feather";
 
@@ -29,7 +29,7 @@ export default function FeedCard(props: CardProps) {
     if (props.onClick !== undefined) {
       props.onClick();
     } else if (props.redirect === true) {
-      dispatch(setQueue(props.queue));
+      dispatch(setQueue(props.queue, FeedListType.latest));
       history.push("/video?=" + props.id);
     }
   };

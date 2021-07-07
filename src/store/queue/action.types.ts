@@ -1,6 +1,9 @@
-import { Post } from "../list/types";
+import { FeedListType, Post } from "../list/types";
 
 export type QueueAction = {
   type: string;
-  payload: Post[];
+  payload: {
+    type: FeedListType;
+    posts: Post[];
+  };
 };
